@@ -1,0 +1,67 @@
+# =====================================================================
+# 1. Docker-magento: file tự sinh trên từng máy
+# =====================================================================
+# Ghim version image, bin/setup tự tạo lại
+compose.versions.yaml
+
+# =====================================================================
+# 2. Magento (src/): chặn tất cả, chỉ giữ code TỰ VIẾT
+#    - vendor/, pub/, lib/, generated/, var/: cài lại hoặc tự sinh được
+#    - app/etc/env.php: chứa mật khẩu DB, khoá mã hoá -> KHÔNG BAO GIỜ commit
+# =====================================================================
+/src/*
+!/src/app/
+!/src/composer.json
+!/src/composer.lock
+/src/app/*
+!/src/app/code/
+!/src/app/design/
+
+# Theme mặc định Magento tự tạo sẵn trong app/design, không phải code của mình
+/src/app/design/frontend/Magento/
+/src/app/design/adminhtml/Magento/
+
+# =====================================================================
+# 3. Bí mật / cấu hình cá nhân
+#    - env/*.env chứa mật khẩu DB thật (MYSQL_PASSWORD...) và mật khẩu
+#      admin Magento thật (MAGENTO_ADMIN_PASSWORD) -> KHÔNG commit.
+#    - Vẫn giữ lại env/*.env.example (giá trị đã che bằng "changeme")
+#      để biết cần khai những biến gì khi setup máy mới.
+# =====================================================================
+auth.json
+*.pem
+*.crt
+*.key
+*.env
+!*.env.example
+.env.local
+
+# =====================================================================
+# 4. File rác của hệ điều hành
+# =====================================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+*:Zone.Identifier
+
+# =====================================================================
+# 5. Editor / IDE (giữ lại .vscode/launch.json để cấu hình Xdebug dùng chung)
+# =====================================================================
+.idea/
+.vscode/*
+!.vscode/launch.json
+*.swp
+*.swo
+*~
+
+# =====================================================================
+# 6. Công cụ và file tạm
+# =====================================================================
+node_modules/
+*.log
+*.sql
+*.sql.gz
+*.tar.gz
+*.zip
+.phpunit.result.cache
+.php-cs-fixer.cache
