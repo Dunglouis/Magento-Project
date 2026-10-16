@@ -49,7 +49,8 @@ class GenerateStoreViewUrlRewrites implements DataPatchInterface
     public function apply(): self
     {
         $this->storeManager->reinitStores();
-        $store = $this->storeManager->getStore(CreateStoreViews::STORE_VI);
+        /** @var \Magento\Store\Model\Store $store */
+        $store =$this->storeManager->getStore(CreateStoreViews::STORE_VI);
         $storeId = (int)$store->getId();
 
         $urls = [];
