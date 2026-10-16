@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Khai báo route cho storefront (frontend).
+ * URL: https://magento.test/<frontName>/<thư mục controller>/<tên class action>
+ *      https://magento.test/moduletest1/hello/helloword
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="moduletest1" frontName="moduletest1">
+            <module name="Test_ModuleTest1"/>
+        </route>
+    </router>
+</config>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Dependency Injection config.
+ * - preference: khi ai đó yêu cầu Interface, Magento đưa class cụ thể này.
+ * - CommandList: đăng ký lệnh CLI cho bin/magento.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Test\ModuleTest1\Api\Data\NoteInterface" type="Test\ModuleTest1\Model\Note"/>
+    <preference for="Test\ModuleTest1\Api\Data\NoteSearchResultsInterface" type="Test\ModuleTest1\Model\NoteSearchResults"/>
+    <preference for="Test\ModuleTest1\Api\NoteRepositoryInterface" type="Test\ModuleTest1\Model\NoteRepository"/>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="test_note_create" xsi:type="object">Test\ModuleTest1\Console\Command\NoteCreate</item>
+                <item name="test_note_list" xsi:type="object">Test\ModuleTest1\Console\Command\NoteList</item>
+                <item name="test_note_update" xsi:type="object">Test\ModuleTest1\Console\Command\NoteUpdate</item>
+                <item name="test_note_delete" xsi:type="object">Test\ModuleTest1\Console\Command\NoteDelete</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

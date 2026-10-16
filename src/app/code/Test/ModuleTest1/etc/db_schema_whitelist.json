@@ -1,0 +1,18 @@
+{
+    "test_note": {
+        "column": {
+            "note_id": true,
+            "title": true,
+            "content": true,
+            "is_active": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "TEST_NOTE_IS_ACTIVE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
