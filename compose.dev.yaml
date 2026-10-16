@@ -14,6 +14,7 @@ services:
       - ./src/package.json.sample:/var/www/html/package.json:cached
       - ./src/generated:/var/www/html/generated:cached
       - ./src/var:/var/www/html/var:cached
+      - ./tests/qa:/var/www/html/dev/tests/technest:cached
       #- ./src/auth.json:/var/www/html/auth.json:cached
       #- ./src/m2-hotfixes:/var/www/html/m2-hotfixes:cached
       #- ./src/patches:/var/www/html/patches:cached

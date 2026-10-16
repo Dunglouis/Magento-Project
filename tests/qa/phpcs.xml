@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ruleset name="TechNest">
+    <description>Magento2 coding standard for TechNest custom code</description>
+    <!-- Paths are relative to this file, mounted at dev/tests/technest/ in the container -->
+    <file>../../../app/code/TechNest</file>
+    <arg name="extensions" value="php,phtml,xml"/>
+    <arg name="colors"/>
+    <arg value="sp"/>
+    <rule ref="Magento2"/>
+</ruleset>

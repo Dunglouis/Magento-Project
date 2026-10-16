@@ -1,0 +1,16 @@
+{
+    "name": "technest/module-base",
+    "description": "TechNest base setup: store views, locales, currencies",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/module-store": "*",
+        "magento/module-directory": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {"TechNest\\Base\\": ""}
+    }
+}
