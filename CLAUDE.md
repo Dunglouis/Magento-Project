@@ -39,7 +39,7 @@ Repo GitHub đã khởi tạo và liên kết, có CI/CD base. Trước khi làm
 
 ## 4. Thương hiệu và logo
 
-- **Ý nghĩa logo:** ba vòng cung đồng tâm mở lên như một chiếc **tổ (Nest)** ôm lấy chấm xanh là **lõi công nghệ/sản phẩm** được che chở; các vòng cung nhạt dần cũng gợi tín hiệu kết nối.
+- **Ý nghĩa logo:** chim ưng robot ghép từ chữ **T** (đôi cánh, thân và đuôi vút) và chữ **N** (thân, cổ, đầu chim); mắt phát sáng màu `#0071e3` tượng trưng cho công nghệ; cánh chuyển xanh → bạc gợi tốc độ và tương lai. Logo là ngoại lệ duy nhất được dùng gradient. Ảnh gốc tham chiếu: `brand/source/technest-reference.png`.
 - File trong thư mục `brand/`: `technest-logo.svg` / `technest-logo.png` (logo ngang, biểu tượng + chữ; dùng cho header và email), `technest-mark.svg` (biểu tượng nền tối bo góc), `technest-mark-plain.svg` / `technest-mark-plain-512.png` (biểu tượng không nền, dùng trên nền sáng), `technest-mark-{32,180,512}.png`, `favicon.ico`.
 - Bảng màu: chữ/nền tối `#1d1d1f`, nền trang `#ffffff`, nền phụ `#f5f5f7`, màu nhấn duy nhất `#0071e3`. Font: stack hệ thống (`-apple-system, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif`), không tải font ngoài.
 - Áp dụng: logo header (SVG, qua layout XML của theme), favicon (PNG/ICO), tên cửa hàng trong **Stores > Configuration > General > Store Information**, tiêu đề trang, footer, email giao dịch (header email dùng logo PNG), meta title mặc định "TechNest".
@@ -83,7 +83,8 @@ Phương án lai, chạy lặp lại được (idempotent):
 
 ### 5.3 Giao diện
 
-- Phong cách **tối giản kiểu Apple, sang trọng**: nền trắng/xám nhạt, chữ đen, một màu nhấn, nhiều khoảng trắng, bo góc nhẹ, ít hiệu ứng, không gradient/màu mè.
+- Phong cách **tối giản kiểu Apple, sang trọng**: nền trắng/xám nhạt, chữ đen, một màu nhấn, nhiều khoảng trắng, bo góc nhẹ, không gradient/màu mè (trừ logo).
+- **Chiều sâu và chuyển động mượt** (tinh tế, không lòe loẹt): bóng đổ mềm nhiều lớp cho card/header/dropdown/modal, nâng nhẹ card khi hover (`translateY` + bóng đậm hơn), header dính kiểu kính mờ (`backdrop-filter: blur`) khi cuộn, ảnh sản phẩm zoom nhẹ khi hover, nội dung hiện dần khi cuộn tới (fade + trượt lên ngắn). Transition 200-400ms, easing `cubic-bezier(.2,.8,.2,1)`; chỉ animate `transform`/`opacity` để giữ 60fps; tôn trọng `prefers-reduced-motion` (tắt chuyển động).
 - Theme con `TechNest/minimal` (parent `Magento/luma`) tại `app/design/frontend/TechNest/minimal/`: ghi đè LESS variables (màu, font, spacing), header/footer, trang chủ (CMS block + widget), card sản phẩm, trang chi tiết. Tận dụng tối đa framework có sẵn.
 - Responsive (kiểm tra 375px, 768px, 1280px).
 - Trang: Trang chủ (banner, sản phẩm nổi bật, danh mục, khối sale), Danh mục (lưới + bộ lọc), Chi tiết sản phẩm (gallery, bảng thông số, sản phẩm liên quan), Giỏ hàng, Thanh toán, Tài khoản.
