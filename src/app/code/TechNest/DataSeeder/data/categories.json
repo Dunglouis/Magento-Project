@@ -1,0 +1,23 @@
+[
+    {"url_key": "laptops", "name": {"en": "Laptops", "vi": "Laptop"}, "children": [
+        {"url_key": "gaming", "name": {"en": "Gaming", "vi": "Gaming"}},
+        {"url_key": "office", "name": {"en": "Office", "vi": "Văn phòng"}},
+        {"url_key": "thin-light", "name": {"en": "Thin & Light", "vi": "Mỏng nhẹ"}}
+    ]},
+    {"url_key": "phones", "name": {"en": "Phones", "vi": "Điện thoại"}, "children": [
+        {"url_key": "flagship", "name": {"en": "Flagship", "vi": "Flagship"}},
+        {"url_key": "mid-range", "name": {"en": "Mid-range", "vi": "Tầm trung"}},
+        {"url_key": "budget", "name": {"en": "Budget", "vi": "Giá rẻ"}}
+    ]},
+    {"url_key": "pcs", "name": {"en": "PCs", "vi": "PC"}, "children": [
+        {"url_key": "gaming-pc", "name": {"en": "Gaming PCs", "vi": "PC Gaming"}},
+        {"url_key": "office-pc", "name": {"en": "Office PCs", "vi": "PC Văn phòng"}},
+        {"url_key": "components", "name": {"en": "Components", "vi": "Linh kiện"}}
+    ]},
+    {"url_key": "accessories", "name": {"en": "Accessories", "vi": "Phụ kiện"}, "children": [
+        {"url_key": "mice", "name": {"en": "Mice", "vi": "Chuột"}},
+        {"url_key": "keyboards", "name": {"en": "Keyboards", "vi": "Bàn phím"}},
+        {"url_key": "headphones", "name": {"en": "Headphones", "vi": "Tai nghe"}},
+        {"url_key": "chargers-cables", "name": {"en": "Chargers & Cables", "vi": "Sạc & cáp"}}
+    ]}
+]

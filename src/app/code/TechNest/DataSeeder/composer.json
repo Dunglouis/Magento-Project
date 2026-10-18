@@ -1,0 +1,20 @@
+{
+    "name": "technest/module-data-seeder",
+    "description": "TechNest catalog seeder: attributes, categories, products (DummyJSON + seed JSON)",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/module-catalog": "*",
+        "magento/module-configurable-product": "*",
+        "magento/module-bundle": "*",
+        "magento/module-grouped-product": "*",
+        "magento/module-catalog-inventory": "*",
+        "technest/module-base": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {"TechNest\\DataSeeder\\": ""}
+    }
+}

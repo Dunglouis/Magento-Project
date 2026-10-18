@@ -69,3 +69,6 @@ node_modules/
 *.zip
 .phpunit.result.cache
 .php-cs-fixer.cache
+
+# Database backups (mysqldump), never commit
+/backups/
