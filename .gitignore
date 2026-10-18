@@ -16,6 +16,10 @@ compose.versions.yaml
 /src/app/*
 !/src/app/code/
 !/src/app/design/
+# app/etc/config.php chỉ chứa danh sách module (cần cho di:compile ở CI và deploy)
+!/src/app/etc/
+/src/app/etc/*
+!/src/app/etc/config.php
 
 # Theme mặc định Magento tự tạo sẵn trong app/design, không phải code của mình
 /src/app/design/frontend/Magento/
