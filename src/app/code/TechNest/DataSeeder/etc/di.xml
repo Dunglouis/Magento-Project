@@ -13,7 +13,9 @@
     <!-- Steps run in this order; each one is added in its own step (1.2+) -->
     <type name="TechNest\DataSeeder\Console\Command\SeedRun">
         <arguments>
-            <argument name="steps" xsi:type="array"/>
+            <argument name="steps" xsi:type="array">
+                <item name="categories" xsi:type="object">TechNest\DataSeeder\Model\Step\Categories\Proxy</item>
+            </argument>
         </arguments>
     </type>
 

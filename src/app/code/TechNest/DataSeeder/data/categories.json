@@ -9,9 +9,9 @@
         {"url_key": "mid-range", "name": {"en": "Mid-range", "vi": "Tầm trung"}},
         {"url_key": "budget", "name": {"en": "Budget", "vi": "Giá rẻ"}}
     ]},
-    {"url_key": "pcs", "name": {"en": "PCs", "vi": "PC"}, "children": [
-        {"url_key": "gaming-pc", "name": {"en": "Gaming PCs", "vi": "PC Gaming"}},
-        {"url_key": "office-pc", "name": {"en": "Office PCs", "vi": "PC Văn phòng"}},
+    {"url_key": "pcs", "name": {"en": "PC", "vi": "PC"}, "children": [
+        {"url_key": "gaming-pc", "name": {"en": "Gaming PC", "vi": "PC Gaming"}},
+        {"url_key": "office-pc", "name": {"en": "Office PC", "vi": "PC Văn phòng"}},
         {"url_key": "components", "name": {"en": "Components", "vi": "Linh kiện"}}
     ]},
     {"url_key": "accessories", "name": {"en": "Accessories", "vi": "Phụ kiện"}, "children": [
