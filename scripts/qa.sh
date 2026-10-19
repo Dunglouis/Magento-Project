@@ -18,6 +18,12 @@ else
     CODE=src/app/code/TechNest
 fi
 
+# Compile first: PHPStan needs the full generated extension interfaces (generated/code)
+if [[ "${1:-}" == "--compile" ]]; then
+    echo "== setup:di:compile"
+    run bin/magento setup:di:compile
+fi
+
 echo "== PHPCS (Magento2)"
 run vendor/bin/phpcs --standard=$QA/phpcs.xml
 
@@ -29,9 +35,4 @@ if compgen -G "$CODE/*/Test/Unit" > /dev/null; then
     run sh -c 'cd dev/tests/unit && ../../../vendor/bin/phpunit ../../../app/code/TechNest'
 else
     echo "(no unit tests yet, skipped)"
-fi
-
-if [[ "${1:-}" == "--compile" ]]; then
-    echo "== setup:di:compile"
-    run bin/magento setup:di:compile
 fi
