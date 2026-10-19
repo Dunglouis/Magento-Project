@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="technest_seeder" translate="label" sortOrder="900" showInDefault="1">
+            <label>Data Seeder</label>
+            <tab>technest</tab>
+            <resource>TechNest_DataSeeder::config</resource>
+            <group id="icecat" translate="label" sortOrder="10" showInDefault="1">
+                <label>Open Icecat</label>
+                <field id="username" translate="label comment" type="text" sortOrder="10" showInDefault="1">
+                    <label>Username</label>
+                    <comment>Open Icecat account used by technest:seed:run to fetch product images and descriptions.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
