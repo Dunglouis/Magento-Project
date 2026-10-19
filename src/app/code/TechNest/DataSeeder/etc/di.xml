@@ -14,6 +14,7 @@
     <type name="TechNest\DataSeeder\Console\Command\SeedRun">
         <arguments>
             <argument name="steps" xsi:type="array">
+                <item name="attributes" xsi:type="object">TechNest\DataSeeder\Model\Step\Attributes\Proxy</item>
                 <item name="categories" xsi:type="object">TechNest\DataSeeder\Model\Step\Categories\Proxy</item>
             </argument>
         </arguments>

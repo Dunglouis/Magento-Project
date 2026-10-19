@@ -1,0 +1,37 @@
+{
+    "attributes": {
+        "brand": {"label": {"en": "Brand", "vi": "Thương hiệu"}, "input": "select", "filterable": true, "listing": true,
+            "options": ["Apple", "Samsung", "Asus", "Dell", "HP", "Lenovo", "Acer", "MSI", "Huawei", "Xiaomi",
+                        "Oppo", "Realme", "Vivo", "Amazon", "Beats", "Logitech", "Razer", "Corsair", "Anker", "Gigabyte"]},
+        "color": {"label": {"en": "Color", "vi": "Màu sắc"}, "input": "select", "filterable": true,
+            "options": [{"en": "Black", "vi": "Đen"}, {"en": "White", "vi": "Trắng"}, {"en": "Silver", "vi": "Bạc"},
+                        {"en": "Space Gray", "vi": "Xám không gian"}, {"en": "Gold", "vi": "Vàng"},
+                        {"en": "Blue", "vi": "Xanh dương"}, {"en": "Green", "vi": "Xanh lá"},
+                        {"en": "Purple", "vi": "Tím"}, {"en": "Red", "vi": "Đỏ"}]},
+        "tn_cpu": {"label": {"en": "Processor", "vi": "CPU"}, "input": "select", "filterable": true,
+            "options": ["Intel Core i3", "Intel Core i5", "Intel Core i7", "Intel Core i9", "Intel Core Ultra 7",
+                        "AMD Ryzen 5", "AMD Ryzen 7", "AMD Ryzen 9", "Apple M3", "Apple M3 Pro", "Apple M4"]},
+        "tn_ram": {"label": {"en": "Memory (RAM)", "vi": "RAM"}, "input": "select", "filterable": true,
+            "options": ["4 GB", "6 GB", "8 GB", "12 GB", "16 GB", "32 GB", "64 GB"]},
+        "tn_storage": {"label": {"en": "Storage", "vi": "Dung lượng lưu trữ"}, "input": "select", "filterable": true,
+            "options": ["64 GB", "128 GB", "256 GB", "512 GB", "1 TB", "2 TB"]},
+        "tn_screen_size": {"label": {"en": "Screen size", "vi": "Kích thước màn hình"}, "input": "select", "filterable": true,
+            "options": ["13.3 inch", "14 inch", "15.6 inch", "16 inch", "17.3 inch"]},
+        "tn_connectivity": {"label": {"en": "Connectivity", "vi": "Kết nối"}, "input": "select", "filterable": true,
+            "options": [{"en": "Wired", "vi": "Có dây"}, "Bluetooth", {"en": "Wireless 2.4 GHz", "vi": "Không dây 2.4 GHz"},
+                        "USB-C", "Lightning", "MagSafe"]},
+        "tn_gpu": {"label": {"en": "Graphics", "vi": "Card đồ họa"}, "input": "text"},
+        "tn_chipset": {"label": {"en": "Chipset", "vi": "Chipset"}, "input": "text"},
+        "tn_camera": {"label": {"en": "Camera", "vi": "Camera"}, "input": "text"},
+        "tn_battery": {"label": {"en": "Battery", "vi": "Pin"}, "input": "text"},
+        "tn_mainboard": {"label": {"en": "Motherboard", "vi": "Mainboard"}, "input": "text"},
+        "tn_psu": {"label": {"en": "Power supply", "vi": "Nguồn (PSU)"}, "input": "text"},
+        "tn_compatibility": {"label": {"en": "Compatibility", "vi": "Tương thích"}, "input": "text"}
+    },
+    "sets": {
+        "TechNest Laptop": ["brand", "tn_cpu", "tn_ram", "tn_storage", "tn_screen_size", "tn_gpu"],
+        "TechNest Phone": ["brand", "tn_chipset", "tn_storage", "tn_camera", "tn_battery", "color"],
+        "TechNest PC": ["brand", "tn_cpu", "tn_mainboard", "tn_gpu", "tn_ram", "tn_storage", "tn_psu"],
+        "TechNest Accessory": ["brand", "tn_connectivity", "tn_compatibility", "color"]
+    }
+}

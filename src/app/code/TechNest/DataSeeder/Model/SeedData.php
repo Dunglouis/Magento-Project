@@ -35,6 +35,16 @@ class SeedData
     }
 
     /**
+     * Attribute definitions and attribute sets.
+     *
+     * @return array<string, mixed> {attributes: {code: spec}, sets: {name: [codes]}}
+     */
+    public function getAttributes(): array
+    {
+        return $this->read('attributes.json');
+    }
+
+    /**
      * URL paths of every seeded category, e.g. ["laptops", "laptops/gaming", ...].
      *
      * @return string[]
