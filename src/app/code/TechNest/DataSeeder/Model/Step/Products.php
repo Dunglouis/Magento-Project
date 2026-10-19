@@ -10,7 +10,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use TechNest\Base\Setup\Patch\Data\CreateStoreViews;
 use TechNest\DataSeeder\Model\DummyJson\Client as DummyJsonClient;
 use TechNest\DataSeeder\Model\Icecat\Client as IcecatClient;
+use TechNest\DataSeeder\Model\ImageDownloader;
 use TechNest\DataSeeder\Model\ProductDataMapper;
+use TechNest\DataSeeder\Model\ProductImageAttacher;
 use TechNest\DataSeeder\Model\ProductWriter;
 use TechNest\DataSeeder\Model\SeedData;
 use TechNest\DataSeeder\Model\StepInterface;
@@ -27,6 +29,8 @@ class Products implements StepInterface
      * @param IcecatClient $icecat
      * @param ProductDataMapper $mapper
      * @param ProductWriter $writer
+     * @param ImageDownloader $images
+     * @param ProductImageAttacher $imageAttacher
      * @param StoreManagerInterface $storeManager
      */
     public function __construct(
@@ -35,6 +39,8 @@ class Products implements StepInterface
         private readonly IcecatClient $icecat,
         private readonly ProductDataMapper $mapper,
         private readonly ProductWriter $writer,
+        private readonly ImageDownloader $images,
+        private readonly ProductImageAttacher $imageAttacher,
         private readonly StoreManagerInterface $storeManager
     ) {
     }
@@ -44,7 +50,7 @@ class Products implements StepInterface
      */
     public function getDescription(): string
     {
-        return 'Simple products (seed data + DummyJSON + Open Icecat)';
+        return 'Simple products and images (seed data + DummyJSON + Open Icecat)';
     }
 
     /**
@@ -70,7 +76,24 @@ class Products implements StepInterface
             }
             $data = $this->mapper->map($seed, $api, $icecat);
             $created = $this->writer->save($data, $viStoreId);
-            $output->writeln(sprintf('  %s %s  %s', $created ? '+' : '=', $data['sku'], $data['name']['en']));
+            try {
+                $added = $this->imageAttacher->attach(
+                    $data['sku'],
+                    $this->images->download($data['url_key'], $data['images'])
+                );
+            } catch (LocalizedException $e) {
+                $added = 0;
+                $output->writeln(
+                    '<comment>  ! ' . $e->getMessage() . ' (images will be retried on the next run)</comment>'
+                );
+            }
+            $output->writeln(sprintf(
+                '  %s %s  %s%s',
+                $created ? '+' : '=',
+                $data['sku'],
+                $data['name']['en'],
+                $added ? sprintf(' (+%d images)', $added) : ''
+            ));
         }
     }
 }
