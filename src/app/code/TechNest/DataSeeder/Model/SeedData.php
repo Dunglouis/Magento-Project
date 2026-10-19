@@ -64,6 +64,24 @@ class SeedData
     }
 
     /**
+     * Product entries from every data/products/*.json file, in file name order.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public function getProducts(): array
+    {
+        $files = $this->file->readDirectory($this->getDataDir() . '/products');
+        sort($files);
+        $products = [];
+        foreach ($files as $path) {
+            if (str_ends_with($path, '.json')) {
+                $products[] = (array)$this->json->unserialize($this->file->fileGetContents($path));
+            }
+        }
+        return array_merge([], ...$products);
+    }
+
+    /**
      * Decode one JSON file from data/.
      *
      * @param string $fileName
@@ -71,7 +89,16 @@ class SeedData
      */
     private function read(string $fileName): array
     {
-        $dir = $this->moduleDirReader->getModuleDir('', 'TechNest_DataSeeder');
-        return (array)$this->json->unserialize($this->file->fileGetContents($dir . '/data/' . $fileName));
+        return (array)$this->json->unserialize($this->file->fileGetContents($this->getDataDir() . '/' . $fileName));
+    }
+
+    /**
+     * Absolute path of the module's data/ folder.
+     *
+     * @return string
+     */
+    private function getDataDir(): string
+    {
+        return $this->moduleDirReader->getModuleDir('', 'TechNest_DataSeeder') . '/data';
     }
 }

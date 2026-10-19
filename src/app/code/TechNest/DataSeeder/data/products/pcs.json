@@ -1,0 +1,556 @@
+[
+ {
+  "sku": "TN-PC-LEGION-T7",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/gaming-pc"
+  ],
+  "price": 2799.0,
+  "qty": 5,
+  "icecat": {
+   "brand": "Lenovo",
+   "mpn": "90V70044JM"
+  },
+  "name": {
+   "en": "Lenovo Legion T7 Gaming PC"
+  },
+  "description": {
+   "en": "Legion Tower 7 with Intel Core i7-13700KF, GeForce RTX 4080, 32 GB DDR5 and 4 TB of SSD + HDD storage.",
+   "vi": "Legion Tower 7 với Intel Core i7-13700KF, GeForce RTX 4080, 32 GB DDR5 và 4 TB lưu trữ SSD + HDD."
+  },
+  "attributes": {
+   "brand": "Lenovo",
+   "tn_cpu": "Intel Core i7",
+   "tn_mainboard": "Intel Z790",
+   "tn_gpu": "NVIDIA GeForce RTX 4080 16 GB",
+   "tn_ram": "32 GB",
+   "tn_storage": "2 TB",
+   "tn_psu": "850 W 80+ Gold"
+  }
+ },
+ {
+  "sku": "TN-PC-LEGION-T5",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/gaming-pc"
+  ],
+  "price": 1699.0,
+  "qty": 8,
+  "icecat": {
+   "brand": "Lenovo",
+   "mpn": "90UT000VUS"
+  },
+  "name": {
+   "en": "Lenovo Legion T5 Gaming PC"
+  },
+  "description": {
+   "en": "Legion Tower 5 with Intel Core i7-13700F, GeForce RTX 4070, 16 GB DDR5 and a 1 TB NVMe SSD.",
+   "vi": "Legion Tower 5 với Intel Core i7-13700F, GeForce RTX 4070, 16 GB DDR5 và SSD NVMe 1 TB."
+  },
+  "attributes": {
+   "brand": "Lenovo",
+   "tn_cpu": "Intel Core i7",
+   "tn_mainboard": "Intel B760",
+   "tn_gpu": "NVIDIA GeForce RTX 4070 12 GB",
+   "tn_ram": "16 GB",
+   "tn_storage": "1 TB",
+   "tn_psu": "750 W 80+ Gold"
+  }
+ },
+ {
+  "sku": "TN-PC-ROG-STRIX-G16CH",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/gaming-pc"
+  ],
+  "price": 1899.0,
+  "qty": 6,
+  "icecat": {
+   "brand": "Asus",
+   "mpn": "G16CH-71370F153W"
+  },
+  "name": {
+   "en": "Asus ROG Strix G16CH Gaming PC"
+  },
+  "description": {
+   "en": "ROG Strix tower with Intel Core i7-13700F, GeForce RTX 4060 Ti, 16 GB RAM and a 1 TB SSD.",
+   "vi": "PC ROG Strix với Intel Core i7-13700F, GeForce RTX 4060 Ti, RAM 16 GB và SSD 1 TB."
+  },
+  "attributes": {
+   "brand": "Asus",
+   "tn_cpu": "Intel Core i7",
+   "tn_mainboard": "Intel B760",
+   "tn_gpu": "NVIDIA GeForce RTX 4060 Ti 8 GB",
+   "tn_ram": "16 GB",
+   "tn_storage": "1 TB",
+   "tn_psu": "750 W 80+ Gold"
+  }
+ },
+ {
+  "sku": "TN-PC-IDEACENTRE-GAMING-5",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/gaming-pc"
+  ],
+  "price": 999.0,
+  "qty": 10,
+  "icecat": {
+   "brand": "Lenovo",
+   "mpn": "90TQ006NUK"
+  },
+  "name": {
+   "en": "Lenovo IdeaCentre Gaming 5"
+  },
+  "description": {
+   "en": "Entry gaming desktop with AMD Ryzen 5 5600G, GeForce RTX 3050, 16 GB RAM and a 512 GB SSD.",
+   "vi": "PC gaming tầm vào với AMD Ryzen 5 5600G, GeForce RTX 3050, RAM 16 GB và SSD 512 GB."
+  },
+  "attributes": {
+   "brand": "Lenovo",
+   "tn_cpu": "AMD Ryzen 5",
+   "tn_mainboard": "AMD B550",
+   "tn_gpu": "NVIDIA GeForce RTX 3050 8 GB",
+   "tn_ram": "16 GB",
+   "tn_storage": "512 GB",
+   "tn_psu": "500 W 80+ Bronze"
+  }
+ },
+ {
+  "sku": "TN-PC-PREDATOR-PO3-665",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/gaming-pc"
+  ],
+  "price": 2199.0,
+  "qty": 5,
+  "icecat": {
+   "brand": "Acer",
+   "mpn": "DG.E4XEH.007"
+  },
+  "name": {
+   "en": "Acer Predator Orion 3000 (PO3-665)"
+  },
+  "description": {
+   "en": "Predator Orion 3000 with Intel Core Ultra 7 265F, GeForce RTX 5070, 32 GB DDR5 and a 1 TB SSD.",
+   "vi": "Predator Orion 3000 với Intel Core Ultra 7 265F, GeForce RTX 5070, 32 GB DDR5 và SSD 1 TB."
+  },
+  "attributes": {
+   "brand": "Acer",
+   "tn_cpu": "Intel Core Ultra 7",
+   "tn_mainboard": "Intel B860",
+   "tn_gpu": "NVIDIA GeForce RTX 5070 12 GB",
+   "tn_ram": "32 GB",
+   "tn_storage": "1 TB",
+   "tn_psu": "750 W 80+ Gold"
+  }
+ },
+ {
+  "sku": "TN-PC-PREDATOR-PO3-640",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/gaming-pc"
+  ],
+  "price": 1599.0,
+  "qty": 6,
+  "icecat": {
+   "brand": "Acer",
+   "mpn": "DG.E2WEG.006"
+  },
+  "name": {
+   "en": "Acer Predator Orion 3000 (PO3-640)"
+  },
+  "description": {
+   "en": "Predator Orion 3000 with Intel Core i7-12700F, GeForce RTX 3070, 32 GB RAM and a 1 TB SSD.",
+   "vi": "Predator Orion 3000 với Intel Core i7-12700F, GeForce RTX 3070, RAM 32 GB và SSD 1 TB."
+  },
+  "attributes": {
+   "brand": "Acer",
+   "tn_cpu": "Intel Core i7",
+   "tn_mainboard": "Intel B660",
+   "tn_gpu": "NVIDIA GeForce RTX 3070 8 GB",
+   "tn_ram": "32 GB",
+   "tn_storage": "1 TB",
+   "tn_psu": "700 W 80+ Gold"
+  }
+ },
+ {
+  "sku": "TN-PC-VICTUS-15L-I5",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/gaming-pc"
+  ],
+  "price": 899.0,
+  "qty": 12,
+  "icecat": {
+   "brand": "HP",
+   "mpn": "A30XGEA"
+  },
+  "name": {
+   "en": "HP Victus 15L Gaming PC (Core i5)"
+  },
+  "description": {
+   "en": "Victus 15L with Intel Core i5-14400F, GeForce RTX 4060, 16 GB RAM and a 512 GB SSD.",
+   "vi": "Victus 15L với Intel Core i5-14400F, GeForce RTX 4060, RAM 16 GB và SSD 512 GB."
+  },
+  "attributes": {
+   "brand": "HP",
+   "tn_cpu": "Intel Core i5",
+   "tn_mainboard": "Intel B760",
+   "tn_gpu": "NVIDIA GeForce RTX 4060 8 GB",
+   "tn_ram": "16 GB",
+   "tn_storage": "512 GB",
+   "tn_psu": "500 W 80+ Bronze"
+  }
+ },
+ {
+  "sku": "TN-PC-VICTUS-15L-R7",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/gaming-pc"
+  ],
+  "price": 949.0,
+  "qty": 10,
+  "icecat": {
+   "brand": "HP",
+   "mpn": "A30ZKEA"
+  },
+  "name": {
+   "en": "HP Victus 15L Gaming PC (Ryzen 7)"
+  },
+  "description": {
+   "en": "Victus 15L with AMD Ryzen 7 5700G, GeForce RTX 4060, 16 GB RAM and a 1 TB SSD.",
+   "vi": "Victus 15L với AMD Ryzen 7 5700G, GeForce RTX 4060, RAM 16 GB và SSD 1 TB."
+  },
+  "attributes": {
+   "brand": "HP",
+   "tn_cpu": "AMD Ryzen 7",
+   "tn_mainboard": "AMD B550",
+   "tn_gpu": "NVIDIA GeForce RTX 4060 8 GB",
+   "tn_ram": "16 GB",
+   "tn_storage": "1 TB",
+   "tn_psu": "500 W 80+ Bronze"
+  }
+ },
+ {
+  "sku": "TN-PC-OPTIPLEX-7020-MT",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/office-pc"
+  ],
+  "price": 899.0,
+  "qty": 15,
+  "icecat": {
+   "brand": "Dell",
+   "mpn": "02W5D"
+  },
+  "name": {
+   "en": "Dell OptiPlex 7020 Mini Tower"
+  },
+  "description": {
+   "en": "Business mini tower with Intel Core i5-14500, 16 GB DDR5, a 512 GB SSD and Windows 11 Pro.",
+   "vi": "Máy bàn doanh nghiệp mini tower với Intel Core i5-14500, 16 GB DDR5, SSD 512 GB, Windows 11 Pro."
+  },
+  "attributes": {
+   "brand": "Dell",
+   "tn_cpu": "Intel Core i5",
+   "tn_mainboard": "Intel Q670",
+   "tn_gpu": "Intel UHD Graphics 770",
+   "tn_ram": "16 GB",
+   "tn_storage": "512 GB",
+   "tn_psu": "300 W 80+ Bronze"
+  }
+ },
+ {
+  "sku": "TN-PC-OPTIPLEX-7020-SFF",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/office-pc"
+  ],
+  "price": 849.0,
+  "qty": 15,
+  "icecat": {
+   "brand": "Dell",
+   "mpn": "XVXN6"
+  },
+  "name": {
+   "en": "Dell OptiPlex 7020 Small Form Factor"
+  },
+  "description": {
+   "en": "Space-saving OptiPlex with Intel Core i5-14500, 16 GB DDR5, a 512 GB SSD and Windows 11 Pro.",
+   "vi": "OptiPlex nhỏ gọn tiết kiệm diện tích với Intel Core i5-14500, 16 GB DDR5, SSD 512 GB, Windows 11 Pro."
+  },
+  "attributes": {
+   "brand": "Dell",
+   "tn_cpu": "Intel Core i5",
+   "tn_mainboard": "Intel Q670",
+   "tn_gpu": "Intel UHD Graphics 770",
+   "tn_ram": "16 GB",
+   "tn_storage": "512 GB",
+   "tn_psu": "180 W 80+ Platinum"
+  }
+ },
+ {
+  "sku": "TN-PC-HP-PRO-400-G9-I5-14500",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/office-pc"
+  ],
+  "price": 749.0,
+  "qty": 20,
+  "icecat": {
+   "brand": "HP",
+   "mpn": "882A6EA"
+  },
+  "name": {
+   "en": "HP Pro Tower 400 G9 (Core i5-14500)"
+  },
+  "description": {
+   "en": "Office tower with Intel Core i5-14500, 16 GB DDR5, a 512 GB SSD and Windows 11 Pro.",
+   "vi": "Máy bàn văn phòng với Intel Core i5-14500, 16 GB DDR5, SSD 512 GB, Windows 11 Pro."
+  },
+  "attributes": {
+   "brand": "HP",
+   "tn_cpu": "Intel Core i5",
+   "tn_mainboard": "Intel B760",
+   "tn_gpu": "Intel UHD Graphics 770",
+   "tn_ram": "16 GB",
+   "tn_storage": "512 GB",
+   "tn_psu": "260 W"
+  }
+ },
+ {
+  "sku": "TN-PC-HP-PRO-400-G9-I5-14400",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/office-pc"
+  ],
+  "price": 699.0,
+  "qty": 20,
+  "icecat": {
+   "brand": "HP",
+   "mpn": "C7FX4ET"
+  },
+  "name": {
+   "en": "HP Pro Tower 400 G9 (Core i5-14400)"
+  },
+  "description": {
+   "en": "Office tower with Intel Core i5-14400, 16 GB DDR5, a 512 GB SSD and Windows 11 Pro.",
+   "vi": "Máy bàn văn phòng với Intel Core i5-14400, 16 GB DDR5, SSD 512 GB, Windows 11 Pro."
+  },
+  "attributes": {
+   "brand": "HP",
+   "tn_cpu": "Intel Core i5",
+   "tn_mainboard": "Intel B760",
+   "tn_gpu": "Intel UHD Graphics 730",
+   "tn_ram": "16 GB",
+   "tn_storage": "512 GB",
+   "tn_psu": "260 W"
+  }
+ },
+ {
+  "sku": "TN-PC-THINKCENTRE-M70S-G5",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/office-pc"
+  ],
+  "price": 949.0,
+  "qty": 12,
+  "icecat": {
+   "brand": "Lenovo",
+   "mpn": "12U80008UK"
+  },
+  "name": {
+   "en": "Lenovo ThinkCentre M70s Gen 5"
+  },
+  "description": {
+   "en": "Small form factor business PC with Intel Core i7-14700, 16 GB DDR5, a 512 GB SSD and Windows 11 Pro.",
+   "vi": "Máy bàn doanh nghiệp nhỏ gọn với Intel Core i7-14700, 16 GB DDR5, SSD 512 GB, Windows 11 Pro."
+  },
+  "attributes": {
+   "brand": "Lenovo",
+   "tn_cpu": "Intel Core i7",
+   "tn_mainboard": "Intel Q670",
+   "tn_gpu": "Intel UHD Graphics 770",
+   "tn_ram": "16 GB",
+   "tn_storage": "512 GB",
+   "tn_psu": "260 W 80+ Platinum"
+  }
+ },
+ {
+  "sku": "TN-PC-IDEACENTRE-5-14IRB8",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/office-pc"
+  ],
+  "price": 799.0,
+  "qty": 12,
+  "icecat": {
+   "brand": "Lenovo",
+   "mpn": "90VK005VIX"
+  },
+  "name": {
+   "en": "Lenovo IdeaCentre 5 (14IRB8)"
+  },
+  "description": {
+   "en": "Home and office tower with Intel Core i7-13700, 16 GB RAM, a 1 TB SSD and Windows 11 Home.",
+   "vi": "Máy bàn gia đình và văn phòng với Intel Core i7-13700, RAM 16 GB, SSD 1 TB, Windows 11 Home."
+  },
+  "attributes": {
+   "brand": "Lenovo",
+   "tn_cpu": "Intel Core i7",
+   "tn_mainboard": "Intel B760",
+   "tn_gpu": "Intel UHD Graphics 770",
+   "tn_ram": "16 GB",
+   "tn_storage": "1 TB",
+   "tn_psu": "260 W 80+ Bronze"
+  }
+ },
+ {
+  "sku": "TN-PC-ASUS-DUAL-RTX4070S",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/components"
+  ],
+  "price": 599.0,
+  "qty": 10,
+  "icecat": {
+   "brand": "Asus",
+   "mpn": "90YV0K84-M0NA00"
+  },
+  "name": {
+   "en": "Asus Dual GeForce RTX 4070 Super 12GB OC White"
+  },
+  "description": {
+   "en": "Dual-fan graphics card with 12 GB GDDR6X, DLSS 3 and ray tracing for high-refresh 1440p gaming.",
+   "vi": "Card đồ họa hai quạt, 12 GB GDDR6X, hỗ trợ DLSS 3 và ray tracing cho chơi game 2K tần số cao."
+  },
+  "attributes": {
+   "brand": "Asus",
+   "tn_gpu": "NVIDIA GeForce RTX 4070 Super 12 GB",
+   "tn_psu": "650 W recommended"
+  },
+  "attributes_vi": {
+   "tn_psu": "Khuyến nghị nguồn 650 W"
+  }
+ },
+ {
+  "sku": "TN-PC-KINGSTON-FURY-DDR5-32GB",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/components"
+  ],
+  "price": 104.99,
+  "qty": 40,
+  "icecat": {
+   "brand": "Kingston",
+   "mpn": "KF560C36BBEK2-32"
+  },
+  "name": {
+   "en": "Kingston FURY Beast DDR5 32GB (2x16GB) 6000MT/s"
+  },
+  "description": {
+   "en": "Dual-channel DDR5 memory kit at 6000 MT/s CL36 with Intel XMP 3.0 and AMD EXPO support.",
+   "vi": "Bộ RAM DDR5 kênh đôi 6000 MT/s CL36, hỗ trợ Intel XMP 3.0 và AMD EXPO."
+  },
+  "attributes": {
+   "brand": "Kingston",
+   "tn_ram": "32 GB"
+  }
+ },
+ {
+  "sku": "TN-PC-SAMSUNG-990-PRO-1TB",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/components"
+  ],
+  "price": 129.99,
+  "qty": 35,
+  "icecat": {
+   "brand": "Samsung",
+   "mpn": "MZ-V9P1T0BW"
+  },
+  "name": {
+   "en": "Samsung 990 Pro 1TB NVMe SSD"
+  },
+  "description": {
+   "en": "PCIe 4.0 NVMe SSD with up to 7,450 MB/s reads, ideal for gaming and creative work.",
+   "vi": "SSD NVMe PCIe 4.0 tốc độ đọc tới 7.450 MB/s, lý tưởng cho chơi game và làm sáng tạo."
+  },
+  "attributes": {
+   "brand": "Samsung",
+   "tn_storage": "1 TB"
+  }
+ },
+ {
+  "sku": "TN-PC-SAMSUNG-990-PRO-2TB",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/components"
+  ],
+  "price": 189.99,
+  "qty": 25,
+  "icecat": {
+   "brand": "Samsung",
+   "mpn": "MZ-V9P2T0BW"
+  },
+  "name": {
+   "en": "Samsung 990 Pro 2TB NVMe SSD"
+  },
+  "description": {
+   "en": "2 TB PCIe 4.0 NVMe SSD with up to 7,450 MB/s reads for large game libraries.",
+   "vi": "SSD NVMe PCIe 4.0 dung lượng 2 TB, đọc tới 7.450 MB/s cho thư viện game lớn."
+  },
+  "attributes": {
+   "brand": "Samsung",
+   "tn_storage": "2 TB"
+  }
+ },
+ {
+  "sku": "TN-PC-ROG-STRIX-B650-A",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/components"
+  ],
+  "price": 259.99,
+  "qty": 15,
+  "icecat": {
+   "brand": "Asus",
+   "mpn": "90MB1BP0-M0EAY0"
+  },
+  "name": {
+   "en": "Asus ROG Strix B650-A Gaming WiFi"
+  },
+  "description": {
+   "en": "AM5 ATX motherboard with DDR5, PCIe 5.0 M.2, Wi-Fi 6E and 2.5 Gb Ethernet.",
+   "vi": "Bo mạch chủ ATX socket AM5, hỗ trợ DDR5, M.2 PCIe 5.0, Wi-Fi 6E và LAN 2.5 Gb."
+  },
+  "attributes": {
+   "brand": "Asus",
+   "tn_mainboard": "AMD B650 (AM5, ATX)"
+  }
+ },
+ {
+  "sku": "TN-PC-ROG-STRIX-1000W",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/components"
+  ],
+  "price": 219.99,
+  "qty": 15,
+  "icecat": {
+   "brand": "Asus",
+   "mpn": "90YE00P1-B0NA00"
+  },
+  "name": {
+   "en": "Asus ROG Strix 1000W Gold Aura Edition"
+  },
+  "description": {
+   "en": "Fully modular 1000 W 80+ Gold power supply with axial-tech fans and Aura RGB.",
+   "vi": "Nguồn 1000 W chuẩn 80+ Gold, dây rời hoàn toàn, quạt axial-tech và đèn Aura RGB."
+  },
+  "attributes": {
+   "brand": "Asus",
+   "tn_psu": "1000 W 80+ Gold"
+  }
+ }
+]
