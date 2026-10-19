@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace TechNest\DataSeeder\Model;
 
+use Magento\Catalog\Model\Product\Visibility;
+
 /**
  * Merges one seed entry with its optional DummyJSON / Open Icecat sources into the flat data ProductWriter saves.
  * Priority: seed file > DummyJSON > Icecat; Vietnamese falls back to English.
@@ -43,6 +45,8 @@ class ProductDataMapper
         if (!isset($attributes['brand']) && !empty($api['brand'])) {
             $attributes['brand'] = $api['brand'];
         }
+        $axes = array_keys($seed['configurable'] ?? []);
+        $attributes = array_diff_key($attributes, array_flip($axes));
 
         return [
             'sku' => $sku,
@@ -52,13 +56,76 @@ class ProductDataMapper
             'name' => ['en' => $nameEn, 'vi' => (string)($seed['name']['vi'] ?? $nameEn)],
             'description' => ['en' => $descriptionEn, 'vi' => (string)($seed['description']['vi'] ?? $descriptionEn)],
             'url_key' => $this->urlKey($nameEn),
+            'visibility' => Visibility::VISIBILITY_BOTH,
             'price' => round($price, 2),
             'qty' => (int)($seed['qty'] ?? $api['stock'] ?? 0),
             'weight' => (float)($seed['weight'] ?? $api['weight'] ?? 1),
             'attributes' => $attributes,
             'attributes_vi' => $seed['attributes_vi'] ?? [],
             'images' => $seed['images'] ?? ($icecat ? $this->icecatImages($icecat) : ($api['images'] ?? [])),
+            'configurable_attributes' => $axes,
         ];
+    }
+
+    /**
+     * Child simple products of a configurable seed: every combination of its "configurable" option lists.
+     *
+     * An option is a label or {"value": label, "price": extra}; child price = parent price + extras.
+     *
+     * @param array<string,mixed> $parent Output of map() for the configurable product
+     * @param array<string,mixed> $seed
+     * @return array<int, array<string, mixed>>
+     * @throws \InvalidArgumentException
+     */
+    public function mapVariants(array $parent, array $seed): array
+    {
+        $combinations = [[]];
+        foreach ($seed['configurable'] ?? [] as $code => $options) {
+            if (!is_array($options) || $options === []) {
+                throw new \InvalidArgumentException(sprintf('%s: no options for "%s"', $parent['sku'], $code));
+            }
+            $next = [];
+            foreach ($combinations as $combination) {
+                foreach ($options as $option) {
+                    $next[] = $combination + [$code => [
+                        (string)(is_array($option) ? $option['value'] : $option),
+                        (float)(is_array($option) ? ($option['price'] ?? 0) : 0),
+                    ]];
+                }
+            }
+            $combinations = $next;
+        }
+        if ($combinations === [[]]) {
+            throw new \InvalidArgumentException(sprintf('%s: "configurable" is empty', $parent['sku']));
+        }
+
+        $variants = [];
+        foreach ($combinations as $combination) {
+            $labels = array_map(fn (array $pair): string => $pair[0], $combination);
+            $suffix = implode('-', array_map(
+                fn (string $label): string => strtoupper((string)preg_replace('/[^A-Za-z0-9]+/', '', $label)),
+                $labels
+            ));
+            $title = ' - ' . implode(' / ', $labels);
+            $variants[] = [
+                'sku' => $parent['sku'] . '-' . $suffix,
+                'type' => 'simple',
+                'set' => $parent['set'],
+                'categories' => [],
+                'name' => ['en' => $parent['name']['en'] . $title, 'vi' => $parent['name']['vi'] . $title],
+                'description' => $parent['description'],
+                'url_key' => $parent['url_key'] . '-' . $this->urlKey(implode(' ', $labels)),
+                'visibility' => Visibility::VISIBILITY_NOT_VISIBLE,
+                'price' => round($parent['price'] + array_sum(array_column($combination, 1)), 2),
+                'qty' => $parent['qty'],
+                'weight' => $parent['weight'],
+                'attributes' => $labels + $parent['attributes'],
+                'attributes_vi' => $parent['attributes_vi'],
+                'images' => [],
+                'configurable_attributes' => [],
+            ];
+        }
+        return $variants;
     }
 
     /**

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace TechNest\DataSeeder\Test\Unit\Model;
 
+use Magento\Catalog\Model\Product\Visibility;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use TechNest\DataSeeder\Model\ProductDataMapper;
@@ -93,6 +94,44 @@ class ProductDataMapperTest extends TestCase
         self::assertSame(['https://own/1.jpg'], $data['images']);
     }
 
+    public function testConfigurableParentDropsVariantAttributes(): void
+    {
+        $data = $this->mapper->map($this->laptopSeed());
+
+        self::assertSame(['brand' => 'Lenovo'], $data['attributes']);
+        self::assertSame(['tn_ram', 'tn_storage'], $data['configurable_attributes']);
+        self::assertSame(Visibility::VISIBILITY_BOTH, $data['visibility']);
+    }
+
+    public function testMapVariantsBuildsEveryCombination(): void
+    {
+        $seed = $this->laptopSeed();
+        $variants = $this->mapper->mapVariants($this->mapper->map($seed), $seed);
+
+        self::assertCount(4, $variants);
+        self::assertSame(
+            ['TN-LT-X-16GB-512GB', 'TN-LT-X-16GB-1TB', 'TN-LT-X-32GB-512GB', 'TN-LT-X-32GB-1TB'],
+            array_column($variants, 'sku')
+        );
+        self::assertSame([1000.0, 1090.0, 1150.0, 1240.0], array_column($variants, 'price'));
+
+        $last = $variants[3];
+        self::assertSame('Lenovo X - 32 GB / 1 TB', $last['name']['en']);
+        self::assertSame('lenovo-x-32-gb-1-tb', $last['url_key']);
+        self::assertSame(['tn_ram' => '32 GB', 'tn_storage' => '1 TB', 'brand' => 'Lenovo'], $last['attributes']);
+        self::assertSame(Visibility::VISIBILITY_NOT_VISIBLE, $last['visibility']);
+        self::assertSame('simple', $last['type']);
+        self::assertSame([], $last['categories']);
+    }
+
+    public function testMapVariantsRejectsEmptyOptions(): void
+    {
+        $seed = ['configurable' => ['tn_ram' => []]] + $this->laptopSeed();
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->mapper->mapVariants($this->mapper->map($seed), $seed);
+    }
+
     #[DataProvider('urlKeyProvider')]
     public function testUrlKey(string $name, string $expected): void
     {
@@ -119,6 +158,23 @@ class ProductDataMapperTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->mapper->map($seed);
+    }
+
+    /**
+     * Configurable laptop seed with 2 RAM x 2 SSD options.
+     *
+     * @return array<string, mixed>
+     */
+    private function laptopSeed(): array
+    {
+        return [
+            'sku' => 'TN-LT-X', 'type' => 'configurable', 'set' => 'TechNest Laptop', 'price' => 1000,
+            'name' => ['en' => 'Lenovo X'], 'attributes' => ['brand' => 'Lenovo', 'tn_ram' => '8 GB'],
+            'configurable' => [
+                'tn_ram' => ['16 GB', ['value' => '32 GB', 'price' => 150]],
+                'tn_storage' => ['512 GB', ['value' => '1 TB', 'price' => 90]],
+            ],
+        ];
     }
 
     /**

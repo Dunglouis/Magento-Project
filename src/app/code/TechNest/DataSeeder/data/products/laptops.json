@@ -1,0 +1,790 @@
+[
+ {
+  "sku": "TN-LT-LEGION-5",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/gaming"
+  ],
+  "price": 1599,
+  "qty": 8,
+  "icecat": {
+   "brand": "Lenovo",
+   "mpn": "83DG00A9US"
+  },
+  "name": {
+   "en": "Lenovo Legion 5 16IRX9"
+  },
+  "description": {
+   "en": "16-inch WQXGA 165 Hz gaming laptop with Intel Core i7-14700HX and GeForce RTX 4070.",
+   "vi": "Laptop gaming 16 inch WQXGA 165 Hz, Intel Core i7-14700HX và GeForce RTX 4070."
+  },
+  "attributes": {
+   "brand": "Lenovo",
+   "tn_cpu": "Intel Core i7",
+   "tn_screen_size": "16 inch",
+   "tn_gpu": "NVIDIA GeForce RTX 4070 8 GB"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB",
+    {
+     "value": "32 GB",
+     "price": 150
+    }
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 90
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-ROG-STRIX-G16",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/gaming"
+  ],
+  "price": 1499,
+  "qty": 8,
+  "icecat": {
+   "brand": "Asus",
+   "mpn": "G614JV-AS73"
+  },
+  "name": {
+   "en": "Asus ROG Strix G16 (G614JV)"
+  },
+  "description": {
+   "en": "16-inch 165 Hz ROG gaming laptop with Intel Core i7-13650HX and GeForce RTX 4060.",
+   "vi": "Laptop gaming ROG 16 inch 165 Hz, Intel Core i7-13650HX và GeForce RTX 4060."
+  },
+  "attributes": {
+   "brand": "Asus",
+   "tn_cpu": "Intel Core i7",
+   "tn_screen_size": "16 inch",
+   "tn_gpu": "NVIDIA GeForce RTX 4060 8 GB"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB",
+    {
+     "value": "32 GB",
+     "price": 150
+    }
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 90
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-VICTUS-15",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/gaming"
+  ],
+  "price": 899,
+  "qty": 10,
+  "icecat": {
+   "brand": "HP",
+   "mpn": "A8XJ3EA"
+  },
+  "name": {
+   "en": "HP Victus 15 Gaming Laptop"
+  },
+  "description": {
+   "en": "15.6-inch Full HD gaming laptop with AMD Ryzen 7 5800H and GeForce RTX 3050.",
+   "vi": "Laptop gaming 15.6 inch Full HD, AMD Ryzen 7 5800H và GeForce RTX 3050."
+  },
+  "attributes": {
+   "brand": "HP",
+   "tn_cpu": "AMD Ryzen 7",
+   "tn_screen_size": "15.6 inch",
+   "tn_gpu": "NVIDIA GeForce RTX 3050 4 GB"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB",
+    {
+     "value": "32 GB",
+     "price": 150
+    }
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 90
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-NITRO-V-15",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/gaming"
+  ],
+  "price": 999,
+  "qty": 10,
+  "icecat": {
+   "brand": "Acer",
+   "mpn": "NH.QNBEK.005"
+  },
+  "name": {
+   "en": "Acer Nitro V 15"
+  },
+  "description": {
+   "en": "15.6-inch 144 Hz gaming laptop with Intel Core i7-13620H and GeForce RTX 4050.",
+   "vi": "Laptop gaming 15.6 inch 144 Hz, Intel Core i7-13620H và GeForce RTX 4050."
+  },
+  "attributes": {
+   "brand": "Acer",
+   "tn_cpu": "Intel Core i7",
+   "tn_screen_size": "15.6 inch",
+   "tn_gpu": "NVIDIA GeForce RTX 4050 6 GB"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB",
+    {
+     "value": "32 GB",
+     "price": 150
+    }
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 90
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-TUF-A15",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/gaming"
+  ],
+  "price": 1099,
+  "qty": 10,
+  "icecat": {
+   "brand": "Asus",
+   "mpn": "FA507NVR-LP012W"
+  },
+  "name": {
+   "en": "Asus TUF Gaming A15"
+  },
+  "description": {
+   "en": "Military-grade TUF gaming laptop with AMD Ryzen 7 7435HS, GeForce RTX 4060 and a 90 Wh battery.",
+   "vi": "Laptop gaming TUF bền chuẩn quân đội, AMD Ryzen 7 7435HS, GeForce RTX 4060 và pin 90 Wh."
+  },
+  "attributes": {
+   "brand": "Asus",
+   "tn_cpu": "AMD Ryzen 7",
+   "tn_screen_size": "15.6 inch",
+   "tn_gpu": "NVIDIA GeForce RTX 4060 8 GB"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB",
+    {
+     "value": "32 GB",
+     "price": 150
+    }
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 90
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-LOQ-15",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/gaming"
+  ],
+  "price": 949,
+  "qty": 12,
+  "icecat": {
+   "brand": "Lenovo",
+   "mpn": "83DV0096GE"
+  },
+  "name": {
+   "en": "Lenovo LOQ 15IRX9"
+  },
+  "description": {
+   "en": "Entry gaming laptop with Intel Core i5-13450HX, GeForce RTX 4050 and a 144 Hz Full HD screen.",
+   "vi": "Laptop gaming phổ thông, Intel Core i5-13450HX, GeForce RTX 4050 và màn hình Full HD 144 Hz."
+  },
+  "attributes": {
+   "brand": "Lenovo",
+   "tn_cpu": "Intel Core i5",
+   "tn_screen_size": "15.6 inch",
+   "tn_gpu": "NVIDIA GeForce RTX 4050 6 GB"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB",
+    {
+     "value": "32 GB",
+     "price": 150
+    }
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 90
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-THINKPAD-E14-G5",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/office"
+  ],
+  "price": 949,
+  "qty": 12,
+  "icecat": {
+   "brand": "Lenovo",
+   "mpn": "21JK0058UK"
+  },
+  "name": {
+   "en": "Lenovo ThinkPad E14 Gen 5"
+  },
+  "description": {
+   "en": "Business laptop with Intel Core i7-1355U, a 14-inch WUXGA screen and the legendary ThinkPad keyboard.",
+   "vi": "Laptop doanh nghiệp, Intel Core i7-1355U, màn hình 14 inch WUXGA và bàn phím ThinkPad nổi tiếng."
+  },
+  "attributes": {
+   "brand": "Lenovo",
+   "tn_cpu": "Intel Core i7",
+   "tn_screen_size": "14 inch",
+   "tn_gpu": "Intel Iris Xe"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB",
+    {
+     "value": "32 GB",
+     "price": 120
+    }
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 80
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-PROBOOK-450-G10",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/office"
+  ],
+  "price": 1049,
+  "qty": 12,
+  "icecat": {
+   "brand": "HP",
+   "mpn": "725K4EA"
+  },
+  "name": {
+   "en": "HP ProBook 450 G10"
+  },
+  "description": {
+   "en": "15.6-inch business laptop with Intel Core i7-1355U and GeForce RTX 2050 graphics.",
+   "vi": "Laptop doanh nghiệp 15.6 inch, Intel Core i7-1355U và card đồ họa GeForce RTX 2050."
+  },
+  "attributes": {
+   "brand": "HP",
+   "tn_cpu": "Intel Core i7",
+   "tn_screen_size": "15.6 inch",
+   "tn_gpu": "NVIDIA GeForce RTX 2050 4 GB"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB",
+    {
+     "value": "32 GB",
+     "price": 120
+    }
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 80
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-ELITEBOOK-840-G10",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/office"
+  ],
+  "price": 1199,
+  "qty": 8,
+  "icecat": {
+   "brand": "HP",
+   "mpn": "818M1EA"
+  },
+  "name": {
+   "en": "HP EliteBook 840 G10"
+  },
+  "description": {
+   "en": "Premium 14-inch business laptop with Intel Core i5-1335U, aluminium chassis and HP Wolf Security.",
+   "vi": "Laptop doanh nhân cao cấp 14 inch, Intel Core i5-1335U, vỏ nhôm và bảo mật HP Wolf Security."
+  },
+  "attributes": {
+   "brand": "HP",
+   "tn_cpu": "Intel Core i5",
+   "tn_screen_size": "14 inch",
+   "tn_gpu": "Intel Iris Xe"
+  },
+  "configurable": {
+   "tn_ram": [
+    "8 GB",
+    {
+     "value": "16 GB",
+     "price": 90
+    }
+   ],
+   "tn_storage": [
+    "256 GB",
+    {
+     "value": "512 GB",
+     "price": 70
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-ASPIRE-5",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/office"
+  ],
+  "price": 749,
+  "qty": 15,
+  "icecat": {
+   "brand": "Acer",
+   "mpn": "NX.KHGEK.002"
+  },
+  "name": {
+   "en": "Acer Aspire 5 (A515-58M)"
+  },
+  "description": {
+   "en": "Everyday 15.6-inch laptop with Intel Core i7-1355U and a slim metal design.",
+   "vi": "Laptop 15.6 inch cho công việc hằng ngày, Intel Core i7-1355U, thiết kế kim loại mỏng."
+  },
+  "attributes": {
+   "brand": "Acer",
+   "tn_cpu": "Intel Core i7",
+   "tn_screen_size": "15.6 inch",
+   "tn_gpu": "Intel Iris Xe"
+  },
+  "configurable": {
+   "tn_ram": [
+    "8 GB",
+    {
+     "value": "16 GB",
+     "price": 70
+    }
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 80
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-ZENBOOK-PRO-DUO",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/office"
+  ],
+  "qty": 5,
+  "dummyjson_id": 79,
+  "name": {
+   "en": "Asus Zenbook Pro Duo"
+  },
+  "description": {
+   "vi": "Laptop hai màn hình cho người sáng tạo: màn hình chính OLED 4K và ScreenPad Plus phía trên bàn phím."
+  },
+  "attributes": {
+   "brand": "Asus",
+   "tn_cpu": "Intel Core i7",
+   "tn_screen_size": "15.6 inch",
+   "tn_gpu": "NVIDIA GeForce RTX 2060 6 GB"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB",
+    {
+     "value": "32 GB",
+     "price": 200
+    }
+   ],
+   "tn_storage": [
+    "1 TB",
+    {
+     "value": "2 TB",
+     "price": 180
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-ZENBOOK-14-OLED",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/thin-light"
+  ],
+  "price": 1099,
+  "qty": 10,
+  "icecat": {
+   "brand": "Asus",
+   "mpn": "90NB11R2-M012B0"
+  },
+  "name": {
+   "en": "Asus Zenbook 14 OLED (UX3405MA)"
+  },
+  "description": {
+   "en": "1.2 kg OLED ultrabook with Intel Core Ultra 7 155H and a 75 Wh battery.",
+   "vi": "Ultrabook OLED 1.2 kg, Intel Core Ultra 7 155H và pin 75 Wh."
+  },
+  "attributes": {
+   "brand": "Asus",
+   "tn_cpu": "Intel Core Ultra 7",
+   "tn_screen_size": "14 inch",
+   "tn_gpu": "Intel Arc"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB",
+    {
+     "value": "32 GB",
+     "price": 150
+    }
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 90
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-SWIFT-GO-14",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/thin-light"
+  ],
+  "price": 1299,
+  "qty": 8,
+  "icecat": {
+   "brand": "Acer",
+   "mpn": "NX.JZSEG.00H"
+  },
+  "name": {
+   "en": "Acer Swift Go 14 AI"
+  },
+  "description": {
+   "en": "Copilot+ PC weighing 1.12 kg with Intel Core Ultra 9 386H and a 71 Wh battery.",
+   "vi": "Copilot+ PC chỉ 1.12 kg, Intel Core Ultra 9 386H và pin 71 Wh."
+  },
+  "attributes": {
+   "brand": "Acer",
+   "tn_cpu": "Intel Core Ultra 9",
+   "tn_screen_size": "14 inch",
+   "tn_gpu": "Intel Arc"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB",
+    {
+     "value": "32 GB",
+     "price": 150
+    }
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 90
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-IDEAPAD-SLIM-5",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/thin-light"
+  ],
+  "price": 849,
+  "qty": 12,
+  "icecat": {
+   "brand": "Lenovo",
+   "mpn": "83DA0082PG"
+  },
+  "name": {
+   "en": "Lenovo IdeaPad Slim 5 14IMH9"
+  },
+  "description": {
+   "en": "Slim 14-inch laptop with Intel Core Ultra 7 155H and a WUXGA display.",
+   "vi": "Laptop mỏng 14 inch, Intel Core Ultra 7 155H và màn hình WUXGA."
+  },
+  "attributes": {
+   "brand": "Lenovo",
+   "tn_cpu": "Intel Core Ultra 7",
+   "tn_screen_size": "14 inch",
+   "tn_gpu": "Intel Arc"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB",
+    {
+     "value": "32 GB",
+     "price": 150
+    }
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 90
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-YOGA-SLIM-7",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/thin-light"
+  ],
+  "price": 999,
+  "qty": 10,
+  "icecat": {
+   "brand": "Lenovo",
+   "mpn": "83CV0042GE"
+  },
+  "name": {
+   "en": "Lenovo Yoga Slim 7 14IMH9"
+  },
+  "description": {
+   "en": "Premium thin laptop with Intel Core Ultra 5 125H, a 65 Wh battery and an aluminium body.",
+   "vi": "Laptop mỏng cao cấp, Intel Core Ultra 5 125H, pin 65 Wh và thân nhôm."
+  },
+  "attributes": {
+   "brand": "Lenovo",
+   "tn_cpu": "Intel Core Ultra 5",
+   "tn_screen_size": "14 inch",
+   "tn_gpu": "Intel Arc"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB",
+    {
+     "value": "32 GB",
+     "price": 150
+    }
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 90
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-MACBOOK-PRO-14",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/thin-light"
+  ],
+  "qty": 6,
+  "dummyjson_id": 78,
+  "name": {
+   "en": "Apple MacBook Pro 14"
+  },
+  "description": {
+   "vi": "MacBook Pro 14 inch màn hình Liquid Retina XDR, chip Apple M4, thời lượng pin cả ngày."
+  },
+  "attributes": {
+   "brand": "Apple",
+   "tn_cpu": "Apple M4",
+   "tn_screen_size": "14.2 inch",
+   "tn_gpu": "Apple M4 10-core GPU"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB",
+    {
+     "value": "32 GB",
+     "price": 400
+    }
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 200
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-MATEBOOK-X-PRO",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/thin-light"
+  ],
+  "qty": 5,
+  "dummyjson_id": 80,
+  "name": {
+   "en": "Huawei MateBook X Pro"
+  },
+  "description": {
+   "vi": "Laptop mỏng nhẹ với màn hình cảm ứng 3K 13.9 inch viền siêu mỏng và vỏ kim loại nguyên khối."
+  },
+  "attributes": {
+   "brand": "Huawei",
+   "tn_cpu": "Intel Core i7",
+   "tn_screen_size": "13.9 inch",
+   "tn_gpu": "Intel Iris Xe"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB"
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 120
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-YOGA-920",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/thin-light"
+  ],
+  "qty": 5,
+  "dummyjson_id": 81,
+  "name": {
+   "en": "Lenovo Yoga 920"
+  },
+  "description": {
+   "vi": "Laptop 2-trong-1 xoay gập 360 độ, màn hình cảm ứng 13.9 inch, hỗ trợ bút Active Pen."
+  },
+  "attributes": {
+   "brand": "Lenovo",
+   "tn_cpu": "Intel Core i7",
+   "tn_screen_size": "13.9 inch",
+   "tn_gpu": "Intel UHD Graphics 620"
+  },
+  "configurable": {
+   "tn_ram": [
+    "8 GB",
+    {
+     "value": "16 GB",
+     "price": 100
+    }
+   ],
+   "tn_storage": [
+    "256 GB",
+    {
+     "value": "512 GB",
+     "price": 80
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-LT-XPS-13",
+  "type": "configurable",
+  "set": "TechNest Laptop",
+  "categories": [
+   "laptops/thin-light"
+  ],
+  "qty": 8,
+  "dummyjson_id": 82,
+  "name": {
+   "en": "Dell XPS 13 (9300)"
+  },
+  "description": {
+   "vi": "Laptop 13.4 inch nhỏ gọn, màn hình InfinityEdge gần như không viền và vỏ nhôm phay CNC."
+  },
+  "attributes": {
+   "brand": "Dell",
+   "tn_cpu": "Intel Core i7",
+   "tn_screen_size": "13.4 inch",
+   "tn_gpu": "Intel Iris Xe"
+  },
+  "configurable": {
+   "tn_ram": [
+    "16 GB",
+    {
+     "value": "32 GB",
+     "price": 150
+    }
+   ],
+   "tn_storage": [
+    "512 GB",
+    {
+     "value": "1 TB",
+     "price": 100
+    }
+   ]
+  }
+ }
+]

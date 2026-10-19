@@ -132,6 +132,8 @@ class Attributes implements StepInterface
             'is_filterable' => $filterable ? 1 : 0,
             'is_filterable_in_search' => $filterable ? 1 : 0,
             'used_in_product_listing' => empty($spec['listing']) ? 0 : 1,
+            // No default: otherwise every product saved without this attribute gets the default option
+            'default_value' => '',
         ]);
 
         $connection = $this->moduleDataSetup->getConnection();
