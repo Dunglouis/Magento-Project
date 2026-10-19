@@ -8,7 +8,6 @@ use Magento\Catalog\Api\Data\ProductInterfaceFactory;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\Product\Attribute\Source\Status;
-use Magento\Catalog\Model\Product\Visibility;
 use Magento\Catalog\Model\ResourceModel\Product as ProductResource;
 use Magento\Eav\Model\Config as EavConfig;
 use Magento\Eav\Model\ResourceModel\Entity\Attribute\Set\CollectionFactory as SetCollectionFactory;
@@ -82,14 +81,12 @@ class ProductWriter
             ->setPrice($data['price'])
             ->setWeight($data['weight'])
             ->setStatus(Status::STATUS_ENABLED)
-            ->setVisibility(Visibility::VISIBILITY_BOTH)
+            ->setVisibility($data['visibility'])
             ->setTaxClassId(self::TAX_CLASS_TAXABLE_GOODS)
             ->setWebsiteIds([(int)$this->storeManager->getDefaultStoreView()->getWebsiteId()])
-            ->setStockData([
-                'use_config_manage_stock' => 1,
-                'qty' => $data['qty'],
-                'is_in_stock' => $data['qty'] > 0 ? 1 : 0,
-            ]);
+            ->setStockData($data['type'] === 'configurable'
+                ? ['use_config_manage_stock' => 1, 'is_in_stock' => 1]
+                : ['use_config_manage_stock' => 1, 'qty' => $data['qty'], 'is_in_stock' => $data['qty'] > 0 ? 1 : 0]);
         foreach ($data['attributes'] as $code => $value) {
             $isSelect = $this->eavConfig->getAttribute(Product::ENTITY, $code)->getFrontendInput() === 'select';
             $product->setData($code, $isSelect ? $this->optionResolver->getOptionId($code, (string)$value) : $value);
