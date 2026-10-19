@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="technest_seed_run" xsi:type="object">TechNest\DataSeeder\Console\Command\SeedRun</item>
+                <item name="technest_seed_cleanup_legacy" xsi:type="object">TechNest\DataSeeder\Console\Command\CleanupLegacy</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Steps run in this order; each one is added in its own step (1.2+) -->
+    <type name="TechNest\DataSeeder\Console\Command\SeedRun">
+        <arguments>
+            <argument name="steps" xsi:type="array">
+                <item name="attributes" xsi:type="object">TechNest\DataSeeder\Model\Step\Attributes\Proxy</item>
+                <item name="categories" xsi:type="object">TechNest\DataSeeder\Model\Step\Categories\Proxy</item>
+                <item name="products" xsi:type="object">TechNest\DataSeeder\Model\Step\Products\Proxy</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="TechNest\DataSeeder\Console\Command\CleanupLegacy">
+        <arguments>
+            <argument name="seedData" xsi:type="object">TechNest\DataSeeder\Model\SeedData\Proxy</argument>
+            <argument name="productRepository" xsi:type="object">Magento\Catalog\Api\ProductRepositoryInterface\Proxy</argument>
+            <argument name="categoryRepository" xsi:type="object">Magento\Catalog\Api\CategoryRepositoryInterface\Proxy</argument>
+        </arguments>
+    </type>
+</config>

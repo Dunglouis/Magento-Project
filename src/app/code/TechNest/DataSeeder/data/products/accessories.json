@@ -1,0 +1,425 @@
+[
+ {
+  "sku": "TN-AC-AIRPODS",
+  "dummyjson_id": 100,
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/headphones"
+  ],
+  "qty": 60,
+  "attributes": {
+   "tn_connectivity": "Bluetooth",
+   "tn_compatibility": "iPhone, iPad, Mac",
+   "color": "White"
+  },
+  "description": {
+   "vi": "Tai nghe không dây Apple AirPods kết nối tức thì với iPhone, iPad và Mac, âm thanh rõ ràng và hộp sạc nhỏ gọn cho cả ngày sử dụng."
+  }
+ },
+ {
+  "sku": "TN-AC-AIRPODS-MAX",
+  "dummyjson_id": 101,
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/headphones"
+  ],
+  "qty": 15,
+  "attributes": {
+   "tn_connectivity": "Bluetooth",
+   "tn_compatibility": "iPhone, iPad, Mac",
+   "color": "Silver"
+  },
+  "description": {
+   "vi": "Tai nghe chụp tai cao cấp Apple AirPods Max màu bạc, chống ồn chủ động, âm thanh không gian và thiết kế khung nhôm bền bỉ."
+  }
+ },
+ {
+  "sku": "TN-AC-BEATS-FLEX",
+  "dummyjson_id": 107,
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/headphones"
+  ],
+  "qty": 40,
+  "attributes": {
+   "tn_connectivity": "Bluetooth",
+   "tn_compatibility": "iOS, Android",
+   "color": "Black"
+  },
+  "description": {
+   "vi": "Tai nghe không dây Beats Flex đeo cổ, nam châm tự tắt khi không dùng, pin tới 12 giờ, hợp cả iPhone lẫn Android."
+  }
+ },
+ {
+  "sku": "TN-AC-AIRPOWER",
+  "dummyjson_id": 102,
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/chargers-cables"
+  ],
+  "qty": 25,
+  "attributes": {
+   "tn_connectivity": "Qi wireless",
+   "tn_compatibility": "iPhone, AirPods, Apple Watch",
+   "color": "White"
+  },
+  "description": {
+   "vi": "Đế sạc không dây Apple AirPower sạc cùng lúc iPhone, AirPods và Apple Watch, chỉ cần đặt thiết bị lên là sạc."
+  }
+ },
+ {
+  "sku": "TN-AC-IPHONE-CHARGER",
+  "dummyjson_id": 104,
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/chargers-cables"
+  ],
+  "qty": 80,
+  "attributes": {
+   "tn_connectivity": "USB-C",
+   "tn_compatibility": "iPhone, iPad",
+   "color": "White"
+  },
+  "description": {
+   "vi": "Củ sạc Apple USB-C sạc nhanh cho iPhone và iPad, nhỏ gọn, an toàn khi sạc qua đêm."
+  }
+ },
+ {
+  "sku": "TN-AC-MAGSAFE-BATTERY",
+  "dummyjson_id": 105,
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/chargers-cables"
+  ],
+  "qty": 30,
+  "attributes": {
+   "tn_connectivity": "MagSafe",
+   "tn_compatibility": "iPhone 12 and later",
+   "color": "White"
+  },
+  "attributes_vi": {
+   "tn_compatibility": "iPhone 12 trở lên"
+  },
+  "description": {
+   "vi": "Pin sạc dự phòng Apple MagSafe hít nam châm vào mặt lưng iPhone, sạc không dây mọi lúc mọi nơi."
+  }
+ },
+ {
+  "sku": "TN-AC-HP-420-MOUSE",
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/mice"
+  ],
+  "price": 29.99,
+  "qty": 60,
+  "icecat": {
+   "brand": "HP",
+   "mpn": "7M1D3AA"
+  },
+  "name": {
+   "en": "HP 420 Programmable Bluetooth Mouse"
+  },
+  "description": {
+   "en": "Portable Bluetooth mouse that pairs with up to three devices, with six programmable buttons.",
+   "vi": "Chuột Bluetooth nhỏ gọn, kết nối tối đa ba thiết bị, sáu nút lập trình được."
+  },
+  "attributes": {
+   "brand": "HP",
+   "tn_connectivity": "Bluetooth",
+   "tn_compatibility": "Windows, macOS, ChromeOS",
+   "color": "Black"
+  }
+ },
+ {
+  "sku": "TN-AC-DELL-MS3320W",
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/mice"
+  ],
+  "price": 24.99,
+  "qty": 70,
+  "icecat": {
+   "brand": "Dell",
+   "mpn": "570-ABHK"
+  },
+  "name": {
+   "en": "Dell Mobile Wireless Mouse MS3320W"
+  },
+  "description": {
+   "en": "Compact wireless mouse with dual-mode 2.4 GHz and Bluetooth connectivity and up to 36 months of battery life.",
+   "vi": "Chuột không dây nhỏ gọn, hai chế độ 2.4 GHz và Bluetooth, pin dùng tới 36 tháng."
+  },
+  "attributes": {
+   "brand": "Dell",
+   "tn_connectivity": "Wireless 2.4 GHz",
+   "tn_compatibility": "Windows, macOS, Linux",
+   "color": "Black"
+  }
+ },
+ {
+  "sku": "TN-AC-LEGION-M300S",
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/mice"
+  ],
+  "price": 34.99,
+  "qty": 45,
+  "icecat": {
+   "brand": "Lenovo",
+   "mpn": "GY51H47350"
+  },
+  "name": {
+   "en": "Lenovo Legion M300s RGB Gaming Mouse"
+  },
+  "description": {
+   "en": "Wired gaming mouse with an 8,000 DPI optical sensor, six buttons and RGB lighting.",
+   "vi": "Chuột gaming có dây, cảm biến quang 8.000 DPI, sáu nút và đèn RGB."
+  },
+  "attributes": {
+   "brand": "Lenovo",
+   "tn_connectivity": "Wired",
+   "tn_compatibility": "Windows",
+   "color": "Black"
+  }
+ },
+ {
+  "sku": "TN-AC-THINKPAD-SILENT-MOUSE",
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/mice"
+  ],
+  "price": 32.99,
+  "qty": 40,
+  "icecat": {
+   "brand": "Lenovo",
+   "mpn": "4Y50X88822"
+  },
+  "name": {
+   "en": "Lenovo ThinkPad Bluetooth Silent Mouse"
+  },
+  "description": {
+   "en": "Quiet-click Bluetooth mouse for shared workspaces, with an ambidextrous shape.",
+   "vi": "Chuột Bluetooth click êm cho không gian làm việc chung, dáng đối xứng dùng được hai tay."
+  },
+  "attributes": {
+   "brand": "Lenovo",
+   "tn_connectivity": "Bluetooth",
+   "tn_compatibility": "Windows, macOS, Android",
+   "color": "Black"
+  }
+ },
+ {
+  "sku": "TN-AC-ROG-KERIS-AIMPOINT",
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/mice"
+  ],
+  "price": 99.99,
+  "qty": 25,
+  "icecat": {
+   "brand": "Asus",
+   "mpn": "90MP02V0-BMUA00"
+  },
+  "name": {
+   "en": "Asus ROG Keris Wireless AimPoint"
+  },
+  "description": {
+   "en": "Ultralight tri-mode gaming mouse with a 36,000 DPI ROG AimPoint sensor and hot-swappable switches.",
+   "vi": "Chuột gaming siêu nhẹ ba chế độ kết nối, cảm biến ROG AimPoint 36.000 DPI, switch thay nóng được."
+  },
+  "attributes": {
+   "brand": "Asus",
+   "tn_connectivity": "Wireless 2.4 GHz",
+   "tn_compatibility": "Windows, macOS",
+   "color": "Black"
+  }
+ },
+ {
+  "sku": "TN-AC-HP-975-KEYBOARD",
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/keyboards"
+  ],
+  "price": 99.99,
+  "qty": 30,
+  "icecat": {
+   "brand": "HP",
+   "mpn": "3Z726AA"
+  },
+  "name": {
+   "en": "HP 975 Dual-Mode Wireless Keyboard"
+  },
+  "description": {
+   "en": "Full-size wireless keyboard with backlit keys, dual-mode connectivity and three-device switching.",
+   "vi": "Bàn phím không dây cỡ đầy đủ, phím có đèn nền, hai chế độ kết nối, chuyển nhanh giữa ba thiết bị."
+  },
+  "attributes": {
+   "brand": "HP",
+   "tn_connectivity": "Bluetooth",
+   "tn_compatibility": "Windows, macOS, ChromeOS",
+   "color": "Black"
+  }
+ },
+ {
+  "sku": "TN-AC-DELL-KB700",
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/keyboards"
+  ],
+  "price": 59.99,
+  "qty": 35,
+  "icecat": {
+   "brand": "Dell",
+   "mpn": "KB700-GY-R-INT"
+  },
+  "name": {
+   "en": "Dell Pro Plus Keyboard KB700"
+  },
+  "description": {
+   "en": "Multi-device wireless keyboard with quiet keys, a numeric keypad and up to 36 months of battery life.",
+   "vi": "Bàn phím không dây đa thiết bị, phím gõ êm, có bàn phím số, pin dùng tới 36 tháng."
+  },
+  "attributes": {
+   "brand": "Dell",
+   "tn_connectivity": "Bluetooth",
+   "tn_compatibility": "Windows, macOS, Linux",
+   "color": "Gray"
+  }
+ },
+ {
+  "sku": "TN-AC-ROG-SCOPE-II-96",
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/keyboards"
+  ],
+  "price": 179.99,
+  "qty": 15,
+  "icecat": {
+   "brand": "Asus",
+   "mpn": "90MP037A-BKUA01"
+  },
+  "name": {
+   "en": "Asus ROG Strix Scope II 96 Wireless"
+  },
+  "description": {
+   "en": "96% wireless gaming keyboard with hot-swappable ROG NX Snow switches and sound-dampening foam.",
+   "vi": "Bàn phím gaming không dây layout 96%, switch ROG NX Snow thay nóng được, lót foam giảm ồn."
+  },
+  "attributes": {
+   "brand": "Asus",
+   "tn_connectivity": "Wireless 2.4 GHz",
+   "tn_compatibility": "Windows, macOS",
+   "color": "Black"
+  }
+ },
+ {
+  "sku": "TN-AC-HYPERX-ALLOY-CORE",
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/keyboards"
+  ],
+  "price": 89.99,
+  "qty": 25,
+  "icecat": {
+   "brand": "HyperX",
+   "mpn": "4P5P3AA"
+  },
+  "name": {
+   "en": "HyperX Alloy Origins Core"
+  },
+  "description": {
+   "en": "Tenkeyless mechanical gaming keyboard with HyperX Red linear switches and an aluminium body.",
+   "vi": "Bàn phím cơ gaming TKL, switch HyperX Red tuyến tính, thân nhôm chắc chắn."
+  },
+  "attributes": {
+   "brand": "HyperX",
+   "tn_connectivity": "Wired",
+   "tn_compatibility": "Windows, macOS",
+   "color": "Black"
+  }
+ },
+ {
+  "sku": "TN-AC-THINKPAD-TRACKPOINT-II",
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/keyboards"
+  ],
+  "price": 129.99,
+  "qty": 20,
+  "icecat": {
+   "brand": "Lenovo",
+   "mpn": "4Y40X49493"
+  },
+  "name": {
+   "en": "Lenovo ThinkPad TrackPoint Keyboard II"
+  },
+  "description": {
+   "en": "Compact wireless keyboard with the ThinkPad TrackPoint pointer and classic ThinkPad key feel.",
+   "vi": "Bàn phím không dây nhỏ gọn có nút TrackPoint của ThinkPad, cảm giác gõ phím ThinkPad kinh điển."
+  },
+  "attributes": {
+   "brand": "Lenovo",
+   "tn_connectivity": "Bluetooth",
+   "tn_compatibility": "Windows, Android",
+   "color": "Black"
+  }
+ },
+ {
+  "sku": "TN-AC-SAMSUNG-45W-CHARGER",
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/chargers-cables"
+  ],
+  "price": 49.99,
+  "qty": 50,
+  "icecat": {
+   "brand": "Samsung",
+   "mpn": "EP-T4510XBEGEU"
+  },
+  "name": {
+   "en": "Samsung 45W Super Fast Charger"
+  },
+  "description": {
+   "en": "USB-C power adapter delivering 45 W Super Fast Charging 2.0 for Galaxy phones, tablets and laptops.",
+   "vi": "Củ sạc USB-C 45 W sạc siêu nhanh 2.0 cho điện thoại, máy tính bảng Galaxy và laptop."
+  },
+  "attributes": {
+   "brand": "Samsung",
+   "tn_connectivity": "USB-C",
+   "tn_compatibility": "Galaxy, USB-C laptops",
+   "color": "Black"
+  },
+  "attributes_vi": {
+   "tn_compatibility": "Galaxy, laptop cổng USB-C"
+  }
+ },
+ {
+  "sku": "TN-AC-SAMSUNG-USBC-CABLE",
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/chargers-cables"
+  ],
+  "price": 19.99,
+  "qty": 100,
+  "icecat": {
+   "brand": "Samsung",
+   "mpn": "EP-DN975BBEGWW"
+  },
+  "name": {
+   "en": "Samsung USB-C to USB-C Cable (5A, 1 m)"
+  },
+  "description": {
+   "en": "1 m USB-C cable rated for 5 A, supporting up to 100 W charging.",
+   "vi": "Cáp USB-C dài 1 m chịu dòng 5 A, hỗ trợ sạc tới 100 W."
+  },
+  "attributes": {
+   "brand": "Samsung",
+   "tn_connectivity": "USB-C",
+   "tn_compatibility": "USB-C devices",
+   "color": "Black"
+  },
+  "attributes_vi": {
+   "tn_compatibility": "Thiết bị cổng USB-C"
+  }
+ }
+]
