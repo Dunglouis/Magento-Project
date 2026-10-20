@@ -1,0 +1,83 @@
+<?php
+declare(strict_types=1);
+
+namespace TechNest\DataSeeder\Model\Cms;
+
+use Magento\Widget\Helper\Conditions;
+
+/**
+ * Turns seed CMS templates into Magento CMS content.
+ *
+ * Placeholders:
+ *  - %image:SKU%          -> {{media url="catalog/product/..."}} of the product's base image
+ *  - %products:SKU1,SKU2% -> Catalog Products List widget limited to those SKUs
+ */
+class TemplateRenderer
+{
+    private const PRODUCTS_TEMPLATE = 'Magento_CatalogWidget::product/widget/content/grid.phtml';
+
+    /**
+     * @param Conditions $conditionsHelper
+     */
+    public function __construct(
+        private readonly Conditions $conditionsHelper
+    ) {
+    }
+
+    /**
+     * Replace placeholders; $imageResolver maps a SKU to its catalog image path ("/a/b/file.jpg") or null
+     *
+     * @param string $template
+     * @param callable $imageResolver fn(string $sku): ?string
+     * @return string
+     */
+    public function render(string $template, callable $imageResolver): string
+    {
+        $content = (string)preg_replace_callback(
+            '/%image:([A-Za-z0-9_-]+)%/',
+            static function (array $match) use ($imageResolver): string {
+                $path = $imageResolver($match[1]);
+                return $path ? '{{media url="catalog/product' . $path . '"}}' : '';
+            },
+            $template
+        );
+
+        return (string)preg_replace_callback(
+            '/%products:([A-Za-z0-9_,-]+)%/',
+            fn (array $match): string => $this->productsWidget(array_filter(explode(',', $match[1]))),
+            $content
+        );
+    }
+
+    /**
+     * Build a Catalog Products List widget directive for the given SKUs
+     *
+     * @param string[] $skus
+     * @return string
+     */
+    public function productsWidget(array $skus): string
+    {
+        $conditions = $this->conditionsHelper->encode([
+            '1' => [
+                'type' => \Magento\CatalogWidget\Model\Rule\Condition\Combine::class,
+                'aggregator' => 'all',
+                'value' => '1',
+                'new_child' => '',
+            ],
+            '1--1' => [
+                'type' => \Magento\CatalogWidget\Model\Rule\Condition\Product::class,
+                'attribute' => 'sku',
+                'operator' => '()',
+                'value' => implode(', ', $skus),
+            ],
+        ]);
+
+        return sprintf(
+            '{{widget type="Magento\\CatalogWidget\\Block\\Product\\ProductsList" show_pager="0"'
+            . ' products_count="%d" template="%s" conditions_encoded="%s"}}',
+            count($skus),
+            self::PRODUCTS_TEMPLATE,
+            $conditions
+        );
+    }
+}

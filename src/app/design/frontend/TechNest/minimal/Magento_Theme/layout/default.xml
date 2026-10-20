@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/logo.svg</argument>
+                <argument name="logo_width" xsi:type="number">175</argument>
+                <argument name="logo_height" xsi:type="number">43</argument>
+                <argument name="logo_alt" xsi:type="string">TechNest</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="report.bugs" remove="true"/>
+    </body>
+</page>

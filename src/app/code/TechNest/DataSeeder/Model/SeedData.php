@@ -82,6 +82,28 @@ class SeedData
     }
 
     /**
+     * CMS page definition from data/cms/<name>.json
+     *
+     * @param string $name
+     * @return array<string, mixed> {identifier, page_layout, stores: {code: {title, meta_*, template}}}
+     */
+    public function getCmsPage(string $name): array
+    {
+        return $this->read('cms/' . $name . '.json');
+    }
+
+    /**
+     * Raw CMS template from data/cms/<file>
+     *
+     * @param string $fileName
+     * @return string
+     */
+    public function getCmsTemplate(string $fileName): string
+    {
+        return (string)$this->file->fileGetContents($this->getDataDir() . '/cms/' . $fileName);
+    }
+
+    /**
      * Decode one JSON file from data/.
      *
      * @param string $fileName

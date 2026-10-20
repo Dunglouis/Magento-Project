@@ -1,0 +1,18 @@
+{
+    "identifier": "home",
+    "page_layout": "1column",
+    "stores": {
+        "en": {
+            "title": "Home",
+            "meta_title": "Technology, simplified",
+            "meta_description": "TechNest sells laptops, phones, PCs and accessories from trusted brands, with clear specs and fair prices.",
+            "template": "home.en.html"
+        },
+        "vi": {
+            "title": "Trang chủ",
+            "meta_title": "Công nghệ, gọn gàng",
+            "meta_description": "TechNest bán laptop, điện thoại, PC và phụ kiện chính hãng, thông số rõ ràng, giá hợp lý.",
+            "template": "home.vi.html"
+        }
+    }
+}

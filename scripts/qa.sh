@@ -22,6 +22,11 @@ fi
 if [[ "${1:-}" == "--compile" ]]; then
     echo "== setup:di:compile"
     run bin/magento setup:di:compile
+    # Local only: compiled metadata would freeze DI in the dev container (new classes/plugins ignored).
+    # Keep generated/code, which PHPStan needs.
+    if [[ "${QA_NATIVE:-}" != "1" ]]; then
+        run rm -rf generated/metadata
+    fi
 fi
 
 echo "== PHPCS (Magento2)"
