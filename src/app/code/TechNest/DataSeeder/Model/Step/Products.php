@@ -19,9 +19,9 @@ use TechNest\DataSeeder\Model\SeedData;
 use TechNest\DataSeeder\Model\StepInterface;
 
 /**
- * Simple and configurable products from data/products/*.json, enriched with DummyJSON (dummyjson_id)
+ * Simple, virtual and configurable products from data/products/*.json, enriched with DummyJSON (dummyjson_id)
  * or Open Icecat (icecat). Configurable products get one simple child per option combination.
- * Bundle, grouped and virtual products are handled by their own steps.
+ * Bundle and grouped products are handled by the composites step.
  */
 class Products implements StepInterface
 {
@@ -54,7 +54,7 @@ class Products implements StepInterface
      */
     public function getDescription(): string
     {
-        return 'Simple and configurable products with images (seed data + DummyJSON + Open Icecat)';
+        return 'Simple, virtual and configurable products with images (seed data + DummyJSON + Open Icecat)';
     }
 
     /**
@@ -67,7 +67,7 @@ class Products implements StepInterface
 
         foreach ($this->seedData->getProducts() as $seed) {
             $type = $seed['type'] ?? 'simple';
-            if (!in_array($type, ['simple', 'configurable'], true)) {
+            if (!in_array($type, ['simple', 'virtual', 'configurable'], true)) {
                 continue;
             }
             $api = isset($seed['dummyjson_id']) ? $this->dummyJson->getProduct((int)$seed['dummyjson_id']) : [];

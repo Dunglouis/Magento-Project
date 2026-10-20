@@ -1,0 +1,255 @@
+[
+ {
+  "sku": "TN-WR-EXT-12M",
+  "type": "virtual",
+  "set": "Default",
+  "visibility": "search",
+  "price": 49,
+  "qty": 999,
+  "name": {
+   "en": "TechNest Extended Warranty 12 months",
+   "vi": "Gói bảo hành mở rộng TechNest 12 tháng"
+  },
+  "description": {
+   "en": "Adds 12 months of TechNest repair cover after the manufacturer warranty ends.",
+   "vi": "Thêm 12 tháng bảo hành sửa chữa TechNest sau khi hết bảo hành của hãng."
+  }
+ },
+ {
+  "sku": "TN-WR-EXT-24M",
+  "type": "virtual",
+  "set": "Default",
+  "visibility": "search",
+  "price": 89,
+  "qty": 999,
+  "name": {
+   "en": "TechNest Extended Warranty 24 months",
+   "vi": "Gói bảo hành mở rộng TechNest 24 tháng"
+  },
+  "description": {
+   "en": "Adds 24 months of TechNest repair cover after the manufacturer warranty ends.",
+   "vi": "Thêm 24 tháng bảo hành sửa chữa TechNest sau khi hết bảo hành của hãng."
+  }
+ },
+ {
+  "sku": "TN-BD-LEGION-T5-SETUP",
+  "type": "bundle",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/gaming-pc"
+  ],
+  "discount_percent": 5,
+  "icecat": {
+   "brand": "Lenovo",
+   "mpn": "90UT000VUS"
+  },
+  "name": {
+   "en": "Lenovo Legion T5 Gaming Setup",
+   "vi": "Bộ Gaming Lenovo Legion T5"
+  },
+  "description": {
+   "en": "Legion T5 gaming PC with your choice of gaming mouse and mechanical keyboard. 5% off the combined price.",
+   "vi": "PC gaming Legion T5 kèm chuột gaming và bàn phím cơ tùy chọn. Giảm 5% trên tổng giá."
+  },
+  "attributes": {
+   "brand": "Lenovo"
+  },
+  "bundle": [
+   {
+    "title": "PC",
+    "required": true,
+    "items": [
+     "TN-PC-LEGION-T5"
+    ]
+   },
+   {
+    "title": "Mouse",
+    "required": true,
+    "items": [
+     "TN-AC-LEGION-M300S",
+     "TN-AC-ROG-KERIS-AIMPOINT"
+    ]
+   },
+   {
+    "title": "Keyboard",
+    "required": true,
+    "items": [
+     "TN-AC-HYPERX-ALLOY-CORE",
+     "TN-AC-ROG-SCOPE-II-96"
+    ]
+   },
+   {
+    "title": "Extended warranty",
+    "required": false,
+    "items": [
+     "TN-WR-EXT-12M",
+     "TN-WR-EXT-24M"
+    ]
+   }
+  ]
+ },
+ {
+  "sku": "TN-BD-VICTUS-STARTER",
+  "type": "bundle",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/gaming-pc"
+  ],
+  "discount_percent": 5,
+  "icecat": {
+   "brand": "HP",
+   "mpn": "A30XGEA"
+  },
+  "name": {
+   "en": "HP Victus Starter Gaming Set",
+   "vi": "Bộ Gaming khởi đầu HP Victus"
+  },
+  "description": {
+   "en": "HP Victus 15L gaming PC with HP 420 mouse and HP 975 keyboard. 5% off the combined price.",
+   "vi": "PC gaming HP Victus 15L kèm chuột HP 420 và bàn phím HP 975. Giảm 5% trên tổng giá."
+  },
+  "attributes": {
+   "brand": "HP"
+  },
+  "bundle": [
+   {
+    "title": "PC",
+    "required": true,
+    "items": [
+     "TN-PC-VICTUS-15L-I5"
+    ]
+   },
+   {
+    "title": "Mouse",
+    "required": true,
+    "items": [
+     "TN-AC-HP-420-MOUSE"
+    ]
+   },
+   {
+    "title": "Keyboard",
+    "required": true,
+    "items": [
+     "TN-AC-HP-975-KEYBOARD"
+    ]
+   },
+   {
+    "title": "Extended warranty",
+    "required": false,
+    "items": [
+     "TN-WR-EXT-12M",
+     "TN-WR-EXT-24M"
+    ]
+   }
+  ]
+ },
+ {
+  "sku": "TN-BD-OPTIPLEX-OFFICE",
+  "type": "bundle",
+  "set": "TechNest PC",
+  "categories": [
+   "pcs/office-pc"
+  ],
+  "discount_percent": 7,
+  "icecat": {
+   "brand": "Dell",
+   "mpn": "02W5D"
+  },
+  "name": {
+   "en": "Dell OptiPlex Office Set",
+   "vi": "Bộ văn phòng Dell OptiPlex"
+  },
+  "description": {
+   "en": "Dell OptiPlex 7020 tower with Dell wireless mouse and keyboard, ready for the office. 7% off the combined price.",
+   "vi": "Máy bộ Dell OptiPlex 7020 kèm chuột và bàn phím không dây Dell, sẵn sàng cho văn phòng. Giảm 7% trên tổng giá."
+  },
+  "attributes": {
+   "brand": "Dell"
+  },
+  "bundle": [
+   {
+    "title": "PC",
+    "required": true,
+    "items": [
+     "TN-PC-OPTIPLEX-7020-MT"
+    ]
+   },
+   {
+    "title": "Mouse",
+    "required": true,
+    "items": [
+     "TN-AC-DELL-MS3320W"
+    ]
+   },
+   {
+    "title": "Keyboard",
+    "required": true,
+    "items": [
+     "TN-AC-DELL-KB700"
+    ]
+   },
+   {
+    "title": "Extended warranty",
+    "required": false,
+    "items": [
+     "TN-WR-EXT-12M",
+     "TN-WR-EXT-24M"
+    ]
+   }
+  ]
+ },
+ {
+  "sku": "TN-GR-SAMSUNG-CHARGING-KIT",
+  "type": "grouped",
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/chargers-cables"
+  ],
+  "icecat": {
+   "brand": "Samsung",
+   "mpn": "EP-T4510XBEGEU"
+  },
+  "name": {
+   "en": "Samsung Fast Charging Kit",
+   "vi": "Bộ sạc nhanh Samsung"
+  },
+  "description": {
+   "en": "Samsung 45W charger and 5A USB-C cable, bought together for super fast charging.",
+   "vi": "Củ sạc Samsung 45W và cáp USB-C 5A, mua kèm để sạc siêu nhanh."
+  },
+  "attributes": {
+   "brand": "Samsung"
+  },
+  "grouped": [
+   "TN-AC-SAMSUNG-45W-CHARGER",
+   "TN-AC-SAMSUNG-USBC-CABLE"
+  ]
+ },
+ {
+  "sku": "TN-GR-THINKPAD-DESK-KIT",
+  "type": "grouped",
+  "set": "TechNest Accessory",
+  "categories": [
+   "accessories/keyboards"
+  ],
+  "icecat": {
+   "brand": "Lenovo",
+   "mpn": "4Y40X49493"
+  },
+  "name": {
+   "en": "ThinkPad Desk Kit",
+   "vi": "Bộ bàn làm việc ThinkPad"
+  },
+  "description": {
+   "en": "ThinkPad TrackPoint Keyboard II and ThinkPad Bluetooth Silent Mouse for a quiet, tidy desk.",
+   "vi": "Bàn phím ThinkPad TrackPoint II và chuột ThinkPad Bluetooth Silent cho góc làm việc gọn gàng, yên tĩnh."
+  },
+  "attributes": {
+   "brand": "Lenovo"
+  },
+  "grouped": [
+   "TN-AC-THINKPAD-TRACKPOINT-II",
+   "TN-AC-THINKPAD-SILENT-MOUSE"
+  ]
+ }
+]

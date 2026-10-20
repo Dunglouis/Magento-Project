@@ -84,9 +84,10 @@ class ProductWriter
             ->setVisibility($data['visibility'])
             ->setTaxClassId(self::TAX_CLASS_TAXABLE_GOODS)
             ->setWebsiteIds([(int)$this->storeManager->getDefaultStoreView()->getWebsiteId()])
-            ->setStockData($data['type'] === 'configurable'
+            ->setStockData(in_array($data['type'], ['configurable', 'bundle', 'grouped'], true)
                 ? ['use_config_manage_stock' => 1, 'is_in_stock' => 1]
                 : ['use_config_manage_stock' => 1, 'qty' => $data['qty'], 'is_in_stock' => $data['qty'] > 0 ? 1 : 0]);
+        $product->addData($data['type_data']);
         foreach ($data['attributes'] as $code => $value) {
             $isSelect = $this->eavConfig->getAttribute(Product::ENTITY, $code)->getFrontendInput() === 'select';
             $product->setData($code, $isSelect ? $this->optionResolver->getOptionId($code, (string)$value) : $value);
