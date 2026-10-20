@@ -132,6 +132,28 @@ class ProductDataMapperTest extends TestCase
         $this->mapper->mapVariants($this->mapper->map($seed), $seed);
     }
 
+    public function testBundleNeedsNoPriceAndGetsDiscountAsSpecialPrice(): void
+    {
+        $data = $this->mapper->map([
+            'sku' => 'TN-BD-X', 'type' => 'bundle', 'set' => 'TechNest PC', 'discount_percent' => 5,
+            'bundle' => [['title' => 'PC', 'required' => true, 'items' => ['TN-PC-X']]],
+        ]);
+
+        self::assertSame(95.0, $data['type_data']['special_price']);
+        self::assertSame(0, $data['type_data']['price_type']);
+        self::assertSame('PC', $data['bundle'][0]['title']);
+    }
+
+    public function testVirtualHasNoWeightAndCanBeSearchOnly(): void
+    {
+        $data = $this->mapper->map([
+            'sku' => 'TN-WR-X', 'type' => 'virtual', 'set' => 'Default', 'price' => 49, 'visibility' => 'search',
+        ]);
+
+        self::assertSame(['weight' => null, 'product_has_weight' => 0], $data['type_data']);
+        self::assertSame(Visibility::VISIBILITY_IN_SEARCH, $data['visibility']);
+    }
+
     #[DataProvider('urlKeyProvider')]
     public function testUrlKey(string $name, string $expected): void
     {
@@ -186,6 +208,7 @@ class ProductDataMapperTest extends TestCase
             'SKU without TN- prefix' => [['sku' => 'ABC-1', 'set' => 'TechNest PC', 'price' => 10]],
             'missing attribute set' => [['sku' => 'TN-1', 'price' => 10]],
             'missing price' => [['sku' => 'TN-1', 'set' => 'TechNest PC']],
+            'virtual without price' => [['sku' => 'TN-1', 'type' => 'virtual', 'set' => 'Default']],
         ];
     }
 }

@@ -13,6 +13,8 @@ class ProductDataMapper
 {
     public const SKU_PREFIX = 'TN-';
     public const MAX_IMAGES = 4;
+    /** Types whose price comes from their items, so the seed has no price */
+    public const COMPOSITE_TYPES = ['bundle', 'grouped'];
 
     /**
      * Normalized product data.
@@ -32,8 +34,10 @@ class ProductDataMapper
         if (empty($seed['set'])) {
             throw new \InvalidArgumentException(sprintf('%s: "set" is required', $sku));
         }
+        $type = (string)($seed['type'] ?? 'simple');
+        $isComposite = in_array($type, self::COMPOSITE_TYPES, true);
         $price = (float)($seed['price'] ?? $api['price'] ?? 0);
-        if ($price <= 0) {
+        if (!$isComposite && $price <= 0) {
             throw new \InvalidArgumentException(sprintf('%s: price must be greater than 0', $sku));
         }
 
@@ -50,13 +54,15 @@ class ProductDataMapper
 
         return [
             'sku' => $sku,
-            'type' => $seed['type'] ?? 'simple',
+            'type' => $type,
             'set' => $seed['set'],
             'categories' => $seed['categories'] ?? [],
             'name' => ['en' => $nameEn, 'vi' => (string)($seed['name']['vi'] ?? $nameEn)],
             'description' => ['en' => $descriptionEn, 'vi' => (string)($seed['description']['vi'] ?? $descriptionEn)],
             'url_key' => $this->urlKey($nameEn),
-            'visibility' => Visibility::VISIBILITY_BOTH,
+            'visibility' => ($seed['visibility'] ?? '') === 'search'
+                ? Visibility::VISIBILITY_IN_SEARCH
+                : Visibility::VISIBILITY_BOTH,
             'price' => round($price, 2),
             'qty' => (int)($seed['qty'] ?? $api['stock'] ?? 0),
             'weight' => (float)($seed['weight'] ?? $api['weight'] ?? 1),
@@ -64,7 +70,35 @@ class ProductDataMapper
             'attributes_vi' => $seed['attributes_vi'] ?? [],
             'images' => $seed['images'] ?? ($icecat ? $this->icecatImages($icecat) : ($api['images'] ?? [])),
             'configurable_attributes' => $axes,
+            'type_data' => $this->typeData($type, $seed),
+            'bundle' => $seed['bundle'] ?? [],
+            'grouped' => $seed['grouped'] ?? [],
         ];
+    }
+
+    /**
+     * Type-specific product fields saved as-is (they override the generic ones).
+     *
+     * @param string $type
+     * @param array<string,mixed> $seed
+     * @return array<string, mixed>
+     */
+    private function typeData(string $type, array $seed): array
+    {
+        return match ($type) {
+            // No weight: virtual products are never shipped
+            'virtual' => ['weight' => null, 'product_has_weight' => 0],
+            // Dynamic price/SKU/weight; for dynamic bundles special_price is the percentage the customer pays
+            'bundle' => [
+                'price_type' => 0,
+                'sku_type' => 0,
+                'weight_type' => 0,
+                'price_view' => 0,
+                'shipment_type' => 0,
+                'special_price' => 100 - (float)($seed['discount_percent'] ?? 0),
+            ],
+            default => [],
+        };
     }
 
     /**
@@ -123,6 +157,9 @@ class ProductDataMapper
                 'attributes_vi' => $parent['attributes_vi'],
                 'images' => [],
                 'configurable_attributes' => [],
+                'type_data' => [],
+                'bundle' => [],
+                'grouped' => [],
             ];
         }
         return $variants;
