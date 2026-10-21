@@ -50,7 +50,7 @@ class Categories implements StepInterface
      */
     public function getDescription(): string
     {
-        return 'Category tree (en names, vi translations)';
+        return 'Category tree (en names and taglines, vi translations)';
     }
 
     /**
@@ -92,6 +92,7 @@ class Categories implements StepInterface
             $category->setStoreId(Store::DEFAULT_STORE_ID)
                 ->setParentId($parentId)
                 ->setName($node['name']['en'])
+                ->setDescription($node['tagline']['en'] ?? null)
                 ->setUrlKey($node['url_key'])
                 ->setIsActive(true)
                 ->setIncludeInMenu(true)
@@ -100,9 +101,13 @@ class Categories implements StepInterface
             /** @var Category $category */
             $category = $this->categoryRepository->save($category);
 
-            // Store-view value: only the name differs, URL keys stay English
+            // Store-view values: name and tagline differ, URL keys stay English
             $category->setStoreId($viStoreId)->setName($node['name']['vi']);
             $this->categoryResource->saveAttribute($category, 'name');
+            if (isset($node['tagline']['vi'])) {
+                $category->setDescription($node['tagline']['vi']);
+                $this->categoryResource->saveAttribute($category, 'description');
+            }
 
             // Rebuild URL rewrites for every store view (core only does it for new/renamed categories)
             $category->setStoreId(Store::DEFAULT_STORE_ID);

@@ -1,0 +1,164 @@
+//
+//  Page frame on every page: top bar, sticky frosted header/menu, page titles, footer
+//  _____________________________________________
+
+@tn-glass: rgba(255, 255, 255, .78);
+@tn-glass__filter: saturate(180%) blur(20px);
+@tn-header__shadow: 0 1px 0 rgba(0, 0, 0, .06), 0 8px 24px rgba(0, 0, 0, .06);
+
+& when (@media-common = true) {
+    // Top bar (welcome, language, currency)
+    .page-header .panel.wrapper {
+        border-bottom: 0;
+        font-size: 1.2rem;
+    }
+
+    .page-header .switcher {
+        .switcher-trigger,
+        .switcher-trigger strong {
+            color: @tn-ink;
+        }
+    }
+
+    // Page titles: large and tight, like the home headline
+    .page-title-wrapper .page-title {
+        font-weight: @font-weight__semibold;
+        letter-spacing: -.015em;
+    }
+
+    .breadcrumbs {
+        font-size: 1.2rem;
+
+        a {
+            color: @tn-muted;
+        }
+    }
+
+    // Minicart counter (Luma orange)
+    .minicart-wrapper .action.showcart .counter.qty {
+        background: @tn-accent;
+        border-radius: 980px;
+    }
+
+    // Footer
+    .page-footer {
+        background: @tn-bg-alt;
+        color: @tn-muted;
+        font-size: 1.2rem;
+        margin-top: @indent__xl;
+    }
+
+    .page-footer .footer.content {
+        border-top: 0;
+        padding-bottom: @indent__base;
+        padding-top: @indent__l;
+
+        .block.newsletter {
+            float: none;
+            margin-bottom: @indent__l;
+            max-width: 440px;
+            width: auto;
+
+            .title {
+                color: @tn-ink;
+                display: block;
+                font-size: 1.4rem;
+                font-weight: @font-weight__semibold;
+                margin-bottom: @indent__s;
+            }
+        }
+    }
+
+    .tn-footer__note {
+        border-bottom: 1px solid @tn-border;
+        margin: 0 0 @indent__base;
+        padding-bottom: @indent__base;
+    }
+
+    .tn-footer__cols {
+        display: grid;
+        gap: @indent__base;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tn-footer__col {
+        h3 {
+            color: @tn-ink;
+            font-size: 1.2rem;
+            font-weight: @font-weight__semibold;
+            margin: 0 0 @indent__s;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin: 0 0 @indent__xs;
+        }
+
+        a {
+            color: @tn-muted;
+
+            &:hover {
+                color: @tn-ink;
+            }
+        }
+    }
+
+    .copyright {
+        background: @tn-bg-alt;
+        color: @tn-muted;
+        font-size: 1.2rem;
+        padding: @indent__base;
+    }
+}
+
+//  Mobile: the whole header (menu toggle, logo, cart) sticks; the menu itself is off-canvas
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .page-header {
+        -webkit-backdrop-filter: @tn-glass__filter;
+        backdrop-filter: @tn-glass__filter;
+        background: @tn-glass;
+        position: sticky;
+        top: 0;
+        transition: box-shadow 300ms @tn-ease;
+        z-index: 30;
+    }
+
+    .tn-scrolled .page-header {
+        box-shadow: @tn-header__shadow;
+    }
+}
+
+//  Desktop: the category menu bar sticks under the scrolled-away header
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .nav-sections {
+        -webkit-backdrop-filter: @tn-glass__filter;
+        backdrop-filter: @tn-glass__filter;
+        background: @tn-glass;
+        margin-bottom: @indent__base;
+        position: sticky;
+        top: 0;
+        transition: box-shadow 300ms @tn-ease;
+        z-index: 30;
+    }
+
+    .tn-scrolled .nav-sections {
+        box-shadow: @tn-header__shadow;
+    }
+
+    .navigation .level0 > .level-top {
+        font-size: 1.4rem;
+    }
+
+    .page-title-wrapper .page-title {
+        font-size: 4.4rem;
+    }
+
+    .tn-footer__cols {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

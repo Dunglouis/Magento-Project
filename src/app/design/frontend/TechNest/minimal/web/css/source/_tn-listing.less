@@ -1,0 +1,260 @@
+//
+//  Category and search result pages: heading, product grid cards, toolbar, layered navigation
+//  _____________________________________________
+
+//  Higher specificity than Luma's grid/hover rules (".products-grid .product-item-info:hover" etc.)
+@tn-grid: ~'.page-products .products-grid .product-items';
+
+& when (@media-common = true) {
+    // Heading + subcategory row
+    .tn-category-head {
+        margin: @indent__s 0 @indent__base;
+
+        .tn-headline {
+            font-size: 3.2rem;
+            margin-bottom: @indent__m;
+        }
+
+        .tn-catnav {
+            margin-bottom: @indent__s;
+        }
+
+        .is-current a span {
+            color: @tn-accent;
+        }
+
+        .is-current a img {
+            opacity: 1;
+        }
+    }
+
+    // Product grid: equal-height cards, 2 per row on phones
+    @{tn-grid} {
+        display: grid;
+        gap: @indent__base;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin: 0;
+    }
+
+    @{tn-grid} .product-item {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        width: auto;
+    }
+
+    @{tn-grid} .product-item .product-item-info {
+        .tn-card-surface();
+        display: flex;
+        flex-direction: column;
+        padding: @indent__base;
+        width: 100%;
+
+        &:hover,
+        &.active {
+            .tn-card-surface-hover();
+            border: 0;
+            margin: 0;
+            padding: @indent__base;
+        }
+    }
+
+    @{tn-grid} .product-item-photo {
+        display: block;
+        margin-bottom: @indent__s;
+        text-align: center;
+
+        .product-image-container {
+            max-width: 100%;
+        }
+
+        .product-image-wrapper {
+            height: 200px;
+            padding-bottom: 0 !important; // contain the photo instead of Luma's ratio box
+        }
+
+        .product-image-photo {
+            height: 100%;
+            object-fit: contain;
+            width: 100%;
+        }
+    }
+
+    @{tn-grid} .product-item-details {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+    }
+
+    @{tn-grid} .product-item-name {
+        margin: 0 0 @indent__xs;
+
+        .product-item-link {
+            .tn-two-lines(1.5rem, 1.3);
+            color: @tn-ink;
+            font-weight: @font-weight__semibold;
+        }
+    }
+
+    @{tn-grid} .price-box {
+        margin: 0 0 @indent__s;
+
+        .price {
+            font-size: 1.6rem;
+            font-weight: @font-weight__semibold;
+        }
+
+        .price-label {
+            color: @tn-muted;
+            font-size: 1.2rem;
+        }
+    }
+
+    // Actions always visible at the bottom of the card (Luma shows them in a hover popover)
+    @{tn-grid} .product-item .product-item-info .product-item-inner {
+        background: none;
+        border: 0;
+        box-shadow: none;
+        clip: auto;
+        height: auto;
+        margin: auto 0 0;
+        overflow: visible;
+        padding: 0;
+        position: static;
+        width: auto;
+
+        &:before {
+            display: none;
+        }
+    }
+
+    @{tn-grid} .product-item-actions {
+        align-items: center;
+        display: flex;
+        gap: @indent__xs;
+        margin: 0;
+
+        .actions-primary {
+            flex: 1;
+        }
+
+        .action.tocart {
+            font-size: 1.3rem;
+            padding: 8px 12px;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .actions-secondary > .action {
+            color: @tn-muted;
+
+            &:hover {
+                color: @tn-accent;
+            }
+        }
+    }
+
+    // Toolbar (sort, limiter, view mode)
+    .toolbar-products {
+        color: @tn-muted;
+        font-size: 1.3rem;
+
+        select {
+            border: 1px solid @tn-border;
+            border-radius: 980px;
+            box-shadow: none;
+            height: 34px;
+            padding: 0 32px 0 14px;
+        }
+
+        .modes-mode {
+            border: 1px solid @tn-border;
+            border-radius: @tn-radius-sm;
+            box-shadow: none;
+
+            &.active {
+                background: @tn-bg-alt;
+            }
+        }
+
+        .sorter-action:before {
+            color: @tn-muted;
+        }
+    }
+
+    // Layered navigation
+    .block.filter {
+        .block-subtitle {
+            color: @tn-muted;
+            font-size: 1.2rem;
+            font-weight: @font-weight__regular;
+            text-transform: uppercase;
+        }
+
+        .filter-options-title {
+            border-top: 1px solid @tn-border;
+            color: @tn-ink;
+            font-size: 1.5rem;
+            font-weight: @font-weight__semibold;
+            text-transform: none;
+        }
+
+        .filter-options-content {
+            a {
+                color: @tn-ink;
+
+                &:hover {
+                    background: @tn-bg-alt;
+                    color: @tn-accent;
+                    text-decoration: none;
+                }
+            }
+
+            .count {
+                color: @tn-muted;
+            }
+        }
+
+        .filter-current .item {
+            background: @tn-bg-alt;
+            border-radius: 980px;
+            margin: 0 0 @indent__xs;
+            padding: 4px 12px 4px 36px;
+        }
+
+        .filter-actions .filter-clear {
+            color: @tn-accent;
+        }
+    }
+
+    // Mobile "Shop By" button and its counter (Luma orange)
+    .filter-title strong {
+        border-radius: 980px;
+        box-shadow: none;
+    }
+
+    .filter-title strong[data-count]:after {
+        background: @tn-accent;
+        border-radius: 980px;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .tn-category-head .tn-headline {
+        font-size: 4.4rem;
+    }
+
+    @{tn-grid} {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @{tn-grid} .product-item-photo .product-image-wrapper {
+        height: 220px;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .page-products.page-layout-1column .products-grid .product-items {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}

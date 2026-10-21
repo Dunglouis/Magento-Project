@@ -1,0 +1,281 @@
+//
+//  Product page: gallery panel, title and price, options, add to cart, tabs, specs table, related shelf
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .catalog-product-view {
+        // Gallery on a light grey panel; white product photos blend into it
+        .product.media {
+            background: @tn-bg-alt;
+            border-radius: @tn-card__radius;
+            box-sizing: border-box;
+            padding: @indent__base;
+
+            .fotorama__stage,
+            .fotorama__nav,
+            .fotorama__nav-wrap,
+            .fotorama__stage__frame {
+                background: transparent;
+            }
+
+            .fotorama__img {
+                mix-blend-mode: multiply;
+            }
+
+            .fotorama__nav__frame--thumb .fotorama__thumb {
+                background: @tn-bg;
+                border-radius: @tn-radius-sm;
+            }
+
+            .fotorama__thumb-border {
+                border-color: @tn-accent;
+                border-radius: @tn-radius-sm;
+            }
+        }
+
+        // Title, price, stock
+        .product-info-main {
+            .page-title-wrapper .page-title {
+                font-size: 3rem;
+                line-height: 1.1;
+                margin-bottom: @indent__s;
+            }
+
+            .product-info-price {
+                border-bottom: 1px solid @tn-border;
+                margin-bottom: @indent__base;
+            }
+
+            .price-box .price {
+                font-size: 2.8rem;
+                font-weight: @font-weight__semibold;
+            }
+
+            .price-label {
+                color: @tn-muted;
+            }
+
+            .product-info-stock-sku {
+                color: @tn-muted;
+                font-size: 1.3rem;
+            }
+
+            .product.attribute.overview {
+                color: @tn-muted;
+                font-size: 1.5rem;
+                line-height: 1.5;
+            }
+        }
+
+        // Options: rounded selects, round colour swatches with a blue ring when selected
+        .product-options-wrapper {
+            .label {
+                font-weight: @font-weight__semibold;
+            }
+
+            select {
+                border: 1px solid @tn-border;
+                border-radius: @tn-radius-sm;
+                height: 44px;
+                padding: 0 36px 0 14px;
+            }
+        }
+
+        .swatch-attribute-label {
+            font-weight: @font-weight__semibold;
+        }
+
+        .swatch-attribute-selected-option {
+            color: @tn-muted;
+        }
+
+        .swatch-attribute .swatch-option {
+            border: 1px solid @tn-border;
+            outline: none;
+
+            &.color,
+            &.image {
+                border-radius: 50%;
+                height: 30px;
+                min-width: 30px;
+                width: 30px;
+            }
+
+            &.text {
+                border-radius: 980px;
+                padding: 6px 14px;
+            }
+
+            &:not(.disabled):hover {
+                border-color: @tn-ink;
+                outline: none;
+            }
+
+            &.selected {
+                border-color: @tn-bg;
+                box-shadow: 0 0 0 2px @tn-accent;
+                outline: none;
+            }
+        }
+
+        // Quantity + big pill "Add to Cart"
+        .box-tocart {
+            .input-text.qty {
+                border: 1px solid @tn-border;
+                border-radius: @tn-radius-sm;
+                height: 52px;
+            }
+
+            .action.tocart {
+                font-size: 1.7rem;
+                line-height: 2.4rem;
+                padding: 14px 32px;
+            }
+        }
+
+        .product-social-links .action {
+            color: @tn-muted;
+
+            &:hover {
+                color: @tn-accent;
+            }
+        }
+
+        // Tabs: plain text tabs with an underline instead of Luma's grey boxes
+        .product.data.items {
+            > .item.title > .switch {
+                background: transparent;
+                border: 0;
+                border-bottom: 2px solid transparent;
+                color: @tn-muted;
+                font-weight: @font-weight__semibold;
+            }
+
+            > .item.title.active > .switch,
+            > .item.title > .switch:hover {
+                background: transparent;
+                color: @tn-ink;
+            }
+
+            > .item.title.active > .switch {
+                border-bottom-color: @tn-ink;
+            }
+
+            > .item.content {
+                border: 0;
+                border-top: 1px solid @tn-border;
+            }
+        }
+
+        // Specs table ("More Information")
+        .additional-attributes {
+            max-width: 760px;
+
+            > tbody > tr {
+                border-bottom: 1px solid @tn-border;
+            }
+
+            > tbody > tr > th,
+            > tbody > tr > td {
+                padding: 12px 0;
+            }
+
+            > tbody > tr > th {
+                color: @tn-muted;
+                font-weight: @font-weight__regular;
+                padding-right: @indent__base;
+                width: 35%;
+            }
+        }
+
+        // Related products as a horizontal shelf of cards
+        .block.related {
+            .block-title strong {
+                font-size: 2.4rem;
+                font-weight: @font-weight__semibold;
+            }
+
+            .block-actions,
+            .field.choice.related {
+                display: none; // "add to cart together" checkboxes
+            }
+
+            .products-grid .product-items {
+                .tn-no-scrollbar();
+                display: flex;
+                gap: @indent__base;
+                margin: 0 -@indent__xs;
+                overflow-x: auto;
+                padding: @indent__s @indent__xs @indent__l;
+                scroll-snap-type: x mandatory;
+            }
+
+            .products-grid .product-items .product-item {
+                display: flex;
+                flex: 0 0 240px;
+                margin: 0;
+                padding: 0;
+                scroll-snap-align: start;
+                width: 240px;
+            }
+
+            .products-grid .product-items .product-item .product-item-info {
+                .tn-card-surface();
+                display: flex;
+                flex-direction: column;
+                padding: @indent__base;
+                width: 100%;
+
+                &:hover {
+                    .tn-card-surface-hover();
+                    border: 0;
+                    margin: 0;
+                    padding: @indent__base;
+                }
+            }
+
+            .product-item-photo {
+                display: block;
+                margin-bottom: @indent__s;
+                text-align: center;
+
+                .product-image-wrapper {
+                    height: 180px;
+                    padding-bottom: 0 !important;
+                }
+
+                .product-image-photo {
+                    height: 100%;
+                    object-fit: contain;
+                    width: 100%;
+                }
+            }
+
+            .product-item-name .product-item-link {
+                .tn-two-lines(1.5rem, 1.3);
+                color: @tn-ink;
+                font-weight: @font-weight__semibold;
+            }
+
+            .price-box .price {
+                font-size: 1.5rem;
+            }
+
+            .products-grid .product-items .product-item .product-item-info .product-item-inner {
+                display: none; // wishlist/compare popover from Luma
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .catalog-product-view {
+        .product-info-main .page-title-wrapper .page-title {
+            font-size: 4rem;
+        }
+
+        .product.media {
+            padding: @indent__l;
+        }
+    }
+}

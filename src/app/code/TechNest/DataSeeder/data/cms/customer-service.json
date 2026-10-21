@@ -1,0 +1,19 @@
+{
+    "type": "page",
+    "identifier": "customer-service",
+    "page_layout": "1column",
+    "stores": {
+        "en": {
+            "title": "Customer service",
+            "content_heading": "Customer service",
+            "meta_description": "Shipping, payment, orders and warranty at TechNest.",
+            "template": "customer-service.en.html"
+        },
+        "vi": {
+            "title": "Chăm sóc khách hàng",
+            "content_heading": "Chăm sóc khách hàng",
+            "meta_description": "Vận chuyển, thanh toán, đơn hàng và bảo hành tại TechNest.",
+            "template": "customer-service.vi.html"
+        }
+    }
+}

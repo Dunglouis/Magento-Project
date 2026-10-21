@@ -1,0 +1,46 @@
+<?php
+/**
+ * Category heading ("Laptops. Work, play and everything in between.") and subcategory row.
+ */
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use TechNest\Base\ViewModel\CategoryHeader;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var CategoryHeader $viewModel */
+$viewModel = $block->getData('view_model');
+$category = $viewModel->getCategory();
+if (!$category) {
+    return;
+}
+$tagline = $viewModel->getTagline();
+$items = $viewModel->getNavItems();
+?>
+<div class="tn-category-head">
+    <h1 class="tn-headline">
+        <?= $escaper->escapeHtml($category->getName()) ?>.
+        <?php if ($tagline): ?>
+            <span><?= $escaper->escapeHtml($tagline) ?></span>
+        <?php endif; ?>
+    </h1>
+    <?php if ($items): ?>
+        <nav class="tn-catnav" aria-label="<?= $escaper->escapeHtmlAttr(__('Subcategories')) ?>">
+            <ul class="tn-catnav__list">
+                <?php foreach ($items as $item): ?>
+                    <li<?= $item['current'] ? ' class="is-current"' : '' ?>>
+                        <a href="<?= $escaper->escapeUrl($item['url']) ?>"
+                            <?= $item['current'] ? 'aria-current="page"' : '' ?>>
+                            <?php if ($item['image']): ?>
+                                <img src="<?= $escaper->escapeUrl($item['image']) ?>" alt=""
+                                     width="112" height="78" loading="lazy">
+                            <?php endif; ?>
+                            <span><?= $escaper->escapeHtml($item['name']) ?></span>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </nav>
+    <?php endif; ?>
+</div>
