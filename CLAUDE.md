@@ -99,7 +99,7 @@ Phương án lai, chạy lặp lại được (idempotent):
 
 ### 5.5 Tài khoản và mua hàng
 
-- **Khách vãng lai không được thêm vào giỏ/mua:** tắt guest checkout; khi chưa đăng nhập bấm "Add to Cart"/"Checkout" thì chuyển sang trang đăng nhập/đăng ký (module `TechNest_CustomerAccess`).
+- **Khách vãng lai được thêm vào giỏ nhưng phải có tài khoản mới mua được** (chủ dự án đổi ngày 2026-10-21): tắt guest checkout; khi chưa đăng nhập mà vào Checkout thì chuyển sang trang đăng nhập/đăng ký, đăng nhập xong quay lại checkout và giữ giỏ hàng (module `TechNest_CustomerAccess`). Review: ai cũng xem được.
 - **Đăng ký bằng email** + trường bổ sung **Số điện thoại** (thuộc tính khách hàng `phone_number`, bắt buộc, validate số di động Việt Nam `^(0|\+84)(3|5|7|8|9)\d{8}$`, hiển thị/sửa ở trang tài khoản). **Không** OTP SMS, SĐT không dùng để đăng nhập.
 - **Đăng nhập Google (OAuth 2.0)** do **tự viết module** `TechNest_GoogleLogin`:
   - Authorization Code flow, có `state` chống CSRF (và PKCE nếu thư viện hỗ trợ); scope `openid email profile`; chỉ nhận email đã xác minh.
@@ -146,7 +146,7 @@ Vendor namespace: **`TechNest`**; thư mục `app/code/TechNest/<Module>/`; comp
 | `TechNest_Installment` (C) | Trả góp | Block trang sản phẩm tính trả góp 3/6/12 tháng (lãi suất cấu hình admin), đúng khi đổi tiền tệ |
 | `TechNest_Automation` (I) | Cron, CLI, observer | Cron (kiểm tra hết hạn flash sale, dọn dữ liệu), CLI, observer sau đặt hàng → tạo bản ghi bảo hành và/hoặc gửi email |
 | `TechNest_GoogleLogin` | Đăng nhập Google | Xem 5.5 |
-| `TechNest_CustomerAccess` | Chặn khách chưa đăng nhập, trường SĐT | Xem 5.5 |
+| `TechNest_CustomerAccess` | Bắt đăng nhập trước khi thanh toán, trường SĐT | Xem 5.5 |
 | `TechNest_Mail` | SMTP thật | Xem 5.7 |
 | `TechNest_QuickView` | Xem nhanh | Modal AJAX (ưu tiên thấp) |
 | `TechNest_Shipping` (F) | Carrier theo tỉnh/thành | Carrier `technest_regional` tính phí theo vùng (Bắc/Trung/Nam) dựa trên tỉnh/thành của địa chỉ giao; bảng phí và tên phương thức cấu hình ở Admin; hỗ trợ cả USD/VND; tương thích Free Shipping theo ngưỡng và voucher free ship |
@@ -164,7 +164,7 @@ Test bắt buộc: PHPUnit unit test cho logic chính (tính trả góp, tính p
 
 - Tĩnh: `phpcs --standard=Magento2`, `phpstan`, `setup:di:compile`.
 - PHPUnit cho module custom.
-- E2E smoke (Playwright): đăng ký (có SĐT), đăng nhập Google (mock hoặc thủ công ở môi trường có redirect URI), thêm giỏ khi chưa đăng nhập (bị chuyển hướng), áp mã giảm giá, checkout COD, so sánh sản phẩm, đổi ngôn ngữ/tiền tệ.
+- E2E smoke (Playwright): đăng ký (có SĐT), đăng nhập Google (mock hoặc thủ công ở môi trường có redirect URI), khách vãng lai thêm giỏ rồi vào checkout (bị chuyển sang đăng nhập, sau đó quay lại checkout), áp mã giảm giá, checkout COD, so sánh sản phẩm, đổi ngôn ngữ/tiền tệ.
 - Sau mỗi phase: chạy test liên quan và báo ngắn gọn (pass/fail, lỗi còn lại).
 
 ## 9. Git, CI/CD (GitHub)
@@ -190,7 +190,7 @@ Test bắt buộc: PHPUnit unit test cho logic chính (tính trả góp, tính p
 |---|---|---|
 | 0. Chuẩn bị | 1 | Rà soát repo/môi trường, thư mục `brand/`, CI khung, store view en/vi, tiền tệ, gói ngôn ngữ |
 | 1. Dữ liệu và catalog | 2-3 | Seeder: category, attribute set, ~80 sản phẩm (simple/configurable/bundle/grouped), ảnh, tồn kho; layered navigation |
-| 2. Theme và UI | 4-5 | Theme con TechNest, logo/favicon, trang chính, responsive, compare/wishlist/review, trường SĐT, chặn khách vãng lai |
+| 2. Theme và UI | 4-5 | Theme con TechNest, logo/favicon, trang chính, responsive, compare/wishlist/review, trường SĐT, bắt đăng nhập khi thanh toán |
 | 3. Khuyến mãi, checkout, tài khoản | 6-7 | Price rules, flash sale + countdown, free ship, COD/Bank transfer, order status, SMTP thật + email VI/EN, Google login |
 | 4. Custom module | 8-9 | Warranty (CRUD/API/ACL), Installment, ProductSpecs, Shipping, Automation, QuickView; test |
 | 5. Hiệu năng | 10 | Production mode, cache, k6, báo cáo trước/sau |
@@ -204,7 +204,7 @@ Nếu trễ tiến độ, cắt theo thứ tự: QuickView → GraphQL → Varni
 - [ ] Chạy trên domain demo có HTTPS, bản `en`/`vi` đúng tiền tệ, đúng thương hiệu TechNest
 - [ ] ~20 sản phẩm/nhóm, có ảnh, thông số, lọc theo brand và thuộc tính
 - [ ] Luồng mua trọn vẹn: đăng ký (email + SĐT) hoặc Google → thêm giỏ → mã giảm giá → ship → COD/chuyển khoản → invoice → shipment → credit memo
-- [ ] Khách chưa đăng nhập bị chặn thêm giỏ/mua
+- [ ] Khách chưa đăng nhập thêm giỏ được nhưng phải đăng nhập/đăng ký mới thanh toán
 - [ ] Email đơn hàng gửi thật, tiếng Việt/Anh, có logo
 - [ ] Flash sale có countdown, Catalog/Cart rule, Bundle hoạt động
 - [ ] So sánh, wishlist, review, quick view, tìm kiếm gợi ý hoạt động

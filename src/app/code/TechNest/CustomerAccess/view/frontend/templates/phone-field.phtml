@@ -1,0 +1,35 @@
+<?php
+/**
+ * Required "Phone Number" field (register + account edit forms).
+ */
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use TechNest\CustomerAccess\ViewModel\PhoneField;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var PhoneField $viewModel */
+$viewModel = $block->getData('view_model');
+$name = $viewModel->getName();
+?>
+<div class="field <?= $escaper->escapeHtmlAttr($name) ?> required">
+    <label class="label" for="<?= $escaper->escapeHtmlAttr($name) ?>">
+        <span><?= $escaper->escapeHtml(__('Phone Number')) ?></span>
+    </label>
+    <div class="control">
+        <input type="tel"
+               name="<?= $escaper->escapeHtmlAttr($name) ?>"
+               id="<?= $escaper->escapeHtmlAttr($name) ?>"
+               value="<?= $escaper->escapeHtmlAttr($viewModel->getValue($block->getLayout())) ?>"
+               title="<?= $escaper->escapeHtmlAttr(__('Phone Number')) ?>"
+               class="input-text"
+               autocomplete="tel"
+               inputmode="tel"
+               placeholder="0912345678"
+               data-validate="<?= $escaper->escapeHtmlAttr(json_encode($viewModel->getValidationRules())) ?>"
+               data-msg-pattern="<?= $escaper->escapeHtmlAttr(
+                   __('Please enter a valid Vietnamese mobile number, for example 0912345678.')
+               ) ?>">
+    </div>
+</div>
