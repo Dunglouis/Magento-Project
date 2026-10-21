@@ -154,6 +154,10 @@
         width: @tn-card__width;
     }
 
+    a.tn-card:visited {
+        color: @tn-ink;
+    }
+
     a.tn-card:hover,
     a.tn-card:focus {
         .tn-card-surface-hover();
@@ -197,11 +201,14 @@
         margin-top: auto;
         padding-top: @indent__base;
 
+        // Magento 2.4.9 sizes this box with aspect-ratio 240/300; the fixed-height wrapper below replaces it
         .product-image-container {
+            aspect-ratio: auto;
             max-width: 100%;
         }
 
-        .product-image-wrapper {
+        // Container in the selector: beats Magento's inline ".product-image-container-ID span.product-image-wrapper"
+        .product-image-container .product-image-wrapper {
             height: 240px;
             padding-bottom: 0 !important; // drop Luma's ratio box, the image is contained instead
         }

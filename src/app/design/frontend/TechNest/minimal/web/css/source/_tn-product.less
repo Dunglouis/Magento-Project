@@ -13,8 +13,16 @@
 
             .fotorama__stage,
             .fotorama__nav,
-            .fotorama__nav-wrap,
+            .fotorama__nav-wrap {
+                background: transparent;
+            }
+
+            // Fotorama moves frames with transforms, so the photo can only blend with its own frame
             .fotorama__stage__frame {
+                background: @tn-bg-alt;
+            }
+
+            .fotorama__arr {
                 background: transparent;
             }
 
@@ -238,6 +246,11 @@
                 display: block;
                 margin-bottom: @indent__s;
                 text-align: center;
+
+                .product-image-container {
+                    aspect-ratio: auto; // see _tn-components.less
+                    max-width: 100%;
+                }
 
                 .product-image-wrapper {
                     height: 180px;

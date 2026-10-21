@@ -15,6 +15,7 @@
         "magento/module-widget": "*",
         "magento/module-catalog-widget": "*",
         "magento/module-sales-rule": "*",
+        "magento/module-swatches": "*",
         "magento/module-store": "*",
         "technest/module-base": "*"
     },

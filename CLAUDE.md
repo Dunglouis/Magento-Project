@@ -235,9 +235,9 @@ Nếu trễ tiến độ, cắt theo thứ tự: QuickView → GraphQL → Varni
 
 ## 14. Tiến độ (agent cập nhật)
 
-- [ ] Phase 0 — Chuẩn bị
-- [ ] Phase 1 — Dữ liệu và catalog
-- [ ] Phase 2 — Theme và UI
+- [x] Phase 0 — Chuẩn bị (2026-10-18)
+- [x] Phase 1 — Dữ liệu và catalog (2026-10-20)
+- [x] Phase 2 — Theme và UI (2026-10-21). Còn tồn: VND đang hiện số thập phân (mục 5.4); giỏ hàng, checkout, so sánh, wishlist mới style bằng CSS, chưa chụp màn hình kiểm tra; responsive kiểm ở 504/768/1280px (Chrome headless trên Windows không xuống được 375px)
 - [ ] Phase 3 — Khuyến mãi, checkout, tài khoản
 - [ ] Phase 4 — Custom module
 - [ ] Phase 5 — Hiệu năng

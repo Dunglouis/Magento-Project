@@ -1,0 +1,416 @@
+//
+//  Forms, search, sign in / register, account, cart, checkout, compare, wishlist, reviews
+//  _____________________________________________
+
+.tn-panel() {
+    background: @tn-bg-alt;
+    border-radius: @tn-card__radius;
+    box-sizing: border-box;
+}
+
+& when (@media-common = true) {
+    // Inputs: soft focus ring in the accent colour
+    input[type='text'],
+    input[type='email'],
+    input[type='password'],
+    input[type='tel'],
+    input[type='number'],
+    input[type='search'],
+    select,
+    textarea {
+        transition: border-color 200ms @tn-ease, box-shadow 200ms @tn-ease;
+
+        &:focus {
+            border-color: @tn-accent;
+            box-shadow: 0 0 0 3px fade(@tn-accent, 20%);
+        }
+    }
+
+    .fieldset > .legend {
+        border-bottom: 0;
+        font-size: 2rem;
+        font-weight: @font-weight__semibold;
+    }
+
+    .fieldset > .field > .label,
+    .fieldset > .fields > .field > .label {
+        font-weight: @font-weight__semibold;
+    }
+
+    // Search box + autocomplete dropdown
+    .block-search {
+        input {
+            background: @tn-bg-alt;
+            border: 1px solid transparent;
+            border-radius: 980px;
+            padding-left: 16px;
+
+            &:focus {
+                background: @tn-bg;
+            }
+        }
+    }
+
+    .search-autocomplete {
+        background: @tn-bg;
+        border: 0;
+        border-radius: @tn-radius;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, .12);
+        margin-top: @indent__xs;
+        overflow: hidden;
+
+        ul li {
+            border-top: 0;
+            padding: 8px 16px;
+
+            &:hover,
+            &.selected {
+                background: @tn-bg-alt;
+            }
+
+            .amount {
+                color: @tn-muted;
+            }
+        }
+    }
+
+    // Sign in / register
+    .customer-account-login {
+        .block-customer-login,
+        .block-new-customer {
+            .tn-panel();
+            padding: @indent__l;
+        }
+
+        // Beats Luma's ".login-container .block .block-title" (abs-login-block-title)
+        .login-container .block .block-title {
+            border-bottom: 0;
+
+            strong {
+                font-size: 2.2rem;
+                font-weight: @font-weight__semibold;
+            }
+        }
+    }
+
+    .customer-account-create .form-create-account {
+        .tn-panel();
+        padding: @indent__l;
+    }
+
+    // Account area
+    .account-nav .content {
+        .tn-panel();
+        padding: @indent__s 0;
+    }
+
+    .account-nav .item.current a,
+    .account-nav .item.current strong {
+        border-color: @tn-accent;
+        font-weight: @font-weight__semibold;
+    }
+
+    .block-dashboard-info,
+    .block-dashboard-addresses,
+    .block-addresses-default {
+        .box {
+            .tn-panel();
+            padding: @indent__base;
+        }
+    }
+
+    .block-title > strong {
+        font-weight: @font-weight__semibold;
+    }
+
+    // Cart
+    .cart-summary {
+        .tn-panel();
+        padding: @indent__base;
+
+        > .title {
+            font-weight: @font-weight__semibold;
+        }
+    }
+
+    .cart.table-wrapper {
+        .product-item-name {
+            font-weight: @font-weight__semibold;
+        }
+
+        .cart.item,
+        thead + .cart.item,
+        .cart.items > .item {
+            border-color: @tn-border;
+        }
+    }
+
+    .cart-container .checkout-methods-items .action.primary.checkout {
+        font-size: 1.7rem;
+        padding: 14px 24px;
+    }
+
+    // Checkout
+    .checkout-index-index {
+        .opc-wrapper .step-title {
+            border-bottom-color: @tn-border;
+            font-weight: @font-weight__semibold;
+        }
+
+        .opc-block-summary {
+            .tn-panel();
+
+            > .title {
+                font-weight: @font-weight__semibold;
+            }
+        }
+
+        .opc-progress-bar-item > span {
+            font-weight: @font-weight__semibold;
+        }
+
+        .table-checkout-shipping-method tbody td {
+            border-top-color: @tn-border;
+        }
+
+        .payment-method-title {
+            border-top-color: @tn-border;
+        }
+    }
+
+    // Compare products
+    .table-comparison {
+        > tbody > tr > th,
+        > tbody > tr > td {
+            border-color: @tn-border;
+        }
+
+        .cell.label {
+            color: @tn-muted;
+            font-weight: @font-weight__regular;
+        }
+
+        .product-item-name {
+            font-weight: @font-weight__semibold;
+        }
+
+        .product-image-photo {
+            object-fit: contain;
+        }
+    }
+
+    // Wish list: same cards as the category grid. Luma floats these items and shows the actions
+    // in a hover popover; every rule here is scoped deep enough to win over that.
+    @tn-wish: ~'.wishlist-index-index .products-grid.wishlist .product-items';
+
+    @{tn-wish} {
+        display: grid;
+        gap: @indent__base;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin: 0;
+    }
+
+    @{tn-wish} .product-item {
+        .tn-card-surface();
+        display: flex;
+        float: none;
+        margin: 0;
+        min-width: 0;
+        padding: @indent__s;
+        width: auto;
+    }
+
+    @{tn-wish} .product-item .product-item-info {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    @{tn-wish} .product-item .product-item-photo {
+        display: block;
+        float: none;
+        margin: 0 0 @indent__s;
+        max-width: none;
+        text-align: center;
+
+        .product-image-container {
+            aspect-ratio: auto;
+            max-width: 100%;
+        }
+
+        .product-image-container .product-image-wrapper {
+            height: 160px;
+            padding-bottom: 0 !important;
+        }
+
+        .product-image-photo {
+            height: 100%;
+            object-fit: contain;
+            width: 100%;
+        }
+    }
+
+    @{tn-wish} .product-item .product-item-name {
+        margin: 0 0 @indent__xs;
+
+        .product-item-link {
+            .tn-two-lines(1.5rem, 1.3);
+            color: @tn-ink;
+            font-weight: @font-weight__semibold;
+        }
+    }
+
+    @{tn-wish} .product-item .price-box {
+        margin: 0 0 @indent__s;
+
+        .price {
+            font-size: 1.6rem;
+            font-weight: @font-weight__semibold;
+        }
+    }
+
+    // Undo Luma's hover popover and its "visually hidden" state (clip / 1px box) when not hovered
+    @{tn-wish} .product-item .product-item-inner {
+        background: none;
+        border: 0;
+        box-shadow: none;
+        clip: auto;
+        display: block;
+        height: auto;
+        margin: auto 0 0;
+        overflow: visible;
+        padding: 0;
+        position: static;
+        width: auto;
+
+        .comment-box {
+            display: none;
+        }
+
+        .box-tocart {
+            margin: 0 0 @indent__s;
+
+            .fieldset {
+                align-items: center;
+                display: flex;
+                gap: @indent__xs;
+                margin: 0;
+            }
+
+            .field.qty {
+                display: block;
+                margin: 0;
+                max-width: none;
+                width: auto;
+
+                .label {
+                    display: none;
+                }
+
+                .input-text.qty {
+                    height: 36px;
+                    width: 52px;
+                }
+            }
+
+            .product-item-actions {
+                display: block;
+                flex: 1;
+                margin: 0;
+            }
+
+            .action.tocart {
+                border-radius: 980px;
+                font-size: 1.3rem;
+                padding: 8px 12px;
+                white-space: nowrap;
+                width: 100%;
+            }
+        }
+
+        > .product-item-actions {
+            display: flex;
+            gap: @indent__s;
+            justify-content: flex-end;
+            margin: 0;
+
+            .action {
+                color: @tn-muted;
+                float: none;
+                margin: 0;
+
+                &:hover {
+                    color: @tn-accent;
+                }
+            }
+        }
+    }
+
+    .wishlist-index-index .form-wishlist-items .actions-toolbar {
+        margin-top: @indent__l;
+    }
+
+    // Sign-in popup shown to guests at checkout: rounded, a plain divider instead of the "or" bubble
+    .modal-popup.popup-authentication .modal-inner-wrap,
+    .authentication-dropdown {
+        border-radius: @tn-card__radius;
+        overflow: hidden;
+    }
+
+    .authentication-wrapper .block-authentication,
+    .popup-authentication .block-authentication {
+        border-top: 0;
+
+        .block[class] + .block:before {
+            display: none;
+        }
+
+        .block-title strong {
+            font-weight: @font-weight__semibold;
+        }
+    }
+
+    // Reviews on the product page
+    .review-list .review-item {
+        border-color: @tn-border;
+    }
+
+    .review-list .review-title {
+        font-weight: @font-weight__semibold;
+    }
+
+    .review-add .review-legend > span {
+        font-weight: @font-weight__semibold;
+    }
+
+    .review-form .action.submit.primary {
+        padding: 10px 24px;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .customer-account-login {
+        .block-customer-login,
+        .block-new-customer {
+            width: 48%;
+        }
+    }
+
+    .customer-account-create .form-create-account {
+        max-width: 720px;
+        width: auto;
+    }
+
+    .wishlist-index-index .products-grid.wishlist .product-items {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .wishlist-index-index .products-grid.wishlist .product-items .product-item {
+        padding: @indent__base;
+    }
+
+    .wishlist-index-index .products-grid.wishlist .product-items .product-item .product-item-photo
+    .product-image-container .product-image-wrapper {
+        height: 200px;
+    }
+}

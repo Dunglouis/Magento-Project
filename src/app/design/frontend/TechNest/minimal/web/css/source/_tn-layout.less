@@ -13,6 +13,32 @@
         font-size: 1.2rem;
     }
 
+    // Signed in: the greeting lives in the account menu toggle (Magento_Customer/templates/account/customer.phtml)
+    .page-header .greet.welcome .logged-in {
+        display: none;
+    }
+
+    .page-header .customer-welcome .customer-name {
+        cursor: pointer;
+
+        &:hover .tn-greeting {
+            color: @tn-accent;
+        }
+    }
+
+    // Account menu: rounded card, no pointer triangle
+    .page-header .customer-welcome .customer-menu ul {
+        border: 0;
+        border-radius: @tn-radius;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, .12);
+        overflow: hidden;
+
+        &:before,
+        &:after {
+            display: none;
+        }
+    }
+
     .page-header .switcher {
         .switcher-trigger,
         .switcher-trigger strong {

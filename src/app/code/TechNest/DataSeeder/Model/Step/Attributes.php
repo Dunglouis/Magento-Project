@@ -17,6 +17,9 @@ use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Store\Model\Store;
 use Magento\Store\Model\StoreManagerInterface;
+use Magento\Swatches\Model\ResourceModel\Swatch as SwatchResource;
+use Magento\Swatches\Model\ResourceModel\Swatch\CollectionFactory as SwatchCollectionFactory;
+use Magento\Swatches\Model\Swatch;
 use Symfony\Component\Console\Output\OutputInterface;
 use TechNest\Base\Setup\Patch\Data\CreateStoreViews;
 use TechNest\DataSeeder\Model\SeedData;
@@ -43,6 +46,8 @@ class Attributes implements StepInterface
      * @param AttributeOptionLabelInterfaceFactory $optionLabelFactory
      * @param AttributeSetManagementInterface $attributeSetManagement
      * @param AttributeSetInterfaceFactory $attributeSetFactory
+     * @param SwatchCollectionFactory $swatchCollectionFactory
+     * @param SwatchResource $swatchResource
      */
     public function __construct(
         private readonly SeedData $seedData,
@@ -55,7 +60,9 @@ class Attributes implements StepInterface
         private readonly AttributeOptionInterfaceFactory $optionFactory,
         private readonly AttributeOptionLabelInterfaceFactory $optionLabelFactory,
         private readonly AttributeSetManagementInterface $attributeSetManagement,
-        private readonly AttributeSetInterfaceFactory $attributeSetFactory
+        private readonly AttributeSetInterfaceFactory $attributeSetFactory,
+        private readonly SwatchCollectionFactory $swatchCollectionFactory,
+        private readonly SwatchResource $swatchResource
     ) {
     }
 
@@ -81,6 +88,7 @@ class Attributes implements StepInterface
             $isNew = !$eavSetup->getAttributeId(Product::ENTITY, $code);
             $this->saveAttribute($eavSetup, $code, $spec, $viStoreId);
             $added = $this->saveOptions($code, $spec['options'] ?? [], $viStoreId);
+            $this->saveSwatches($code, $spec['options'] ?? []);
             $output->writeln(sprintf('  %s %s%s', $isNew ? '+' : '=', $code, $added ? " (+$added options)" : ''));
         }
 
@@ -182,6 +190,45 @@ class Attributes implements StepInterface
             }
         }
         return $added;
+    }
+
+    /**
+     * Colour swatches: options with a "swatch" hex value get a visual swatch (admin scope).
+     *
+     * @param string $code
+     * @param array<mixed> $options
+     * @return void
+     */
+    private function saveSwatches(string $code, array $options): void
+    {
+        $hexByLabel = [];
+        foreach ($options as $value) {
+            if (is_array($value) && isset($value['swatch'])) {
+                $hexByLabel[mb_strtolower($value['en'])] = $value['swatch'];
+            }
+        }
+        if (!$hexByLabel) {
+            return;
+        }
+
+        foreach ($this->optionManagement->getItems($code) as $item) {
+            $hex = $hexByLabel[mb_strtolower((string)$item->getLabel())] ?? null;
+            if ($hex === null || (string)$item->getValue() === '') {
+                continue;
+            }
+            /** @var Swatch $swatch */
+            $swatch = $this->swatchCollectionFactory->create()
+                ->addFieldToFilter('option_id', ['eq' => (int)$item->getValue()])
+                ->addFieldToFilter('store_id', ['eq' => Store::DEFAULT_STORE_ID])
+                ->getFirstItem();
+            $swatch->addData([
+                'option_id' => (int)$item->getValue(),
+                'store_id' => Store::DEFAULT_STORE_ID,
+                'type' => Swatch::SWATCH_TYPE_VISUAL_COLOR,
+                'value' => $hex,
+            ]);
+            $this->swatchResource->save($swatch);
+        }
     }
 
     /**

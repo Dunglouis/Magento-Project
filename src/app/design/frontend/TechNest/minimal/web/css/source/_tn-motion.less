@@ -1,0 +1,44 @@
+//
+//  Motion: reveal on scroll (js/tn-reveal.js) and a gentle image zoom on card hover.
+//  Only transform/opacity are animated; everything is off with prefers-reduced-motion.
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .tn-reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 400ms @tn-ease, transform 400ms @tn-ease;
+
+        &.tn-visible {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    .tn-card__media .product-image-photo,
+    .page-products .products-grid .product-item-photo .product-image-photo,
+    .block.related .product-item-photo .product-image-photo {
+        transition: transform 400ms @tn-ease;
+    }
+
+    a.tn-card:hover .tn-card__media .product-image-photo,
+    .page-products .products-grid .product-item-info:hover .product-image-photo,
+    .block.related .product-item-info:hover .product-image-photo {
+        transform: scale(1.04);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .tn-reveal {
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
+
+        .product-image-photo,
+        .page-products .products-grid .product-item-info,
+        .block.related .product-item-info {
+            transform: none !important;
+            transition: none !important;
+        }
+    }
+}
