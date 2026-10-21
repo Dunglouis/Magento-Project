@@ -10,11 +10,15 @@ use Magento\Widget\Helper\Conditions;
  *
  * Placeholders:
  *  - %image:SKU%          -> {{media url="catalog/product/..."}} of the product's base image
- *  - %products:SKU1,SKU2% -> Catalog Products List widget limited to those SKUs
+ *  - %products:SKU1,SKU2% -> Catalog Products List widget (grid) limited to those SKUs
+ *  - %shelf:SKU1,SKU2%    -> same widget with the theme's horizontal "shelf" template
  */
 class TemplateRenderer
 {
-    private const PRODUCTS_TEMPLATE = 'Magento_CatalogWidget::product/widget/content/grid.phtml';
+    public const TEMPLATES = [
+        'products' => 'Magento_CatalogWidget::product/widget/content/grid.phtml',
+        'shelf' => 'Magento_CatalogWidget::product/widget/content/shelf.phtml',
+    ];
 
     /**
      * @param Conditions $conditionsHelper
@@ -43,8 +47,11 @@ class TemplateRenderer
         );
 
         return (string)preg_replace_callback(
-            '/%products:([A-Za-z0-9_,-]+)%/',
-            fn (array $match): string => $this->productsWidget(array_filter(explode(',', $match[1]))),
+            '/%(products|shelf):([A-Za-z0-9_,-]+)%/',
+            fn (array $match): string => $this->productsWidget(
+                array_filter(explode(',', $match[2])),
+                self::TEMPLATES[$match[1]]
+            ),
             $content
         );
     }
@@ -53,9 +60,10 @@ class TemplateRenderer
      * Build a Catalog Products List widget directive for the given SKUs
      *
      * @param string[] $skus
+     * @param string $template
      * @return string
      */
-    public function productsWidget(array $skus): string
+    public function productsWidget(array $skus, string $template = self::TEMPLATES['products']): string
     {
         $conditions = $this->conditionsHelper->encode([
             '1' => [
@@ -76,7 +84,7 @@ class TemplateRenderer
             '{{widget type="Magento\\CatalogWidget\\Block\\Product\\ProductsList" show_pager="0"'
             . ' products_count="%d" template="%s" conditions_encoded="%s"}}',
             count($skus),
-            self::PRODUCTS_TEMPLATE,
+            $template,
             $conditions
         );
     }

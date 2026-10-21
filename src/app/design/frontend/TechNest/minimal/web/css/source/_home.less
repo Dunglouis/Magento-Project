@@ -1,9 +1,22 @@
 //
-//  Home page (CMS content from TechNest_DataSeeder data/cms/home.*.html)
+//  Home page, Apple Store style: headline, category row, horizontal shelves, quick links
+//  (CMS content from TechNest_DataSeeder data/cms/home.*.html)
 //  _____________________________________________
 
-@tn-section__gap: 64px;
-@tn-tile__radius: 18px;
+@tn-card__radius: 18px;
+@tn-card__width: 300px;
+@tn-card__shadow: 2px 4px 12px rgba(0, 0, 0, .08);
+@tn-card__shadow-hover: 2px 4px 16px rgba(0, 0, 0, .16);
+@tn-ease: cubic-bezier(.2, .8, .2, 1);
+
+.tn-no-scrollbar() {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
 
 & when (@media-common = true) {
     .cms-index-index {
@@ -11,188 +24,310 @@
             padding-top: @indent__base;
         }
 
-        .tn-eyebrow {
-            color: @tn-muted;
-            font-size: 1.4rem;
-            font-weight: @font-weight__semibold;
-            letter-spacing: .02em;
-            margin: 0 0 @indent__xs;
-        }
-
         .tn-link {
             color: @tn-accent;
-            font-size: 1.7rem;
 
             &:after {
                 content: ' \203A';
             }
         }
 
-        // Hero
-        .tn-hero {
-            align-items: center;
-            background: @tn-bg-alt;
-            border-radius: @tn-tile__radius;
-            display: grid;
-            gap: @indent__l;
-            overflow: hidden;
-            padding: @indent__xl @indent__l;
-            text-align: center;
-        }
-
-        .tn-hero__title {
-            font-size: 4rem;
-            font-weight: @font-weight__bold;
-            letter-spacing: -.02em;
-            line-height: 1.05;
+        // "Store. The best way to buy..." - first sentence dark, the rest muted
+        .tn-headline {
+            font-size: 2.4rem;
+            font-weight: @font-weight__semibold;
+            letter-spacing: -.01em;
+            line-height: 1.15;
             margin: 0 0 @indent__s;
-        }
 
-        .tn-hero__lead {
-            color: @tn-muted;
-            font-size: 1.9rem;
-            line-height: 1.4;
-            margin: 0 auto @indent__m;
-            max-width: 36em;
-        }
-
-        .tn-hero__actions {
-            align-items: center;
-            display: flex;
-            flex-wrap: wrap;
-            gap: @indent__m;
-            justify-content: center;
-
-            .action.primary {
-                font-size: 1.6rem;
-                padding: 12px 24px;
+            span {
+                color: @tn-muted;
             }
         }
 
-        .tn-hero__media img {
-            height: auto;
-            max-height: 360px;
-            mix-blend-mode: multiply; // white product photos blend into the grey panel
-            object-fit: contain;
-            width: 100%;
-        }
-
-        // Sections
-        .tn-section {
-            margin-top: @tn-section__gap;
-        }
-
-        .tn-section__title {
-            font-size: 3.2rem;
-            font-weight: @font-weight__bold;
-            letter-spacing: -.01em;
-            margin: 0 0 @indent__m;
-        }
-
-        .tn-section__subtitle {
-            font-size: 2.2rem;
-            font-weight: @font-weight__semibold;
-            margin: @indent__xl 0 @indent__s;
-        }
-
-        // Category tiles
-        .tn-tiles {
-            display: grid;
-            gap: @indent__s;
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .tn-tile {
-            background: @tn-bg-alt;
-            border-radius: @tn-tile__radius;
-            color: @tn-ink;
+        // Page heading
+        .tn-store-head {
             display: flex;
             flex-direction: column;
-            padding: @indent__m;
-            text-decoration: none;
+            gap: @indent__m;
+            margin: @indent__m 0 @indent__xl;
 
-            &:hover,
-            &:focus {
+            .tn-headline {
+                font-size: 3.2rem;
+                max-width: 14em;
+            }
+        }
+
+        .tn-store-head__help {
+            align-items: center;
+            display: flex;
+            gap: @indent__s;
+
+            p {
+                font-size: 1.4rem;
+                font-weight: @font-weight__semibold;
+                line-height: 1.4;
+                margin: 0;
+            }
+        }
+
+        // Category row
+        .tn-catnav {
+            .tn-no-scrollbar();
+            margin: 0 0 @indent__l;
+            overflow-x: auto;
+        }
+
+        .tn-catnav__list {
+            display: flex;
+            gap: @indent__m;
+            list-style: none;
+            margin: 0;
+            padding: 0 0 @indent__xs;
+
+            li {
+                flex: 0 0 auto;
+                margin: 0;
+            }
+
+            a {
+                align-items: center;
                 color: @tn-ink;
+                display: flex;
+                flex-direction: column;
+                gap: @indent__s;
                 text-decoration: none;
+                width: 112px;
+
+                &:hover span {
+                    color: @tn-accent;
+                }
             }
 
             img {
-                aspect-ratio: 4 / 3;
-                margin-top: auto;
-                mix-blend-mode: multiply;
+                height: 78px;
                 object-fit: contain;
-                padding-top: @indent__s;
+                width: 112px;
+            }
+
+            span {
+                font-size: 1.4rem;
+                font-weight: @font-weight__semibold;
+                text-align: center;
+            }
+        }
+
+        // Shelves
+        .tn-shelf-section {
+            margin-top: @indent__xl;
+        }
+
+        .tn-shelf {
+            margin: 0;
+        }
+
+        .tn-shelf__list {
+            .tn-no-scrollbar();
+            display: flex;
+            gap: @indent__base;
+            list-style: none;
+            margin: 0 -@indent__xs;
+            overflow-x: auto;
+            padding: @indent__s @indent__xs @indent__l; // room for the card shadow
+            scroll-padding: 0 @indent__xs;
+            scroll-snap-type: x mandatory;
+        }
+
+        // Items stretch to the tallest card of the row; the card fills its item
+        .tn-shelf__item {
+            display: flex;
+            flex: 0 0 auto;
+            margin: 0;
+            scroll-snap-align: start;
+
+            > .tn-card {
+                flex: 1 0 auto;
+            }
+        }
+
+        .tn-card {
+            background: @tn-bg;
+            border-radius: @tn-card__radius;
+            box-shadow: @tn-card__shadow;
+            box-sizing: border-box;
+            color: @tn-ink;
+            display: flex;
+            flex-direction: column;
+            padding: @indent__l;
+            text-decoration: none;
+            transition: transform 300ms @tn-ease, box-shadow 300ms @tn-ease;
+            width: @tn-card__width;
+        }
+
+        a.tn-card:hover,
+        a.tn-card:focus {
+            box-shadow: @tn-card__shadow-hover;
+            color: @tn-ink;
+            text-decoration: none;
+            transform: scale(1.015);
+        }
+
+        .tn-card--product {
+            min-height: 440px;
+
+            .price-box {
+                margin: @indent__xs 0 0;
+            }
+
+            .price-label {
+                color: @tn-muted;
+                font-size: 1.4rem;
+            }
+
+            .price {
+                font-size: 1.5rem;
+                font-weight: @font-weight__regular;
+            }
+        }
+
+        // Always two lines tall, longer names are cut with an ellipsis
+        .tn-card__name {
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
+            font-size: 2rem;
+            font-weight: @font-weight__semibold;
+            line-height: 1.2;
+            min-height: 2.4em;
+            overflow: hidden;
+        }
+
+        .tn-card__price {
+            min-height: 4.4rem; // room for "As low as" label + price
+        }
+
+        // Fixed-height image box pinned to the card bottom
+        .tn-card__media {
+            align-items: center;
+            display: flex;
+            height: 260px;
+            justify-content: center;
+            margin-top: auto;
+            padding-top: @indent__base;
+
+            .product-image-container {
+                max-width: 100%;
+            }
+
+            .product-image-wrapper {
+                height: 240px;
+                padding-bottom: 0 !important; // drop Luma's ratio box, the image is contained instead
+            }
+
+            .product-image-photo {
+                height: 100%;
+                object-fit: contain;
                 width: 100%;
             }
         }
 
-        .tn-tile__name {
+        .tn-card--info {
+            min-height: 220px;
+        }
+
+        .tn-card__icon {
+            fill: none;
+            height: 36px;
+            margin-bottom: @indent__base;
+            stroke: @tn-accent;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 1.5;
+            width: 36px;
+        }
+
+        .tn-card__title {
             font-size: 2rem;
-            font-weight: @font-weight__semibold;
-        }
-
-        .tn-tile__hint {
-            color: @tn-muted;
-            font-size: 1.4rem;
-        }
-
-        // Deals
-        .tn-promos {
-            display: grid;
-            gap: @indent__s;
-        }
-
-        .tn-promo {
-            background: @tn-bg-alt;
-            border-radius: @tn-tile__radius;
-            padding: @indent__l;
-        }
-
-        .tn-promo__title {
-            font-size: 2.2rem;
             font-weight: @font-weight__semibold;
             line-height: 1.25;
             margin: 0;
 
             strong {
                 color: @tn-accent;
+                font-weight: inherit;
             }
         }
 
-        // Product lists rendered by the Catalog Products List widget
-        .tn-section .block.widget {
-            margin-bottom: 0;
+        // Quick links
+        .tn-quicklinks {
+            margin-bottom: @indent__xl;
+        }
+
+        .tn-quicklinks__title {
+            font-size: 1.7rem;
+            font-weight: @font-weight__semibold;
+            margin: 0 0 @indent__s;
+        }
+
+        .tn-quicklinks__list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: @indent__s;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                margin: 0;
+            }
+
+            a {
+                border: 1px solid #d2d2d7;
+                border-radius: 980px;
+                color: @tn-ink;
+                display: inline-block;
+                font-size: 1.4rem;
+                padding: 8px 18px;
+                text-decoration: none;
+
+                &:hover {
+                    border-color: @tn-ink;
+                }
+            }
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .cms-index-index .tn-card {
+            transition: none;
+
+            &:hover {
+                transform: none;
+            }
         }
     }
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .cms-index-index {
-        .tn-hero {
-            grid-template-columns: 1fr 1fr;
-            padding: @indent__xl * 1.5 @indent__xl;
-            text-align: left;
+        .tn-headline {
+            font-size: 2.8rem;
         }
 
-        .tn-hero__title {
-            font-size: 5.6rem;
+        .tn-store-head {
+            align-items: flex-end;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: @indent__l;
+
+            .tn-headline {
+                font-size: 4.8rem;
+                margin: 0;
+            }
         }
 
-        .tn-hero__lead {
-            margin-left: 0;
-        }
-
-        .tn-hero__actions {
-            justify-content: flex-start;
-        }
-
-        .tn-tiles {
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        .tn-promos {
-            grid-template-columns: 1fr 1fr;
+        .tn-catnav__list {
+            gap: @indent__l;
         }
     }
 }

@@ -1,0 +1,33 @@
+<?php
+/**
+ * Horizontal product "shelf" (Apple Store style): one scrollable row of link cards.
+ * Used by the home page via TechNest_DataSeeder %shelf:...% placeholders.
+ */
+
+use Magento\CatalogWidget\Block\Product\ProductsList;
+use Magento\Framework\Escaper;
+
+/** @var Escaper $escaper */
+/** @var ProductsList $block */
+?>
+<?php $collection = $block->getProductCollection(); ?>
+<?php if ($collection && $collection->count()): ?>
+    <div class="block widget tn-shelf">
+        <ul class="tn-shelf__list">
+            <?php foreach ($collection->getItems() as $item): ?>
+                <?php $url = $block->getProductUrl($item); ?>
+                <li class="tn-shelf__item">
+                    <a class="tn-card tn-card--product" href="<?= $escaper->escapeUrl($url) ?>">
+                        <span class="tn-card__name"><?= $escaper->escapeHtml($item->getName()) ?></span>
+                        <span class="tn-card__price">
+                            <?= /* @noEscape */ $block->getProductPriceHtml($item, 'widget-product-grid') ?>
+                        </span>
+                        <span class="tn-card__media">
+                            <?= $block->getImage($item, 'new_products_content_widget_grid')->toHtml() ?>
+                        </span>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>

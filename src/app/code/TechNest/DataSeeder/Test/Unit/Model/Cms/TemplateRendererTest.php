@@ -53,4 +53,12 @@ class TemplateRendererTest extends TestCase
         self::assertSame('()', $conditions['1--1']['operator']);
         self::assertSame('TN-A, TN-B', $conditions['1--1']['value']);
     }
+
+    public function testShelfPlaceholderUsesShelfTemplate(): void
+    {
+        $html = $this->renderer->render('%shelf:TN-A%', static fn (): ?string => null);
+
+        self::assertStringContainsString('template="' . TemplateRenderer::TEMPLATES['shelf'] . '"', $html);
+        self::assertStringContainsString('products_count="1"', $html);
+    }
 }
