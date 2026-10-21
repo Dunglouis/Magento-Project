@@ -16,11 +16,13 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use TechNest\DataSeeder\Model\Cleanup\LegacyContent;
 use TechNest\DataSeeder\Model\SeedData;
 
 /**
  * Deletes catalog data that the seeder does not own:
- * products whose SKU does not start with "TN-" and categories outside the seed tree.
+ * products whose SKU does not start with "TN-" and categories outside the seed tree,
+ * plus Luma sample content (CMS blocks, their widgets, sample cart rules, sample media).
  * Without --force it only lists what would be deleted.
  */
 class CleanupLegacy extends Command
@@ -37,6 +39,7 @@ class CleanupLegacy extends Command
      * @param CategoryCollectionFactory $categoryCollectionFactory
      * @param ProductRepositoryInterface $productRepository
      * @param CategoryRepositoryInterface $categoryRepository
+     * @param LegacyContent $legacyContent
      */
     public function __construct(
         private readonly State $appState,
@@ -45,7 +48,8 @@ class CleanupLegacy extends Command
         private readonly ProductCollectionFactory $productCollectionFactory,
         private readonly CategoryCollectionFactory $categoryCollectionFactory,
         private readonly ProductRepositoryInterface $productRepository,
-        private readonly CategoryRepositoryInterface $categoryRepository
+        private readonly CategoryRepositoryInterface $categoryRepository,
+        private readonly LegacyContent $legacyContent
     ) {
         parent::__construct();
     }
@@ -56,7 +60,7 @@ class CleanupLegacy extends Command
     protected function configure(): void
     {
         $this->setName('technest:seed:cleanup-legacy')
-            ->setDescription('Delete products/categories not owned by the TechNest seeder (dry run without --force)')
+            ->setDescription('Delete products/categories/content not owned by TechNest (dry run without --force)')
             ->addOption(self::OPTION_FORCE, null, InputOption::VALUE_NONE, 'Actually delete');
     }
 
@@ -94,6 +98,8 @@ class CleanupLegacy extends Command
                 $this->categoryRepository->delete($category);
             }
         }
+
+        $this->legacyContent->run($output, $force);
 
         $output->writeln($force
             ? '<info>Deleted.</info> Next: bin/magento indexer:reindex && bin/magento cache:flush'

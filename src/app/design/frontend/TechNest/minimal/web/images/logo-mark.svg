@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="160 160 940 940" width="512" height="512" role="img" aria-label="TechNest">
+  <defs>
+    <linearGradient id="tn-wing1" gradientUnits="userSpaceOnUse" x1="180" y1="330" x2="785" y2="520">
+      <stop offset="0" stop-color="#4f8fe6"/><stop offset=".45" stop-color="#a3bbe0"/>
+      <stop offset=".8" stop-color="#e7e9ed"/><stop offset="1" stop-color="#8e98aa"/>
+    </linearGradient>
+    <linearGradient id="tn-wing2" gradientUnits="userSpaceOnUse" x1="260" y1="440" x2="565" y2="540">
+      <stop offset="0" stop-color="#a2a9b7"/><stop offset=".6" stop-color="#6b7384"/><stop offset="1" stop-color="#3f4754"/>
+    </linearGradient>
+    <linearGradient id="tn-stem" gradientUnits="userSpaceOnUse" x1="620" y1="470" x2="440" y2="910">
+      <stop offset="0" stop-color="#dfe2e7"/><stop offset=".45" stop-color="#a9afba"/>
+      <stop offset=".7" stop-color="#6c7384"/><stop offset="1" stop-color="#c3c7cf"/>
+    </linearGradient>
+    <linearGradient id="tn-nleft" gradientUnits="userSpaceOnUse" x1="0" y1="560" x2="0" y2="830">
+      <stop offset="0" stop-color="#5f6575"/><stop offset="1" stop-color="#959baa"/>
+    </linearGradient>
+    <linearGradient id="tn-ndiag" gradientUnits="userSpaceOnUse" x1="690" y1="560" x2="905" y2="870">
+      <stop offset="0" stop-color="#6e7484"/><stop offset=".5" stop-color="#b4b8c2"/><stop offset="1" stop-color="#d9dce1"/>
+    </linearGradient>
+    <linearGradient id="tn-neck" gradientUnits="userSpaceOnUse" x1="800" y1="500" x2="935" y2="870">
+      <stop offset="0" stop-color="#e3e7ee"/><stop offset=".4" stop-color="#5f6c85"/><stop offset="1" stop-color="#c3c7cf"/>
+    </linearGradient>
+    <linearGradient id="tn-head" gradientUnits="userSpaceOnUse" x1="790" y1="385" x2="1060" y2="510">
+      <stop offset="0" stop-color="#6f7789"/><stop offset=".5" stop-color="#3c4356"/><stop offset="1" stop-color="#4f5a73"/>
+    </linearGradient>
+    <radialGradient id="tn-eye" cx="995" cy="455" r="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".35" stop-color="#cfe2ff"/><stop offset="1" stop-color="#0071e3"/>
+    </radialGradient>
+  </defs>
+  <path fill="url(#tn-wing1)" d="M180 323 C320 338 520 362 612 378 C700 394 760 440 780 530 C752 486 704 466 620 461 C460 462 290 430 180 323 Z"/>
+  <path fill="url(#tn-wing2)" d="M260 428 C380 440 515 458 552 486 C562 494 565 510 565 530 L565 558 C520 552 450 562 400 548 C330 528 285 480 260 428 Z"/>
+  <path fill="url(#tn-stem)" d="M565 470 L655 470 L655 690 C655 790 560 850 410 918 C470 862 540 812 565 772 Z"/>
+  <path fill="url(#tn-nleft)" d="M680 560 L732 560 L732 812 L680 828 Z"/>
+  <path fill="url(#tn-ndiag)" d="M680 560 L752 560 C770 560 785 572 796 586 L925 772 C946 803 935 852 897 875 L732 668 Z"/>
+  <path fill="url(#tn-neck)" d="M760 560 L868 444 C840 418 806 398 770 383 C862 378 975 392 1040 436 C1068 456 1082 490 1075 522 C1063 498 1046 485 1022 481 C985 478 950 505 932 540 C918 568 940 610 940 642 L940 815 C940 846 918 866 897 875 L845 812 L845 642 C845 606 822 588 796 586 C785 572 770 560 760 560 Z"/>
+  <path fill="url(#tn-head)" d="M770 383 C862 378 975 392 1040 436 C1068 456 1082 490 1075 522 C1063 498 1046 485 1022 481 C992 478 962 486 942 498 C918 474 890 456 868 444 C840 418 806 398 770 383 Z"/>
+  <path fill="url(#tn-eye)" d="M964 455 L994 443 L1026 455 L996 467 Z"/>
+</svg>

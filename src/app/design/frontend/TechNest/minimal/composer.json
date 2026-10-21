@@ -1,0 +1,14 @@
+{
+    "name": "technest/theme-frontend-minimal",
+    "description": "TechNest minimal storefront theme (child of Luma)",
+    "type": "magento2-theme",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/theme-frontend-luma": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"]
+    }
+}

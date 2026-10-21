@@ -1,0 +1,333 @@
+//
+//  Home page, Apple Store style: headline, category row, horizontal shelves, quick links
+//  (CMS content from TechNest_DataSeeder data/cms/home.*.html)
+//  _____________________________________________
+
+@tn-card__radius: 18px;
+@tn-card__width: 300px;
+@tn-card__shadow: 2px 4px 12px rgba(0, 0, 0, .08);
+@tn-card__shadow-hover: 2px 4px 16px rgba(0, 0, 0, .16);
+@tn-ease: cubic-bezier(.2, .8, .2, 1);
+
+.tn-no-scrollbar() {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+& when (@media-common = true) {
+    .cms-index-index {
+        .page-main {
+            padding-top: @indent__base;
+        }
+
+        .tn-link {
+            color: @tn-accent;
+
+            &:after {
+                content: ' \203A';
+            }
+        }
+
+        // "Store. The best way to buy..." - first sentence dark, the rest muted
+        .tn-headline {
+            font-size: 2.4rem;
+            font-weight: @font-weight__semibold;
+            letter-spacing: -.01em;
+            line-height: 1.15;
+            margin: 0 0 @indent__s;
+
+            span {
+                color: @tn-muted;
+            }
+        }
+
+        // Page heading
+        .tn-store-head {
+            display: flex;
+            flex-direction: column;
+            gap: @indent__m;
+            margin: @indent__m 0 @indent__xl;
+
+            .tn-headline {
+                font-size: 3.2rem;
+                max-width: 14em;
+            }
+        }
+
+        .tn-store-head__help {
+            align-items: center;
+            display: flex;
+            gap: @indent__s;
+
+            p {
+                font-size: 1.4rem;
+                font-weight: @font-weight__semibold;
+                line-height: 1.4;
+                margin: 0;
+            }
+        }
+
+        // Category row
+        .tn-catnav {
+            .tn-no-scrollbar();
+            margin: 0 0 @indent__l;
+            overflow-x: auto;
+        }
+
+        .tn-catnav__list {
+            display: flex;
+            gap: @indent__m;
+            list-style: none;
+            margin: 0;
+            padding: 0 0 @indent__xs;
+
+            li {
+                flex: 0 0 auto;
+                margin: 0;
+            }
+
+            a {
+                align-items: center;
+                color: @tn-ink;
+                display: flex;
+                flex-direction: column;
+                gap: @indent__s;
+                text-decoration: none;
+                width: 112px;
+
+                &:hover span {
+                    color: @tn-accent;
+                }
+            }
+
+            img {
+                height: 78px;
+                object-fit: contain;
+                width: 112px;
+            }
+
+            span {
+                font-size: 1.4rem;
+                font-weight: @font-weight__semibold;
+                text-align: center;
+            }
+        }
+
+        // Shelves
+        .tn-shelf-section {
+            margin-top: @indent__xl;
+        }
+
+        .tn-shelf {
+            margin: 0;
+        }
+
+        .tn-shelf__list {
+            .tn-no-scrollbar();
+            display: flex;
+            gap: @indent__base;
+            list-style: none;
+            margin: 0 -@indent__xs;
+            overflow-x: auto;
+            padding: @indent__s @indent__xs @indent__l; // room for the card shadow
+            scroll-padding: 0 @indent__xs;
+            scroll-snap-type: x mandatory;
+        }
+
+        // Items stretch to the tallest card of the row; the card fills its item
+        .tn-shelf__item {
+            display: flex;
+            flex: 0 0 auto;
+            margin: 0;
+            scroll-snap-align: start;
+
+            > .tn-card {
+                flex: 1 0 auto;
+            }
+        }
+
+        .tn-card {
+            background: @tn-bg;
+            border-radius: @tn-card__radius;
+            box-shadow: @tn-card__shadow;
+            box-sizing: border-box;
+            color: @tn-ink;
+            display: flex;
+            flex-direction: column;
+            padding: @indent__l;
+            text-decoration: none;
+            transition: transform 300ms @tn-ease, box-shadow 300ms @tn-ease;
+            width: @tn-card__width;
+        }
+
+        a.tn-card:hover,
+        a.tn-card:focus {
+            box-shadow: @tn-card__shadow-hover;
+            color: @tn-ink;
+            text-decoration: none;
+            transform: scale(1.015);
+        }
+
+        .tn-card--product {
+            min-height: 440px;
+
+            .price-box {
+                margin: @indent__xs 0 0;
+            }
+
+            .price-label {
+                color: @tn-muted;
+                font-size: 1.4rem;
+            }
+
+            .price {
+                font-size: 1.5rem;
+                font-weight: @font-weight__regular;
+            }
+        }
+
+        // Always two lines tall, longer names are cut with an ellipsis
+        .tn-card__name {
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
+            font-size: 2rem;
+            font-weight: @font-weight__semibold;
+            line-height: 1.2;
+            min-height: 2.4em;
+            overflow: hidden;
+        }
+
+        .tn-card__price {
+            min-height: 4.4rem; // room for "As low as" label + price
+        }
+
+        // Fixed-height image box pinned to the card bottom
+        .tn-card__media {
+            align-items: center;
+            display: flex;
+            height: 260px;
+            justify-content: center;
+            margin-top: auto;
+            padding-top: @indent__base;
+
+            .product-image-container {
+                max-width: 100%;
+            }
+
+            .product-image-wrapper {
+                height: 240px;
+                padding-bottom: 0 !important; // drop Luma's ratio box, the image is contained instead
+            }
+
+            .product-image-photo {
+                height: 100%;
+                object-fit: contain;
+                width: 100%;
+            }
+        }
+
+        .tn-card--info {
+            min-height: 220px;
+        }
+
+        .tn-card__icon {
+            fill: none;
+            height: 36px;
+            margin-bottom: @indent__base;
+            stroke: @tn-accent;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 1.5;
+            width: 36px;
+        }
+
+        .tn-card__title {
+            font-size: 2rem;
+            font-weight: @font-weight__semibold;
+            line-height: 1.25;
+            margin: 0;
+
+            strong {
+                color: @tn-accent;
+                font-weight: inherit;
+            }
+        }
+
+        // Quick links
+        .tn-quicklinks {
+            margin-bottom: @indent__xl;
+        }
+
+        .tn-quicklinks__title {
+            font-size: 1.7rem;
+            font-weight: @font-weight__semibold;
+            margin: 0 0 @indent__s;
+        }
+
+        .tn-quicklinks__list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: @indent__s;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                margin: 0;
+            }
+
+            a {
+                border: 1px solid #d2d2d7;
+                border-radius: 980px;
+                color: @tn-ink;
+                display: inline-block;
+                font-size: 1.4rem;
+                padding: 8px 18px;
+                text-decoration: none;
+
+                &:hover {
+                    border-color: @tn-ink;
+                }
+            }
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .cms-index-index .tn-card {
+            transition: none;
+
+            &:hover {
+                transform: none;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .cms-index-index {
+        .tn-headline {
+            font-size: 2.8rem;
+        }
+
+        .tn-store-head {
+            align-items: flex-end;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: @indent__l;
+
+            .tn-headline {
+                font-size: 4.8rem;
+                margin: 0;
+            }
+        }
+
+        .tn-catnav__list {
+            gap: @indent__l;
+        }
+    }
+}

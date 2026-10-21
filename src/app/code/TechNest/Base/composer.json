@@ -1,13 +1,14 @@
 {
     "name": "technest/module-base",
-    "description": "TechNest base setup: store views, locales, currencies",
+    "description": "TechNest base setup: store views, locales, currencies, theme and storefront basics",
     "type": "magento2-module",
     "license": "proprietary",
     "require": {
         "php": "~8.3.0||~8.4.0||~8.5.0",
         "magento/framework": "*",
         "magento/module-store": "*",
-        "magento/module-directory": "*"
+        "magento/module-directory": "*",
+        "magento/module-theme": "*"
     },
     "autoload": {
         "files": ["registration.php"],
