@@ -8,7 +8,10 @@
         "magento/framework": "*",
         "magento/module-store": "*",
         "magento/module-directory": "*",
-        "magento/module-theme": "*"
+        "magento/module-theme": "*",
+        "magento/module-review": "*",
+        "magento/module-multishipping": "*",
+        "magento/module-catalog": "*"
     },
     "autoload": {
         "files": ["registration.php"],

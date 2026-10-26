@@ -1,23 +1,40 @@
 [
-    {"url_key": "laptops", "name": {"en": "Laptops", "vi": "Laptop"}, "children": [
-        {"url_key": "gaming", "name": {"en": "Gaming", "vi": "Gaming"}},
-        {"url_key": "office", "name": {"en": "Office", "vi": "Văn phòng"}},
-        {"url_key": "thin-light", "name": {"en": "Thin & Light", "vi": "Mỏng nhẹ"}}
+    {"url_key": "laptops", "name": {"en": "Laptops", "vi": "Laptop"},
+     "tagline": {"en": "Work, play and everything in between.", "vi": "Làm việc, giải trí và mọi thứ ở giữa."}, "children": [
+        {"url_key": "gaming", "name": {"en": "Gaming", "vi": "Gaming"},
+         "tagline": {"en": "High refresh, higher frame rates.", "vi": "Tần số quét cao, khung hình còn cao hơn."}},
+        {"url_key": "office", "name": {"en": "Office", "vi": "Văn phòng"},
+         "tagline": {"en": "Reliable machines for every workday.", "vi": "Bền bỉ cho mọi ngày làm việc."}},
+        {"url_key": "thin-light", "name": {"en": "Thin & Light", "vi": "Mỏng nhẹ"},
+         "tagline": {"en": "Big performance you can carry anywhere.", "vi": "Hiệu năng lớn, mang theo mọi nơi."}}
     ]},
-    {"url_key": "phones", "name": {"en": "Phones", "vi": "Điện thoại"}, "children": [
-        {"url_key": "flagship", "name": {"en": "Flagship", "vi": "Flagship"}},
-        {"url_key": "mid-range", "name": {"en": "Mid-range", "vi": "Tầm trung"}},
-        {"url_key": "budget", "name": {"en": "Budget", "vi": "Giá rẻ"}}
+    {"url_key": "phones", "name": {"en": "Phones", "vi": "Điện thoại"},
+     "tagline": {"en": "The best of every brand, in your pocket.", "vi": "Tinh hoa mọi thương hiệu, gọn trong túi."}, "children": [
+        {"url_key": "flagship", "name": {"en": "Flagship", "vi": "Flagship"},
+         "tagline": {"en": "The most advanced phones of the year.", "vi": "Những chiếc điện thoại tiên tiến nhất năm."}},
+        {"url_key": "mid-range", "name": {"en": "Mid-range", "vi": "Tầm trung"},
+         "tagline": {"en": "Everything you need, nothing you don't.", "vi": "Đủ mọi thứ bạn cần, không thừa thứ gì."}},
+        {"url_key": "budget", "name": {"en": "Budget", "vi": "Giá rẻ"},
+         "tagline": {"en": "Smart choices at smart prices.", "vi": "Lựa chọn thông minh, giá hợp lý."}}
     ]},
-    {"url_key": "pcs", "name": {"en": "PC", "vi": "PC"}, "children": [
-        {"url_key": "gaming-pc", "name": {"en": "Gaming PC", "vi": "PC Gaming"}},
-        {"url_key": "office-pc", "name": {"en": "Office PC", "vi": "PC Văn phòng"}},
-        {"url_key": "components", "name": {"en": "Components", "vi": "Linh kiện"}}
+    {"url_key": "pcs", "name": {"en": "PC", "vi": "PC"},
+     "tagline": {"en": "Desktops and parts, ready to build on.", "vi": "Máy bộ và linh kiện, sẵn sàng nâng cấp."}, "children": [
+        {"url_key": "gaming-pc", "name": {"en": "Gaming PC", "vi": "PC Gaming"},
+         "tagline": {"en": "Built for the games you love.", "vi": "Sinh ra cho những tựa game bạn yêu."}},
+        {"url_key": "office-pc", "name": {"en": "Office PC", "vi": "PC Văn phòng"},
+         "tagline": {"en": "Quiet, compact, always on.", "vi": "Êm, gọn, luôn sẵn sàng."}},
+        {"url_key": "components", "name": {"en": "Components", "vi": "Linh kiện"},
+         "tagline": {"en": "Graphics, boards and power for your build.", "vi": "Card đồ họa, mainboard và nguồn cho dàn máy."}}
     ]},
-    {"url_key": "accessories", "name": {"en": "Accessories", "vi": "Phụ kiện"}, "children": [
-        {"url_key": "mice", "name": {"en": "Mice", "vi": "Chuột"}},
-        {"url_key": "keyboards", "name": {"en": "Keyboards", "vi": "Bàn phím"}},
-        {"url_key": "headphones", "name": {"en": "Headphones", "vi": "Tai nghe"}},
-        {"url_key": "chargers-cables", "name": {"en": "Chargers & Cables", "vi": "Sạc & cáp"}}
+    {"url_key": "accessories", "name": {"en": "Accessories", "vi": "Phụ kiện"},
+     "tagline": {"en": "Essentials that pair perfectly with your devices.", "vi": "Những món thiết yếu hợp với thiết bị của bạn."}, "children": [
+        {"url_key": "mice", "name": {"en": "Mice", "vi": "Chuột"},
+         "tagline": {"en": "Precision in the palm of your hand.", "vi": "Chính xác trong lòng bàn tay."}},
+        {"url_key": "keyboards", "name": {"en": "Keyboards", "vi": "Bàn phím"},
+         "tagline": {"en": "Type faster, play better.", "vi": "Gõ nhanh hơn, chơi hay hơn."}},
+        {"url_key": "headphones", "name": {"en": "Headphones", "vi": "Tai nghe"},
+         "tagline": {"en": "Sound that stays with you.", "vi": "Âm thanh luôn bên bạn."}},
+        {"url_key": "chargers-cables", "name": {"en": "Chargers & Cables", "vi": "Sạc & cáp"},
+         "tagline": {"en": "Power up, faster.", "vi": "Sạc đầy, nhanh hơn."}}
     ]}
 ]

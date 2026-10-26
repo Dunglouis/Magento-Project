@@ -11,5 +11,16 @@
             </arguments>
         </referenceBlock>
         <referenceBlock name="report.bugs" remove="true"/>
+
+        <!-- Footer: link columns from the CMS block "technest-footer" (seeded per store view) -->
+        <referenceBlock name="footer_links" remove="true"/>
+        <referenceBlock name="store_switcher" remove="true"/>
+        <referenceContainer name="footer">
+            <block class="Magento\Cms\Block\Block" name="technest.footer" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">technest-footer</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
     </body>
 </page>

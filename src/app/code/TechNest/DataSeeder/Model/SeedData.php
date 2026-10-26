@@ -82,10 +82,21 @@ class SeedData
     }
 
     /**
-     * CMS page definition from data/cms/<name>.json
+     * Sample product reviews: [{sku, reviews: [{store, nickname, rating 1-5, title, detail}]}].
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public function getReviews(): array
+    {
+        return $this->read('reviews.json');
+    }
+
+    /**
+     * CMS page/block definition from data/cms/<name>.json:
+     * {type?: page|block, identifier, page_layout?, stores: {code: {title, content_heading?, meta_*?, template}}}
      *
      * @param string $name
-     * @return array<string, mixed> {identifier, page_layout, stores: {code: {title, meta_*, template}}}
+     * @return array<string, mixed>
      */
     public function getCmsPage(string $name): array
     {

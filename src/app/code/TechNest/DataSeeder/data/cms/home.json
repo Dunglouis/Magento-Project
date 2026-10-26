@@ -1,4 +1,5 @@
 {
+    "type": "page",
     "identifier": "home",
     "page_layout": "1column",
     "stores": {

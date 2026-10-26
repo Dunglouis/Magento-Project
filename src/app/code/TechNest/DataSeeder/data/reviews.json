@@ -1,0 +1,138 @@
+[
+ {"sku": "TN-PH-IPHONE-13-PRO", "reviews": [
+  {"store": "en", "nickname": "Daniel", "rating": 5, "title": "ProMotion is a game changer", "detail": "Scrolling at 120 Hz feels incredibly smooth and the telephoto camera is great for portraits. Battery easily lasts a full day."},
+  {"store": "en", "nickname": "Sophie", "rating": 4, "title": "Great camera, a bit heavy", "detail": "Photos in low light are excellent. The steel frame makes it heavier than I expected, but build quality is top notch."},
+  {"store": "vi", "nickname": "Minh Anh", "rating": 5, "title": "Màn hình mượt, camera đẹp", "detail": "Màn 120 Hz lướt rất sướng, chụp chân dung xóa phông tự nhiên. Pin dùng thoải mái hết ngày."},
+  {"store": "vi", "nickname": "Hoàng Long", "rating": 4, "title": "Máy đầm tay, hơi nặng", "detail": "Khung thép chắc chắn, cầm hơi nặng tay một chút. Giao hàng nhanh, đóng gói cẩn thận."}
+ ]},
+ {"sku": "TN-PH-IPHONE-X", "reviews": [
+  {"store": "en", "nickname": "Mark", "rating": 4, "title": "Still a solid phone", "detail": "Face ID works reliably and the OLED screen still looks great. Battery is the weak point after a few years of updates."},
+  {"store": "vi", "nickname": "Thu Trang", "rating": 3, "title": "Ổn trong tầm giá", "detail": "Màn hình OLED đẹp, Face ID nhạy. Pin hơi yếu nếu chơi game nhiều, phù hợp nhu cầu nghe gọi, lướt web."}
+ ]},
+ {"sku": "TN-PH-GALAXY-S24-ULTRA", "reviews": [
+  {"store": "en", "nickname": "Priya", "rating": 5, "title": "Best zoom on any phone", "detail": "The 5x zoom is sharp and the S Pen is genuinely useful for notes. Titanium frame feels premium."},
+  {"store": "en", "nickname": "Tom", "rating": 4, "title": "Huge but powerful", "detail": "Snapdragon 8 Gen 3 handles everything. It is a big phone, so one-handed use is tricky."},
+  {"store": "vi", "nickname": "Quốc Bảo", "rating": 5, "title": "Camera zoom quá đỉnh", "detail": "Zoom 5x rất nét, bút S Pen ghi chú tiện. Máy mạnh, chơi game không nóng nhiều."},
+  {"store": "vi", "nickname": "Ngọc Hân", "rating": 5, "title": "Đáng tiền", "detail": "Màn hình sáng, chống chói tốt khi ra ngoài trời. Shop tư vấn nhiệt tình, giao trong ngày."}
+ ]},
+ {"sku": "TN-PH-GALAXY-S25", "reviews": [
+  {"store": "en", "nickname": "Lucas", "rating": 5, "title": "Compact flagship done right", "detail": "Fits in one hand, fast and the Galaxy AI features are handy for translating messages."},
+  {"store": "vi", "nickname": "Thanh Tùng", "rating": 4, "title": "Nhỏ gọn, mạnh mẽ", "detail": "Cầm một tay vừa vặn, hiệu năng mạnh. Tính năng AI dịch tin nhắn khá hữu ích, pin ở mức khá."}
+ ]},
+ {"sku": "TN-PH-GALAXY-S24", "reviews": [
+  {"store": "en", "nickname": "Emma", "rating": 4, "title": "Great everyday phone", "detail": "Bright display and dependable cameras. Charging could be faster."},
+  {"store": "vi", "nickname": "Phương Linh", "rating": 4, "title": "Dùng hằng ngày rất ổn", "detail": "Màn hình đẹp, chụp ảnh ổn định. Sạc hơi chậm so với mấy máy Trung Quốc."}
+ ]},
+ {"sku": "TN-PH-GALAXY-A35", "reviews": [
+  {"store": "en", "nickname": "Kevin", "rating": 4, "title": "Excellent mid-range value", "detail": "Super AMOLED screen and 5G at this price is a win. Performance is fine for social apps."},
+  {"store": "vi", "nickname": "Đức Huy", "rating": 5, "title": "Tầm trung đáng mua nhất", "detail": "Màn AMOLED đẹp, có 5G, chống nước. Mua cho bố mẹ dùng rất hài lòng."}
+ ]},
+ {"sku": "TN-PH-GALAXY-A15", "reviews": [
+  {"store": "en", "nickname": "Rosa", "rating": 4, "title": "Good budget pick", "detail": "Big battery and a nice screen for the price. Not for heavy gaming."},
+  {"store": "vi", "nickname": "Kim Ngân", "rating": 3, "title": "Giá rẻ, pin trâu", "detail": "Pin dùng gần 2 ngày, màn hình to. Hiệu năng chỉ đủ dùng các ứng dụng cơ bản."}
+ ]},
+ {"sku": "TN-PH-OPPO-F19-PRO-PLUS", "reviews": [
+  {"store": "en", "nickname": "Hannah", "rating": 4, "title": "Fast charging is impressive", "detail": "Goes from empty to full in about an hour. Slim and light design."},
+  {"store": "vi", "nickname": "Bảo Ngọc", "rating": 4, "title": "Sạc nhanh, máy mỏng nhẹ", "detail": "Sạc rất nhanh, thiết kế mỏng đẹp. Camera selfie chụp sáng da."}
+ ]},
+ {"sku": "TN-PH-REALME-C35", "reviews": [
+  {"store": "vi", "nickname": "Văn Nam", "rating": 3, "title": "Đủ dùng cơ bản", "detail": "Máy rẻ, màn hình lớn, pin ổn. Camera chỉ ở mức chấp nhận được."}
+ ]},
+ {"sku": "TN-LT-MACBOOK-PRO-14", "reviews": [
+  {"store": "en", "nickname": "Olivia", "rating": 5, "title": "Best laptop I have owned", "detail": "The Liquid Retina XDR display is stunning and battery life is unreal. Silent even when exporting video."},
+  {"store": "en", "nickname": "Ben", "rating": 5, "title": "A workhorse for developers", "detail": "Compiles fast, runs Docker smoothly and the keyboard is excellent."},
+  {"store": "vi", "nickname": "Tuấn Anh", "rating": 5, "title": "Màn hình và pin tuyệt vời", "detail": "Màn XDR hiển thị cực đẹp, pin làm việc cả ngày không cần sạc. Dựng video rất mượt."},
+  {"store": "vi", "nickname": "Mai Phương", "rating": 4, "title": "Mạnh nhưng giá cao", "detail": "Máy chạy êm, không nóng. Giá hơi cao nhưng xứng đáng nếu làm đồ họa."}
+ ]},
+ {"sku": "TN-LT-ROG-STRIX-G16", "reviews": [
+  {"store": "en", "nickname": "Jake", "rating": 5, "title": "Beast for gaming", "detail": "RTX 4060 runs modern games at high settings, and the 165 Hz screen is buttery smooth."},
+  {"store": "vi", "nickname": "Gia Huy", "rating": 5, "title": "Chiến game cực mượt", "detail": "Chơi game nặng setting cao vẫn ổn định, màn 165 Hz mượt. Tản nhiệt tốt, quạt hơi ồn khi tải nặng."},
+  {"store": "vi", "nickname": "Khánh Duy", "rating": 4, "title": "Mạnh, hơi nặng", "detail": "Hiệu năng tốt, đèn RGB đẹp. Máy khá nặng, cục sạc to nên mang đi học hơi bất tiện."}
+ ]},
+ {"sku": "TN-LT-LEGION-5", "reviews": [
+  {"store": "en", "nickname": "Chris", "rating": 5, "title": "Great cooling and keyboard", "detail": "Stays cool under load and the keyboard is one of the best on a gaming laptop."},
+  {"store": "vi", "nickname": "Minh Khôi", "rating": 5, "title": "Bàn phím gõ sướng", "detail": "Tản nhiệt mát, bàn phím hành trình sâu gõ rất sướng. Màn hình 2.5K sắc nét."}
+ ]},
+ {"sku": "TN-LT-TUF-A15", "reviews": [
+  {"store": "en", "nickname": "Ryan", "rating": 4, "title": "Solid gaming value", "detail": "Plays everything I need at 1080p. Build is sturdy, speakers are average."},
+  {"store": "vi", "nickname": "Hải Đăng", "rating": 4, "title": "Laptop gaming giá tốt", "detail": "Chơi game Full HD ổn, vỏ chắc chắn. Loa hơi nhỏ, nên dùng tai nghe."}
+ ]},
+ {"sku": "TN-LT-NITRO-V-15", "reviews": [
+  {"store": "vi", "nickname": "Trọng Nghĩa", "rating": 4, "title": "Học và chơi game đều ổn", "detail": "Cấu hình đủ cho sinh viên vừa học vừa chơi game. Màn hình hơi nhạt màu."}
+ ]},
+ {"sku": "TN-LT-THINKPAD-E14-G5", "reviews": [
+  {"store": "en", "nickname": "Laura", "rating": 4, "title": "Reliable office laptop", "detail": "Classic ThinkPad keyboard and plenty of ports. Screen brightness is just okay."},
+  {"store": "vi", "nickname": "Thu Hà", "rating": 5, "title": "Bền bỉ cho dân văn phòng", "detail": "Bàn phím gõ êm, nhiều cổng kết nối, chạy Office và họp online mượt."}
+ ]},
+ {"sku": "TN-LT-ELITEBOOK-840-G10", "reviews": [
+  {"store": "en", "nickname": "George", "rating": 5, "title": "Premium business machine", "detail": "Light aluminium body, great webcam for calls and long battery life."},
+  {"store": "vi", "nickname": "Quang Vinh", "rating": 4, "title": "Sang trọng, nhẹ", "detail": "Vỏ nhôm nhẹ, webcam rõ khi họp. Giá hơi cao so với cấu hình."}
+ ]},
+ {"sku": "TN-LT-ZENBOOK-14-OLED", "reviews": [
+  {"store": "en", "nickname": "Mia", "rating": 5, "title": "Gorgeous OLED screen", "detail": "Colours pop and it weighs almost nothing. Perfect for travel."},
+  {"store": "vi", "nickname": "Diệu Linh", "rating": 5, "title": "Màn OLED đẹp xuất sắc", "detail": "Màu sắc rực rỡ, máy siêu nhẹ, mang đi cà phê làm việc rất tiện. Pin cũng tốt."}
+ ]},
+ {"sku": "TN-LT-XPS-13", "reviews": [
+  {"store": "en", "nickname": "Noah", "rating": 4, "title": "Tiny and well built", "detail": "Very compact with thin bezels. Limited ports, so keep a USB-C hub handy."},
+  {"store": "vi", "nickname": "Anh Thư", "rating": 4, "title": "Nhỏ gọn, hoàn thiện tốt", "detail": "Viền màn hình mỏng, máy nhỏ gọn. Ít cổng nên phải mua thêm hub USB-C."}
+ ]},
+ {"sku": "TN-LT-IDEAPAD-SLIM-5", "reviews": [
+  {"store": "vi", "nickname": "Phúc An", "rating": 4, "title": "Mỏng nhẹ giá hợp lý", "detail": "Máy mỏng, pin lâu, đủ dùng cho học tập. Loa nghe hơi rè ở âm lượng lớn."}
+ ]},
+ {"sku": "TN-PC-LEGION-T5", "reviews": [
+  {"store": "en", "nickname": "Ethan", "rating": 5, "title": "Plug and play gaming", "detail": "Quiet, tidy cable management and runs 1440p games smoothly out of the box."},
+  {"store": "vi", "nickname": "Đăng Khoa", "rating": 5, "title": "Mua về cắm là chơi", "detail": "Máy chạy êm, đi dây gọn gàng, chơi game 2K mượt. Lắp đặt tận nơi nhanh chóng."}
+ ]},
+ {"sku": "TN-PC-LEGION-T7", "reviews": [
+  {"store": "en", "nickname": "Isaac", "rating": 5, "title": "Top tier performance", "detail": "Handles 4K gaming and streaming at the same time. Tool-less case makes upgrades easy."},
+  {"store": "vi", "nickname": "Hoàng Phúc", "rating": 4, "title": "Rất mạnh, giá cao", "detail": "Chơi game 4K và stream cùng lúc vẫn mượt. Vỏ mở không cần dụng cụ, dễ nâng cấp."}
+ ]},
+ {"sku": "TN-PC-ROG-STRIX-G16CH", "reviews": [
+  {"store": "vi", "nickname": "Tấn Phát", "rating": 5, "title": "Đẹp và mạnh", "detail": "Thiết kế đậm chất gaming, đèn RGB đẹp, hiệu năng mạnh mẽ."}
+ ]},
+ {"sku": "TN-PC-OPTIPLEX-7020-SFF", "reviews": [
+  {"store": "en", "nickname": "Grace", "rating": 4, "title": "Perfect for the office", "detail": "Small, silent and fast enough for spreadsheets and video calls."},
+  {"store": "vi", "nickname": "Thanh Hương", "rating": 4, "title": "Gọn gàng cho văn phòng", "detail": "Máy nhỏ, chạy êm, đủ mạnh cho công việc văn phòng. Công ty mua 5 bộ đều ổn định."}
+ ]},
+ {"sku": "TN-PC-THINKCENTRE-M70S-G5", "reviews": [
+  {"store": "vi", "nickname": "Văn Toàn", "rating": 4, "title": "Ổn định, bền", "detail": "Dùng cho phòng kế toán, chạy phần mềm ổn định, dễ bảo trì."}
+ ]},
+ {"sku": "TN-PC-SAMSUNG-990-PRO-1TB", "reviews": [
+  {"store": "en", "nickname": "Leo", "rating": 5, "title": "Blazing fast SSD", "detail": "Boot and load times dropped dramatically. Runs cool with a heatsink."},
+  {"store": "vi", "nickname": "Minh Trí", "rating": 5, "title": "Tốc độ khủng", "detail": "Khởi động Windows vài giây, load game nhanh hẳn. Hàng chính hãng, bảo hành 5 năm."}
+ ]},
+ {"sku": "TN-PC-KINGSTON-FURY-DDR5-32GB", "reviews": [
+  {"store": "en", "nickname": "Ava", "rating": 4, "title": "Easy upgrade", "detail": "XMP profile worked first try at 6000 MT/s. Low profile fits under my cooler."},
+  {"store": "vi", "nickname": "Bảo Long", "rating": 5, "title": "Lắp vào chạy ngay", "detail": "Bật XMP lên 6000 MT/s ổn định, tản thấp không vướng tản CPU."}
+ ]},
+ {"sku": "TN-PC-ASUS-DUAL-RTX4070S", "reviews": [
+  {"store": "en", "nickname": "Owen", "rating": 5, "title": "Great 1440p card", "detail": "Quiet fans and DLSS 3 makes everything fly. The white design looks clean."},
+  {"store": "vi", "nickname": "Công Minh", "rating": 4, "title": "Card đẹp, mát", "detail": "Màu trắng đẹp, chạy mát và êm. Chơi game 2K max setting thoải mái."}
+ ]},
+ {"sku": "TN-AC-AIRPODS", "reviews": [
+  {"store": "en", "nickname": "Chloe", "rating": 5, "title": "Seamless with my iPhone", "detail": "Pairs instantly and switches between my devices automatically. Comfortable for hours."},
+  {"store": "vi", "nickname": "Khánh Linh", "rating": 4, "title": "Kết nối nhanh", "detail": "Mở nắp là kết nối iPhone ngay, đeo lâu không đau tai. Âm bass hơi nhẹ."}
+ ]},
+ {"sku": "TN-AC-AIRPODS-MAX", "reviews": [
+  {"store": "en", "nickname": "Ella", "rating": 4, "title": "Amazing sound and ANC", "detail": "Noise cancellation is superb and sound is rich. They are heavy for long sessions."},
+  {"store": "vi", "nickname": "Hữu Thắng", "rating": 4, "title": "Âm thanh hay, chống ồn tốt", "detail": "Chống ồn rất tốt khi đi máy bay, âm thanh chi tiết. Đeo lâu hơi nặng đầu."}
+ ]},
+ {"sku": "TN-AC-ROG-SCOPE-II-96", "reviews": [
+  {"store": "en", "nickname": "Max", "rating": 5, "title": "Fantastic keyboard", "detail": "Pre-lubed switches feel smooth and the tri-mode connection is reliable."},
+  {"store": "vi", "nickname": "Nhật Minh", "rating": 5, "title": "Gõ cực đã", "detail": "Switch êm, kết nối 3 chế độ ổn định, pin dùng cả tuần."}
+ ]},
+ {"sku": "TN-AC-LEGION-M300S", "reviews": [
+  {"store": "vi", "nickname": "Quang Huy", "rating": 4, "title": "Chuột gaming giá rẻ", "detail": "Cầm vừa tay, đèn RGB đẹp, nút bấm nảy. Giá rất hợp lý."}
+ ]},
+ {"sku": "TN-AC-THINKPAD-TRACKPOINT-II", "reviews": [
+  {"store": "en", "nickname": "Henry", "rating": 4, "title": "TrackPoint fans will love it", "detail": "Same great feel as the laptop keyboard, now wireless. Takes a day to get used to."},
+  {"store": "vi", "nickname": "Đình Phong", "rating": 4, "title": "Quen tay dân ThinkPad", "detail": "Cảm giác gõ giống bàn phím laptop ThinkPad, có TrackPoint tiện. Giá hơi cao."}
+ ]},
+ {"sku": "TN-AC-SAMSUNG-45W-CHARGER", "reviews": [
+  {"store": "en", "nickname": "Zoe", "rating": 5, "title": "Charges my S24 Ultra fast", "detail": "Super Fast Charging 2.0 works as advertised. Compact brick."},
+  {"store": "vi", "nickname": "Thùy Dung", "rating": 4, "title": "Sạc nhanh chính hãng", "detail": "Sạc S24 Ultra rất nhanh, củ nhỏ gọn. Nên mua kèm cáp 5A."}
+ ]},
+ {"sku": "TN-AC-BEATS-FLEX", "reviews": [
+  {"store": "vi", "nickname": "Hồng Nhung", "rating": 2, "title": "Pin chưa như mong đợi", "detail": "Âm thanh ổn nhưng pin chỉ khoảng 8 tiếng, dây hơi vướng khi chạy bộ."}
+ ]}
+]

@@ -2,4 +2,18 @@
 //  TechNest theme styles (Luma loads this file last)
 //  _____________________________________________
 
-@import '_home.less';
+//  Variables declared inside Luma module files (_module.less) can only be overridden here,
+//  because this file is imported after them
+@header-panel__background-color: @tn-bg-alt;
+@header-panel__text-color: @tn-ink;
+@footer__background-color: @tn-bg-alt;
+@footer-links-color: @tn-muted;
+@footer-links-color-hover: @tn-ink;
+
+@import '_tn-components.less';
+@import '_tn-layout.less';
+@import '_tn-home.less';
+@import '_tn-listing.less';
+@import '_tn-product.less';
+@import '_tn-pages.less';
+@import '_tn-motion.less';

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- After the search terms (item 10 from Magento_AdvancedSearch) -->
+    <type name="Magento\Search\Model\Autocomplete">
+        <arguments>
+            <argument name="dataProviders" xsi:type="array">
+                <item name="20" xsi:type="object">TechNest\Search\Model\Autocomplete\ProductSuggestions</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -220,6 +220,8 @@
 
 @rating-icon__font-size: 16px;
 @rating-icon__letter-spacing: 2px;
+@rating-icon__color: #d2d2d7;
+@rating-icon__active__color: @tn-accent;
 
 //
 //  Dropdowns
@@ -325,3 +327,23 @@
 @button-primary__hover__background: darken(@tn-accent, 6%);
 @button-primary__hover__border: 1px solid darken(@tn-accent, 6%);
 @form-element-input__border-radius: @tn-radius-sm;
+
+@active__color: @tn-accent; // Luma orange: minicart counter, checkout progress, gallery thumbs
+@heading__font-weight__base: @font-weight__semibold;
+@h1__font-size: 30px;
+@copyright__background-color: @tn-bg-alt;
+
+@navigation-desktop__font-weight: @font-weight__regular;
+@navigation-desktop-level0-item__color: @tn-ink;
+@navigation-desktop-level0-item__hover__color: @tn-accent;
+@navigation-level0-item__active__color: @tn-ink;
+@navigation-desktop-level0-item__active__border-color: @tn-ink;
+@navigation-desktop-level0-item__active__border-width: 0 0 2px;
+
+// Secondary buttons: light grey pill instead of Luma's darker grey box
+@button__background: @tn-bg-alt;
+@button__border: 1px solid #d2d2d7;
+@button__hover__background: darken(@tn-bg-alt, 4%);
+@button__active__background: darken(@tn-bg-alt, 7%);
+@button-primary__active__background: darken(@tn-accent, 10%);
+@button-primary__active__border: 1px solid darken(@tn-accent, 10%);

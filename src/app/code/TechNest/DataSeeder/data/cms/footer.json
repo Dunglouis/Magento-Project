@@ -1,0 +1,8 @@
+{
+    "type": "block",
+    "identifier": "technest-footer",
+    "stores": {
+        "en": {"title": "TechNest footer (EN)", "template": "footer.en.html"},
+        "vi": {"title": "TechNest footer (VI)", "template": "footer.vi.html"}
+    }
+}

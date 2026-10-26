@@ -17,6 +17,8 @@
             <module name="Magento_Widget"/>
             <module name="Magento_CatalogWidget"/>
             <module name="Magento_SalesRule"/>
+            <module name="Magento_Swatches"/>
+            <module name="Magento_Review"/>
         </sequence>
     </module>
 </config>

@@ -4,7 +4,11 @@ declare(strict_types=1);
 namespace TechNest\DataSeeder\Model\Step;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Cms\Api\BlockRepositoryInterface;
 use Magento\Cms\Api\PageRepositoryInterface;
+use Magento\Cms\Model\Block;
+use Magento\Cms\Model\BlockFactory;
+use Magento\Cms\Model\ResourceModel\Block\CollectionFactory as BlockCollectionFactory;
 use Magento\Cms\Model\Page;
 use Magento\Cms\Model\PageFactory;
 use Magento\Cms\Model\ResourceModel\Page\CollectionFactory as PageCollectionFactory;
@@ -17,11 +21,13 @@ use TechNest\DataSeeder\Model\SeedData;
 use TechNest\DataSeeder\Model\StepInterface;
 
 /**
- * Home page per store view (en, vi) built from data/cms templates. Runs after products (uses their images).
+ * CMS pages and blocks per store view (en, vi) built from data/cms/<name>.json + templates.
+ * Runs after products (templates use their images).
  */
 class Content implements StepInterface
 {
-    private const PAGES = ['home'];
+    private const ITEMS = ['home', 'about-us', 'customer-service', 'footer'];
+    private const TYPE_BLOCK = 'block';
 
     /**
      * @param SeedData $seedData
@@ -31,6 +37,9 @@ class Content implements StepInterface
      * @param PageFactory $pageFactory
      * @param PageRepositoryInterface $pageRepository
      * @param ProductRepositoryInterface $productRepository
+     * @param BlockCollectionFactory $blockCollectionFactory
+     * @param BlockFactory $blockFactory
+     * @param BlockRepositoryInterface $blockRepository
      */
     public function __construct(
         private readonly SeedData $seedData,
@@ -39,7 +48,10 @@ class Content implements StepInterface
         private readonly PageCollectionFactory $pageCollectionFactory,
         private readonly PageFactory $pageFactory,
         private readonly PageRepositoryInterface $pageRepository,
-        private readonly ProductRepositoryInterface $productRepository
+        private readonly ProductRepositoryInterface $productRepository,
+        private readonly BlockCollectionFactory $blockCollectionFactory,
+        private readonly BlockFactory $blockFactory,
+        private readonly BlockRepositoryInterface $blockRepository
     ) {
     }
 
@@ -48,7 +60,7 @@ class Content implements StepInterface
      */
     public function getDescription(): string
     {
-        return 'CMS pages (home) per store view';
+        return 'CMS pages (home, about us, customer service) and blocks (footer) per store view';
     }
 
     /**
@@ -56,31 +68,95 @@ class Content implements StepInterface
      */
     public function execute(OutputInterface $output): void
     {
-        foreach (self::PAGES as $name) {
+        foreach (self::ITEMS as $name) {
             $definition = $this->seedData->getCmsPage($name);
+            $isBlock = ($definition['type'] ?? 'page') === self::TYPE_BLOCK;
             foreach ($definition['stores'] as $storeCode => $storeData) {
                 $storeId = (int)$this->storeManager->getStore($storeCode)->getId();
-                $page = $this->findPage($definition['identifier'], $storeId);
-                $isNew = !$page->getId();
-
                 $content = $this->renderer->render(
                     $this->seedData->getCmsTemplate($storeData['template']),
                     fn (string $sku): ?string => $this->getImagePath($sku, $output)
                 );
-                $page->setIdentifier($definition['identifier'])
-                    ->setTitle($storeData['title'])
-                    ->setMetaTitle($storeData['meta_title'])
-                    ->setMetaDescription($storeData['meta_description'])
-                    ->setContentHeading('')
-                    ->setContent($content)
-                    ->setPageLayout($definition['page_layout'])
-                    ->setIsActive(true);
-                $page->setData('store_id', [$storeId]);
-                $this->pageRepository->save($page);
 
-                $output->writeln(sprintf('  %s page "%s" [%s]', $isNew ? 'created' : 'updated', $name, $storeCode));
+                $isNew = $isBlock
+                    ? $this->saveBlock($definition, $storeData, $storeId, $content)
+                    : $this->savePage($definition, $storeData, $storeId, $content);
+
+                $output->writeln(sprintf(
+                    '  %s %s "%s" [%s]',
+                    $isNew ? 'created' : 'updated',
+                    $isBlock ? 'block' : 'page',
+                    $definition['identifier'],
+                    $storeCode
+                ));
             }
         }
+    }
+
+    /**
+     * Create/update a CMS page for one store view; returns true when created
+     *
+     * @param array<string,mixed> $definition
+     * @param array<string,string> $storeData
+     * @param int $storeId
+     * @param string $content
+     * @return bool
+     */
+    private function savePage(array $definition, array $storeData, int $storeId, string $content): bool
+    {
+        $page = $this->findPage($definition['identifier'], $storeId);
+        $isNew = !$page->getId();
+        $page->setIdentifier($definition['identifier'])
+            ->setTitle($storeData['title'])
+            ->setMetaTitle($storeData['meta_title'] ?? '')
+            ->setMetaDescription($storeData['meta_description'] ?? '')
+            ->setContentHeading($storeData['content_heading'] ?? '')
+            ->setContent($content)
+            ->setPageLayout($definition['page_layout'] ?? '1column')
+            ->setIsActive(true);
+        $page->setData('store_id', [$storeId]);
+        $this->pageRepository->save($page);
+        return $isNew;
+    }
+
+    /**
+     * Create/update a CMS block for one store view; returns true when created
+     *
+     * @param array<string,mixed> $definition
+     * @param array<string,string> $storeData
+     * @param int $storeId
+     * @param string $content
+     * @return bool
+     */
+    private function saveBlock(array $definition, array $storeData, int $storeId, string $content): bool
+    {
+        $block = $this->findBlock($definition['identifier'], $storeId);
+        $isNew = !$block->getId();
+        $block->setIdentifier($definition['identifier'])
+            ->setTitle($storeData['title'])
+            ->setContent($content)
+            ->setIsActive(true);
+        $block->setData('store_id', [$storeId]);
+        $this->blockRepository->save($block);
+        return $isNew;
+    }
+
+    /**
+     * Block owned by exactly this store view, or a new one
+     *
+     * @param string $identifier
+     * @param int $storeId
+     * @return Block
+     */
+    private function findBlock(string $identifier, int $storeId): Block
+    {
+        $blocks = $this->blockCollectionFactory->create()->addFieldToFilter('identifier', $identifier);
+        foreach ($blocks as $block) {
+            if (array_map('intval', (array)$block->getData('store_id')) === [$storeId]) {
+                return $block;
+            }
+        }
+        return $this->blockFactory->create();
     }
 
     /**
