@@ -44,7 +44,7 @@ class RequirePhoneOnAccountForm implements ObserverInterface
     {
         /** @var HttpRequest $request */
         $request = $observer->getData('request');
-        $backPath = self::BACK_PATHS[$request->getFullActionName()] ?? null;
+        $backPath = self::BACK_PATHS[strtolower((string)$request->getFullActionName())] ?? null;
         if ($backPath === null
             || !$request->isPost()
             || trim((string)$request->getParam(AddPhoneNumberAttribute::ATTRIBUTE_CODE)) !== ''

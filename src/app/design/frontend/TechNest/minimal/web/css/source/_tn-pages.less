@@ -145,6 +145,44 @@
         }
     }
 
+    // Quantity stepper (js/tn-qty-stepper.js): − [qty] +
+    .tn-qty-stepper {
+        align-items: center;
+        border: 1px solid @tn-border;
+        border-radius: 980px;
+        display: inline-flex;
+        overflow: hidden;
+
+        .input-text.qty {
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+            height: 36px;
+            text-align: center;
+            width: 44px;
+        }
+    }
+
+    .tn-qty-btn {
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        color: @tn-ink;
+        font-size: 1.8rem;
+        font-weight: @font-weight__regular;
+        height: 36px;
+        line-height: 1;
+        padding: 0;
+        width: 36px;
+
+        &:hover,
+        &:focus {
+            background: @tn-bg-alt;
+            border: 0;
+            color: @tn-accent;
+        }
+    }
+
     .cart-container .checkout-methods-items .action.primary.checkout {
         font-size: 1.7rem;
         padding: 14px 24px;

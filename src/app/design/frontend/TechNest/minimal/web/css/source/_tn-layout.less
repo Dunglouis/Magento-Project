@@ -14,7 +14,8 @@
     }
 
     // Signed in: the greeting lives in the account menu toggle (Magento_Customer/templates/account/customer.phtml)
-    .page-header .greet.welcome .logged-in {
+    .page-header .greet.welcome .logged-in,
+    .page-header .header.links:has(.customer-welcome) > .greet.welcome {
         display: none;
     }
 

@@ -7,6 +7,10 @@
     <event name="controller_action_predispatch_customer_account_editpost">
         <observer name="technest_require_phone" instance="TechNest\CustomerAccess\Observer\RequirePhoneOnAccountForm"/>
     </event>
+    <event name="controller_action_predispatch">
+        <observer name="technest_clear_checkout_login_intent"
+                  instance="TechNest\CustomerAccess\Observer\ClearCheckoutLoginIntent"/>
+    </event>
     <event name="controller_action_predispatch_checkout_index_index">
         <observer name="technest_require_login_for_checkout"
                   instance="TechNest\CustomerAccess\Observer\RequireLoginForCheckout"/>

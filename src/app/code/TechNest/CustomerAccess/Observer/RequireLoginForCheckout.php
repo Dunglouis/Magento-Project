@@ -12,7 +12,7 @@ use Magento\Framework\App\Response\RedirectInterface;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Message\ManagerInterface;
-use Magento\Framework\UrlInterface;
+use TechNest\CustomerAccess\Model\CheckoutLoginIntent;
 
 /**
  * Guests can fill a cart; opening checkout sends them to sign in / create an account,
@@ -28,7 +28,7 @@ class RequireLoginForCheckout implements ObserverInterface
      * @param ManagerInterface $messageManager
      * @param ActionFlag $actionFlag
      * @param RedirectInterface $redirect
-     * @param UrlInterface $urlBuilder
+     * @param CheckoutLoginIntent $checkoutLoginIntent
      */
     public function __construct(
         private readonly CustomerSession $customerSession,
@@ -37,7 +37,7 @@ class RequireLoginForCheckout implements ObserverInterface
         private readonly ManagerInterface $messageManager,
         private readonly ActionFlag $actionFlag,
         private readonly RedirectInterface $redirect,
-        private readonly UrlInterface $urlBuilder
+        private readonly CheckoutLoginIntent $checkoutLoginIntent
     ) {
     }
 
@@ -57,8 +57,12 @@ class RequireLoginForCheckout implements ObserverInterface
         $this->messageManager->addNoticeMessage(
             __('Please sign in or create an account to place your order. Your cart has been saved.')
         );
-        $this->customerSession->setBeforeAuthUrl($this->urlBuilder->getUrl('checkout'));
+        $this->checkoutLoginIntent->start();
         $this->actionFlag->set('', ActionInterface::FLAG_NO_DISPATCH, '1');
-        $this->redirect->redirect($observer->getData('controller_action')->getResponse(), 'customer/account/login');
+        $this->redirect->redirect(
+            $observer->getData('controller_action')->getResponse(),
+            'customer/account/login',
+            ['_query' => [CheckoutLoginIntent::PARAM => 1]]
+        );
     }
 }

@@ -1,0 +1,19 @@
+<?php
+/**
+ * Initialises js/tn-qty-stepper on the cart items table.
+ */
+
+/** @var Magento\Framework\View\Element\Template $block */
+/** @var Magento\Framework\Escaper $escaper */
+$config = [
+    'decreaseLabel' => (string)__('Decrease quantity'),
+    'increaseLabel' => (string)__('Increase quantity'),
+];
+?>
+<script type="text/x-magento-init">
+{
+    "#shopping-cart-table": {
+        "js/tn-qty-stepper": <?= /* @noEscape */ json_encode($config) ?>
+    }
+}
+</script>
