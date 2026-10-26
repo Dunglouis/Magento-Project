@@ -82,6 +82,16 @@ class SeedData
     }
 
     /**
+     * Sample product reviews: [{sku, reviews: [{store, nickname, rating 1-5, title, detail}]}].
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public function getReviews(): array
+    {
+        return $this->read('reviews.json');
+    }
+
+    /**
      * CMS page/block definition from data/cms/<name>.json:
      * {type?: page|block, identifier, page_layout?, stores: {code: {title, content_heading?, meta_*?, template}}}
      *

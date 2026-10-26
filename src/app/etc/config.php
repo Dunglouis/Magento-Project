@@ -389,6 +389,7 @@ return [
         'PayPal_BraintreeReward' => 1,
         'TechNest_Base' => 1,
         'TechNest_CustomerAccess' => 1,
-        'TechNest_DataSeeder' => 1
+        'TechNest_DataSeeder' => 1,
+        'TechNest_Search' => 1
     ]
 ];

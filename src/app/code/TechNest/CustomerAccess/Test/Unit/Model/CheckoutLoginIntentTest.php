@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace TechNest\CustomerAccess\Test\Unit\Model;
 
-use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\UrlInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -14,11 +13,9 @@ class CheckoutLoginIntentTest extends TestCase
     private const BASE = 'https://technest.test/';
 
     /**
-     * Stub whose magic getters/unsetters (getBeforeAuthUrl, unsTechnestCheckoutLogin, ...) work on its $data
-     *
-     * @var CustomerSession
+     * @var CustomerSessionStub
      */
-    private CustomerSession $customerSession;
+    private CustomerSessionStub $customerSession;
 
     /**
      * @var CheckoutLoginIntent
@@ -27,31 +24,7 @@ class CheckoutLoginIntentTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->customerSession = new class extends CustomerSession {
-            /** @var array<string,mixed> */
-            public array $data = [];
-
-            // phpcs:ignore Magento2.CodeAnalysis.EmptyBlock.DetectedFunction
-            public function __construct()
-            {
-            }
-
-            // phpcs:ignore Magento2.Functions.StaticFunction
-            public function getData($key = '', $clear = false)
-            {
-                return $this->data[$key] ?? null;
-            }
-
-            public function __call($method, $args)
-            {
-                $key = strtolower((string)preg_replace('/(?<!^)[A-Z]/', '_$0', substr($method, 3)));
-                if (str_starts_with($method, 'uns')) {
-                    unset($this->data[$key]);
-                    return $this;
-                }
-                return $this->data[$key] ?? null;
-            }
-        };
+        $this->customerSession = new CustomerSessionStub();
         $urlBuilder = $this->createStub(UrlInterface::class);
         $urlBuilder->method('getUrl')->willReturnCallback(
             static fn (string $route): string => self::BASE . trim($route, '/') . '/'

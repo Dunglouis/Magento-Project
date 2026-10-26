@@ -20,6 +20,7 @@
                 <item name="composites" xsi:type="object">TechNest\DataSeeder\Model\Step\Composites\Proxy</item>
                 <item name="related" xsi:type="object">TechNest\DataSeeder\Model\Step\Related\Proxy</item>
                 <item name="content" xsi:type="object">TechNest\DataSeeder\Model\Step\Content\Proxy</item>
+                <item name="reviews" xsi:type="object">TechNest\DataSeeder\Model\Step\Reviews\Proxy</item>
             </argument>
         </arguments>
     </type>

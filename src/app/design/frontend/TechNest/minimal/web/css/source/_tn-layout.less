@@ -162,6 +162,12 @@
 
 //  Desktop: the category menu bar sticks under the scrolled-away header
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    // Header dropdowns (search suggestions, account menu, switchers) open over the sticky menu bar
+    .page-header {
+        position: relative;
+        z-index: 40;
+    }
+
     .nav-sections {
         -webkit-backdrop-filter: @tn-glass__filter;
         backdrop-filter: @tn-glass__filter;

@@ -149,6 +149,7 @@ Vendor namespace: **`TechNest`**; thư mục `app/code/TechNest/<Module>/`; comp
 | `TechNest_CustomerAccess` | Bắt đăng nhập trước khi thanh toán, trường SĐT | Xem 5.5 |
 | `TechNest_Mail` | SMTP thật | Xem 5.7 |
 | `TechNest_QuickView` | Xem nhanh | Modal AJAX (ưu tiên thấp) |
+| `TechNest_Search` | Tìm kiếm gợi ý | Autocomplete ô tìm kiếm: từ khoá phổ biến + sản phẩm gợi ý (ảnh, tên, giá theo tiền tệ store; OpenSearch + khớp tên theo tiền tố), chọn sản phẩm mở thẳng trang chi tiết (chủ dự án duyệt 2026-10-26) |
 | `TechNest_Shipping` (F) | Carrier theo tỉnh/thành | Carrier `technest_regional` tính phí theo vùng (Bắc/Trung/Nam) dựa trên tỉnh/thành của địa chỉ giao; bảng phí và tên phương thức cấu hình ở Admin; hỗ trợ cả USD/VND; tương thích Free Shipping theo ngưỡng và voucher free ship |
 
 Test bắt buộc: PHPUnit unit test cho logic chính (tính trả góp, tính phí ship theo vùng, validate serial, validate SĐT, mapping Google → customer); integration test cho repository/API nếu kịp.
@@ -237,7 +238,7 @@ Nếu trễ tiến độ, cắt theo thứ tự: QuickView → GraphQL → Varni
 
 - [x] Phase 0 — Chuẩn bị (2026-10-18)
 - [x] Phase 1 — Dữ liệu và catalog (2026-10-20)
-- [x] Phase 2 — Theme và UI (2026-10-21). Còn tồn: VND đang hiện số thập phân (mục 5.4); giỏ hàng, checkout, so sánh, wishlist mới style bằng CSS, chưa chụp màn hình kiểm tra; responsive kiểm ở 504/768/1280px (Chrome headless trên Windows không xuống được 375px)
+- [x] Phase 2 — Theme và UI (2026-10-26). Đã kiểm trên Chrome: giỏ hàng, checkout, so sánh, wishlist, review (sao 1 tiêu chí en/vi, 68 review mẫu qua `technest:seed:run --step=reviews`), tìm kiếm gợi ý (`TechNest_Search`); VND không số lẻ; tắt Multishipping. Responsive kiểm ở 504/768/1280px (chủ dự án bỏ yêu cầu 375px). Chuyển sang Phase 3: cấu hình ship hiện nhập tay theo VND trên base USD (Flat Rate 50000/sp → checkout hiện $550,000) — làm lại bằng data patch
 - [ ] Phase 3 — Khuyến mãi, checkout, tài khoản
 - [ ] Phase 4 — Custom module
 - [ ] Phase 5 — Hiệu năng

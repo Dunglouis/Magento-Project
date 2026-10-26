@@ -72,6 +72,52 @@
                 color: @tn-muted;
             }
         }
+
+        // Product rows from TechNest_Search: thumbnail, name, price; the first one carries the heading
+        ul li.tn-qs-product {
+            align-items: center;
+            column-gap: 12px;
+            display: grid;
+            grid-template-columns: 48px minmax(0, 1fr) auto;
+            padding: 6px 16px;
+
+            .tn-qs-image {
+                border-radius: @tn-radius-sm;
+                height: 48px;
+                object-fit: contain;
+                width: 48px;
+            }
+
+            .qs-option-name {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .tn-qs-price {
+                color: @tn-ink;
+                font-weight: @font-weight__semibold;
+                white-space: nowrap;
+            }
+        }
+
+        ul li.tn-qs-product--first:before {
+            border-top: 1px solid @tn-border;
+            color: @tn-muted;
+            content: attr(data-heading);
+            font-size: 1.2rem;
+            font-weight: @font-weight__semibold;
+            grid-column: 1 / -1;
+            letter-spacing: .02em;
+            margin: 0 -16px 6px;
+            padding: 10px 16px 0;
+            text-transform: uppercase;
+        }
+
+        ul li.tn-qs-product--first:first-child:before {
+            border-top: 0;
+            padding-top: 4px;
+        }
     }
 
     // Sign in / register
@@ -408,25 +454,146 @@
         }
     }
 
-    // Reviews on the product page
-    .review-list .review-item {
-        border-color: @tn-border;
+    // Reviews on the product page: each review is a soft card, the form is a wide panel
+    .review-list {
+        margin-bottom: @indent__l;
+
+        .block-title strong {
+            font-size: 2.4rem;
+            font-weight: @font-weight__semibold;
+        }
+
+        .review-items {
+            display: grid;
+            gap: @indent__base;
+        }
+
+        .review-item {
+            .tn-panel();
+            border: 0;
+            margin: 0;
+            padding: @indent__base;
+        }
+
+        .review-title {
+            font-size: 1.8rem;
+            font-weight: @font-weight__semibold;
+            margin-bottom: @indent__s;
+        }
+
+        .review-ratings {
+            float: none;
+            margin-bottom: @indent__s;
+            max-width: none;
+
+            .rating-label {
+                display: none;
+            }
+        }
+
+        .review-content {
+            line-height: 1.6;
+            margin-bottom: @indent__s;
+        }
+
+        .review-details {
+            color: @tn-muted;
+            font-size: 1.3rem;
+
+            .review-details-label {
+                display: none;
+            }
+
+            .review-author {
+                color: @tn-ink;
+                font-weight: @font-weight__semibold;
+                margin-right: @indent__s;
+            }
+        }
+
+        .toolbar.review-toolbar {
+            border: 0;
+            margin: @indent__base 0 0;
+        }
     }
 
-    .review-list .review-title {
-        font-weight: @font-weight__semibold;
+    .review-add {
+        .tn-panel();
+        padding: @indent__l;
+
+        .block-title {
+            display: none;
+        }
+
+        .review-legend {
+            font-size: 1.8rem;
+            margin-bottom: @indent__base;
+
+            > span {
+                color: @tn-muted;
+                font-weight: @font-weight__regular;
+            }
+
+            > strong {
+                font-weight: @font-weight__semibold;
+            }
+        }
+
+        .review-form {
+            max-width: 640px;
+
+            input[type='text'],
+            textarea {
+                background: @tn-bg;
+                border-radius: @tn-radius-sm;
+                width: 100%;
+            }
+
+            textarea {
+                min-height: 140px;
+            }
+
+            .review-field-ratings .label {
+                display: none;
+            }
+
+            .review-control-vote {
+                &:before,
+                label:before {
+                    font-size: 28px;
+                    letter-spacing: 4px;
+                }
+            }
+
+            .action.submit.primary {
+                padding: 10px 28px;
+            }
+        }
     }
 
-    .review-add .review-legend > span {
-        font-weight: @font-weight__semibold;
+    // Stars beside the product name and on cards
+    .product-reviews-summary {
+        .reviews-actions a {
+            color: @tn-accent;
+        }
     }
 
-    .review-form .action.submit.primary {
-        padding: 10px 24px;
+    // Compare / wish list blocks in the sidebar: pill buttons like everywhere else
+    .sidebar .block-wishlist .action.tocart,
+    .sidebar .block-compare .action.compare {
+        border-radius: 980px;
+        padding: 8px 18px;
     }
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    // Wider than the search box (core sets the input width inline), aligned to its right edge
+    .block-search .search-autocomplete {
+        left: auto;
+        right: 0;
+        width: 420px !important; // stylelint-disable-line declaration-no-important
+    }
+
     .customer-account-login {
         .block-customer-login,
         .block-new-customer {
