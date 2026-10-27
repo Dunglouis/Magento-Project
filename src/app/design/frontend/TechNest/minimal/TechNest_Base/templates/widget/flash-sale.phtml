@@ -12,7 +12,7 @@ use TechNest\Base\Block\Widget\FlashSale;
 ?>
 <?php $endsAt = $block->getEndsAt(); ?>
 <?php if ($endsAt): ?>
-    <section class="tn-shelf-section tn-flash" data-tn-countdown-scope>
+    <section class="tn-shelf-section tn-flash" id="flash-sale" data-tn-countdown-scope>
         <div class="tn-flash__head">
             <h2 class="tn-headline">
                 <?= $escaper->escapeHtml(__('Flash sale.')) ?>

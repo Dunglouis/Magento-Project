@@ -1,0 +1,8 @@
+{
+    "type": "block",
+    "identifier": "technest-hero",
+    "stores": {
+        "en": {"title": "TechNest home hero (EN)", "template": "hero.en.html"},
+        "vi": {"title": "TechNest home hero (VI)", "template": "hero.vi.html"}
+    }
+}
