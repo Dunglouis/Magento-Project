@@ -10,5 +10,18 @@
         {"name": "Free shipping voucher", "coupon": "FREESHIP", "discount": 0, "free_shipping": true,
          "uses_per_customer": 0, "sort_order": 20,
          "label": {"en": "Free shipping voucher", "vi": "Mã miễn phí vận chuyển"}}
-    ]
+    ],
+    "flash_sale": {
+        "days": 7,
+        "products": [
+            {"sku": "TN-LT-ROG-STRIX-G16", "discount": 20},
+            {"sku": "TN-LT-ZENBOOK-14-OLED", "discount": 15},
+            {"sku": "TN-PH-GALAXY-S24-ULTRA", "discount": 15},
+            {"sku": "TN-PH-IPHONE-13-PRO", "discount": 20},
+            {"sku": "TN-PH-GALAXY-A35", "discount": 25},
+            {"sku": "TN-PC-VICTUS-15L-I5", "discount": 15},
+            {"sku": "TN-AC-AIRPODS-MAX", "discount": 20},
+            {"sku": "TN-AC-ROG-KERIS-AIMPOINT", "discount": 25}
+        ]
+    }
 }

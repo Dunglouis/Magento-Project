@@ -3,12 +3,15 @@ declare(strict_types=1);
 
 namespace TechNest\DataSeeder\Model\Step;
 
+use Magento\Catalog\Model\Product\Action as ProductAction;
+use Magento\Catalog\Model\ResourceModel\Product as ProductResource;
 use Magento\CatalogRule\Model\Indexer\Rule\RuleProductProcessor;
 use Magento\CatalogRule\Model\ResourceModel\Rule as CatalogRuleResource;
 use Magento\CatalogRule\Model\ResourceModel\Rule\CollectionFactory as CatalogRuleCollectionFactory;
 use Magento\CatalogRule\Model\Rule\Condition\Combine as CatalogCombine;
 use Magento\CatalogRule\Model\Rule\Condition\Product as CatalogProductCondition;
 use Magento\CatalogRule\Model\RuleFactory as CatalogRuleFactory;
+use Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable as ConfigurableResource;
 use Magento\Customer\Model\ResourceModel\Group\CollectionFactory as GroupCollectionFactory;
 use Magento\OfflineShipping\Model\SalesRule\Rule as FreeShippingRule;
 use Magento\SalesRule\Model\ResourceModel\Rule as CartRuleResource;
@@ -16,6 +19,7 @@ use Magento\SalesRule\Model\ResourceModel\Rule\CollectionFactory as CartRuleColl
 use Magento\SalesRule\Model\Rule as CartRule;
 use Magento\SalesRule\Model\RuleFactory as CartRuleFactory;
 use Magento\Store\Model\Store;
+use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use TechNest\DataSeeder\Model\CategoryResolver;
@@ -23,8 +27,9 @@ use TechNest\DataSeeder\Model\SeedData;
 use TechNest\DataSeeder\Model\StepInterface;
 
 /**
- * Catalog price rules (discount by category) and coupon cart rules from data/promotions.json.
- * Rules are matched by name, so re-runs update them instead of adding copies.
+ * Catalog price rules (discount by category), coupon cart rules and the flash sale from data/promotions.json.
+ * Rules are matched by name, so re-runs update them instead of adding copies; each run restarts the
+ * flash sale from today for the configured number of days.
  */
 class Promotions implements StepInterface
 {
@@ -40,6 +45,10 @@ class Promotions implements StepInterface
      * @param CartRuleFactory $cartRuleFactory
      * @param CartRuleResource $cartRuleResource
      * @param CartRuleCollectionFactory $cartRuleCollectionFactory
+     * @param ProductResource $productResource
+     * @param ProductAction $productAction
+     * @param ConfigurableResource $configurableResource
+     * @param TimezoneInterface $timezone
      */
     public function __construct(
         private readonly SeedData $seedData,
@@ -52,7 +61,11 @@ class Promotions implements StepInterface
         private readonly RuleProductProcessor $ruleProductProcessor,
         private readonly CartRuleFactory $cartRuleFactory,
         private readonly CartRuleResource $cartRuleResource,
-        private readonly CartRuleCollectionFactory $cartRuleCollectionFactory
+        private readonly CartRuleCollectionFactory $cartRuleCollectionFactory,
+        private readonly ProductResource $productResource,
+        private readonly ProductAction $productAction,
+        private readonly ConfigurableResource $configurableResource,
+        private readonly TimezoneInterface $timezone
     ) {
     }
 
@@ -61,7 +74,7 @@ class Promotions implements StepInterface
      */
     public function getDescription(): string
     {
-        return 'Catalog price rules and coupon codes';
+        return 'Catalog price rules, coupon codes and flash sale';
     }
 
     /**
@@ -104,6 +117,100 @@ class Promotions implements StepInterface
             $this->cartRuleResource->save($rule);
             $output->writeln(sprintf('  coupon %s: "%s"', $entry['coupon'], $entry['name']));
         }
+
+        if (isset($data['flash_sale'])) {
+            $this->saveFlashSale($data['flash_sale'], $output);
+        }
+    }
+
+    /**
+     * Special price on each flash sale product (on every variant of a configurable one) from today
+     *
+     * Configurable parents get the dates too, so cards can show when the sale ends.
+     *
+     * @param array<string,mixed> $flashSale {days, products: [{sku, discount}]}
+     * @param OutputInterface $output
+     * @return void
+     */
+    private function saveFlashSale(array $flashSale, OutputInterface $output): void
+    {
+        [$from, $to] = $this->saleDates($this->timezone->date()->format('Y-m-d'), (int)$flashSale['days']);
+        $count = 0;
+        foreach ($flashSale['products'] as $entry) {
+            $productId = (int)$this->productResource->getIdBySku($entry['sku']);
+            if (!$productId) {
+                $output->writeln(sprintf('  <comment>skip %s: product not found</comment>', $entry['sku']));
+                continue;
+            }
+            $childIds = $this->childIds($productId);
+            if ($childIds) {
+                $this->productAction->updateAttributes(
+                    [$productId],
+                    ['special_from_date' => $from, 'special_to_date' => $to],
+                    Store::DEFAULT_STORE_ID
+                );
+            }
+            foreach ($childIds ?: [$productId] as $id) {
+                $price = (float)$this->productResource->getAttributeRawValue(
+                    (int)$id,
+                    'price',
+                    Store::DEFAULT_STORE_ID
+                );
+                $this->productAction->updateAttributes(
+                    [(int)$id],
+                    [
+                        'special_price' => $this->specialPrice($price, (float)$entry['discount']),
+                        'special_from_date' => $from,
+                        'special_to_date' => $to,
+                    ],
+                    Store::DEFAULT_STORE_ID
+                );
+            }
+            $count++;
+        }
+        $output->writeln(sprintf('  flash sale: %d products, %s to %s', $count, $from, $to));
+    }
+
+    /**
+     * Variant ids of a configurable product (empty for other types)
+     *
+     * @param int $productId
+     * @return int[]
+     */
+    private function childIds(int $productId): array
+    {
+        $ids = [];
+        foreach ($this->configurableResource->getChildrenIds($productId) as $group) {
+            foreach ($group as $id) {
+                $ids[] = (int)$id;
+            }
+        }
+        return $ids;
+    }
+
+    /**
+     * Flash sale period: [today, today + days - 1] (both inclusive, Y-m-d)
+     *
+     * @param string $today Y-m-d
+     * @param int $days
+     * @return array{0: string, 1: string}
+     */
+    public function saleDates(string $today, int $days): array
+    {
+        $end = (new \DateTimeImmutable($today))->modify('+' . max(0, $days - 1) . ' days');
+        return [$today, $end->format('Y-m-d')];
+    }
+
+    /**
+     * Price after a percent discount, rounded to cents
+     *
+     * @param float $price
+     * @param float $discount percent
+     * @return float
+     */
+    public function specialPrice(float $price, float $discount): float
+    {
+        return round($price * (100 - $discount) / 100, 2);
     }
 
     /**

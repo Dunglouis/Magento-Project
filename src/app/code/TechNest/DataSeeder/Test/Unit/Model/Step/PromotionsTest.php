@@ -3,15 +3,19 @@ declare(strict_types=1);
 
 namespace TechNest\DataSeeder\Test\Unit\Model\Step;
 
+use Magento\Catalog\Model\Product\Action as ProductAction;
+use Magento\Catalog\Model\ResourceModel\Product as ProductResource;
 use Magento\CatalogRule\Model\Indexer\Rule\RuleProductProcessor;
 use Magento\CatalogRule\Model\ResourceModel\Rule as CatalogRuleResource;
 use Magento\CatalogRule\Model\ResourceModel\Rule\CollectionFactory as CatalogRuleCollectionFactory;
 use Magento\CatalogRule\Model\RuleFactory as CatalogRuleFactory;
+use Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable as ConfigurableResource;
 use Magento\Customer\Model\ResourceModel\Group\CollectionFactory as GroupCollectionFactory;
 use Magento\SalesRule\Model\ResourceModel\Rule as CartRuleResource;
 use Magento\SalesRule\Model\ResourceModel\Rule\CollectionFactory as CartRuleCollectionFactory;
 use Magento\SalesRule\Model\Rule as CartRule;
 use Magento\SalesRule\Model\RuleFactory as CartRuleFactory;
+use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use PHPUnit\Framework\TestCase;
 use TechNest\DataSeeder\Model\CategoryResolver;
@@ -38,7 +42,11 @@ class PromotionsTest extends TestCase
             $this->createStub(RuleProductProcessor::class),
             $this->createStub(CartRuleFactory::class),
             $this->createStub(CartRuleResource::class),
-            $this->createStub(CartRuleCollectionFactory::class)
+            $this->createStub(CartRuleCollectionFactory::class),
+            $this->createStub(ProductResource::class),
+            $this->createStub(ProductAction::class),
+            $this->createStub(ConfigurableResource::class),
+            $this->createStub(TimezoneInterface::class)
         );
     }
 
@@ -101,5 +109,17 @@ class PromotionsTest extends TestCase
         $data = $this->step->cartRuleData($entry, [1], [0], ['en' => 1, 'vi' => 2]);
 
         self::assertSame([0 => 'Label', 1 => 'Label', 2 => 'Nhãn'], $data['store_labels']);
+    }
+
+    public function testFlashSaleRunsForTheGivenNumberOfDaysIncludingToday(): void
+    {
+        self::assertSame(['2026-10-27', '2026-11-02'], $this->step->saleDates('2026-10-27', 7));
+        self::assertSame(['2026-10-27', '2026-10-27'], $this->step->saleDates('2026-10-27', 1));
+    }
+
+    public function testSpecialPriceIsRoundedToCents(): void
+    {
+        self::assertSame(1199.2, $this->step->specialPrice(1499.0, 20));
+        self::assertSame(74.99, $this->step->specialPrice(99.99, 25));
     }
 }

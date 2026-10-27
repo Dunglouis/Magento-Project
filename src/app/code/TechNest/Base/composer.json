@@ -13,7 +13,10 @@
         "magento/module-multishipping": "*",
         "magento/module-catalog": "*",
         "magento/module-catalog-rule": "*",
-        "magento/module-sales-rule": "*"
+        "magento/module-sales-rule": "*",
+        "magento/module-configurable-product": "*",
+        "magento/module-catalog-widget": "*",
+        "magento/module-widget": "*"
     },
     "autoload": {
         "files": ["registration.php"],

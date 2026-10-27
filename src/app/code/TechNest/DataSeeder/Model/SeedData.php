@@ -97,7 +97,9 @@ class SeedData
      * Catalog rule: {name, description, category, discount, sort_order};
      * cart rule: {name, coupon, discount, free_shipping, uses_per_customer, sort_order, label: {en, vi}}.
      *
-     * @return array<string, array<int, array<string, mixed>>>
+     * Flash sale: {days, products: [{sku, discount}]}.
+     *
+     * @return array<string, mixed>
      */
     public function getPromotions(): array
     {
