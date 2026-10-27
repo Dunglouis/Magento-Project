@@ -141,7 +141,9 @@ class Promotions implements StepInterface
     }
 
     /**
-     * Cart rule fields for a coupon entry: percent off the cart and/or free shipping for the whole shipment
+     * Cart rule fields for a coupon entry: percent off the cart and/or free shipping on every item
+     *
+     * Free shipping is set per item (not per shipment) so every carrier, Flat Rate included, drops to zero.
      *
      * @param array<string,mixed> $entry
      * @param int[] $websiteIds
@@ -171,7 +173,7 @@ class Promotions implements StepInterface
             'discount_qty' => 0,
             'apply_to_shipping' => 0,
             'stop_rules_processing' => 0,
-            'simple_free_shipping' => $entry['free_shipping'] ? FreeShippingRule::FREE_SHIPPING_ADDRESS : 0,
+            'simple_free_shipping' => $entry['free_shipping'] ? FreeShippingRule::FREE_SHIPPING_ITEM : 0,
             'sort_order' => (int)$entry['sort_order'],
             'store_labels' => $labels,
         ];

@@ -85,11 +85,11 @@ class PromotionsTest extends TestCase
         self::assertSame(1, $data['uses_per_customer']);
     }
 
-    public function testFreeShippingCouponAppliesToTheWholeShipment(): void
+    public function testFreeShippingCouponAppliesToEveryItem(): void
     {
         $data = $this->step->cartRuleData(self::coupon(true, 0), [1], [0, 1], ['en' => 1, 'vi' => 2]);
 
-        self::assertSame(2, $data['simple_free_shipping']);
+        self::assertSame(1, $data['simple_free_shipping']);
         self::assertSame(0.0, $data['discount_amount']);
     }
 
