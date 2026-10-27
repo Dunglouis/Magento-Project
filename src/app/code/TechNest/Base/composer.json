@@ -11,7 +11,9 @@
         "magento/module-theme": "*",
         "magento/module-review": "*",
         "magento/module-multishipping": "*",
-        "magento/module-catalog": "*"
+        "magento/module-catalog": "*",
+        "magento/module-catalog-rule": "*",
+        "magento/module-sales-rule": "*"
     },
     "autoload": {
         "files": ["registration.php"],

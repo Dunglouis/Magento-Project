@@ -1,0 +1,14 @@
+{
+    "catalog_rules": [
+        {"name": "Accessories -10%", "description": "10% off every accessory (Phụ kiện -10%)",
+         "category": "accessories", "discount": 10, "sort_order": 10}
+    ],
+    "cart_rules": [
+        {"name": "Welcome 10% off", "coupon": "WELCOME10", "discount": 10, "free_shipping": false,
+         "uses_per_customer": 1, "sort_order": 10,
+         "label": {"en": "Welcome 10% off", "vi": "Ưu đãi chào mừng -10%"}},
+        {"name": "Free shipping voucher", "coupon": "FREESHIP", "discount": 0, "free_shipping": true,
+         "uses_per_customer": 0, "sort_order": 20,
+         "label": {"en": "Free shipping voucher", "vi": "Mã miễn phí vận chuyển"}}
+    ]
+}
