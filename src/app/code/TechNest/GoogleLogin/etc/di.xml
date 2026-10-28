@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="TechNest\GoogleLogin\Model\OAuthClient">
+        <arguments>
+            <argument name="httpClient" xsi:type="object">GuzzleHttp\Client</argument>
+        </arguments>
+    </type>
+    <!-- Keep the OAuth client out of app/etc/config.php when running app:config:dump -->
+    <type name="Magento\Config\Model\Config\TypePool">
+        <arguments>
+            <argument name="sensitive" xsi:type="array">
+                <item name="technest_google/general/client_id" xsi:type="string">1</item>
+                <item name="technest_google/general/client_secret" xsi:type="string">1</item>
+            </argument>
+            <argument name="environment" xsi:type="array">
+                <item name="technest_google/general/enabled" xsi:type="string">1</item>
+                <item name="technest_google/general/redirect_uri" xsi:type="string">1</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -6,6 +6,7 @@
     "require": {
         "php": "~8.3.0||~8.4.0||~8.5.0",
         "magento/framework": "*",
+        "magento/module-config": "*",
         "magento/module-email": "*",
         "magento/module-store": "*",
         "technest/module-base": "*",

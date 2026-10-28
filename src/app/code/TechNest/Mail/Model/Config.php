@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace TechNest\Mail\Model;
 
+use Magento\Config\App\Config\Source\EnvironmentConfigSource;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
 /**
@@ -21,9 +22,11 @@ class Config
 
     /**
      * @param ScopeConfigInterface $scopeConfig
+     * @param EnvironmentConfigSource $environment
      */
     public function __construct(
-        private readonly ScopeConfigInterface $scopeConfig
+        private readonly ScopeConfigInterface $scopeConfig,
+        private readonly EnvironmentConfigSource $environment
     ) {
     }
 
@@ -88,13 +91,17 @@ class Config
     }
 
     /**
-     * Decrypted password (stored encrypted in core_config_data, or plain in the environment)
+     * Password: plain from CONFIG__DEFAULT__TECHNEST_MAIL__SMTP__PASSWORD, else the encrypted Admin value
+     *
+     * The environment value is read raw because scope config runs every value of this path through
+     * the decrypting backend model, which turns a plain password into ''.
      *
      * @return string
      */
     public function getPassword(): string
     {
-        return $this->value('password');
+        $plain = $this->environment->get('default/' . self::PATH . 'password');
+        return is_string($plain) && trim($plain) !== '' ? trim($plain) : $this->value('password');
     }
 
     /**
