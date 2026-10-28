@@ -391,6 +391,7 @@ return [
         'TechNest_CartSelect' => 1,
         'TechNest_CustomerAccess' => 1,
         'TechNest_DataSeeder' => 1,
+        'TechNest_Mail' => 1,
         'TechNest_Search' => 1
     ]
 ];
