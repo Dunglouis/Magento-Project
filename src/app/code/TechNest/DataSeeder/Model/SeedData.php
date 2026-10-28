@@ -92,6 +92,16 @@ class SeedData
     }
 
     /**
+     * Test customer accounts: [{email, firstname, lastname, store, phone_number, password_env, address}].
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public function getAccounts(): array
+    {
+        return $this->read('accounts.json');
+    }
+
+    /**
      * Price rules: {catalog_rules: [...], cart_rules: [...]}.
      *
      * Catalog rule: {name, description, category, discount, sort_order};
