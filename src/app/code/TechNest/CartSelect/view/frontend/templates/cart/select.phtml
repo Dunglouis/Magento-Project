@@ -1,0 +1,21 @@
+<?php
+/**
+ * Initialises js/cart-select (tick boxes per cart line + "Select all") on the cart items table.
+ */
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use TechNest\CartSelect\ViewModel\CartSelection;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var CartSelection $viewModel */
+$viewModel = $block->getData('view_model');
+?>
+<script type="text/x-magento-init">
+{
+    "#shopping-cart-table": {
+        "TechNest_CartSelect/js/cart-select": <?= /* @noEscape */ json_encode($viewModel->getConfig()) ?>
+    }
+}
+</script>

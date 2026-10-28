@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Quote\Model\Quote\Address">
+        <plugin name="technest_cart_select_totals" type="TechNest\CartSelect\Plugin\TotalsOfSelectedItems"/>
+    </type>
+    <type name="Magento\Quote\Api\CartTotalRepositoryInterface">
+        <plugin name="technest_cart_select_totals_items" type="TechNest\CartSelect\Plugin\TotalsItemsOfSelectedLines"/>
+    </type>
+    <type name="Magento\Quote\Model\QuoteManagement">
+        <plugin name="technest_cart_select_submit" type="TechNest\CartSelect\Plugin\PlaceSelectedItemsOnly"/>
+    </type>
+</config>

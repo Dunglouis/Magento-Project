@@ -100,6 +100,7 @@ Phương án lai, chạy lặp lại được (idempotent):
 ### 5.5 Tài khoản và mua hàng
 
 - **Khách vãng lai được thêm vào giỏ nhưng phải có tài khoản mới mua được** (chủ dự án đổi ngày 2026-10-21): tắt guest checkout; khi chưa đăng nhập mà vào Checkout thì chuyển sang trang đăng nhập/đăng ký, đăng nhập xong quay lại checkout và giữ giỏ hàng (module `TechNest_CustomerAccess`). Review: ai cũng xem được.
+- **Chọn sản phẩm để mua trong giỏ** (chủ dự án duyệt 2026-10-28, module `TechNest_CartSelect`): mỗi dòng giỏ có ô tích + "Chọn tất cả"; tổng tiền, mã giảm giá, phí ship, free ship theo ngưỡng và checkout chỉ tính món đã tích; đặt hàng xong món chưa tích vẫn ở lại giỏ (chưa tích). Không có giỏ phụ hiển thị.
 - **Đăng ký bằng email** + trường bổ sung **Số điện thoại** (thuộc tính khách hàng `phone_number`, bắt buộc, validate số di động Việt Nam `^(0|\+84)(3|5|7|8|9)\d{8}$`, hiển thị/sửa ở trang tài khoản). **Không** OTP SMS, SĐT không dùng để đăng nhập.
 - **Đăng nhập Google (OAuth 2.0)** do **tự viết module** `TechNest_GoogleLogin`:
   - Authorization Code flow, có `state` chống CSRF (và PKCE nếu thư viện hỗ trợ); scope `openid email profile`; chỉ nhận email đã xác minh.
@@ -147,6 +148,7 @@ Vendor namespace: **`TechNest`**; thư mục `app/code/TechNest/<Module>/`; comp
 | `TechNest_Automation` (I) | Cron, CLI, observer | Cron (kiểm tra hết hạn flash sale, tự hủy đơn "Chờ xác nhận chuyển khoản" quá 3 ngày, dọn dữ liệu), CLI, observer sau đặt hàng → tạo bản ghi bảo hành và/hoặc gửi email |
 | `TechNest_GoogleLogin` | Đăng nhập Google | Xem 5.5 |
 | `TechNest_CustomerAccess` | Bắt đăng nhập trước khi thanh toán, trường SĐT | Xem 5.5 |
+| `TechNest_CartSelect` | Chọn món trong giỏ để mua | Cột `quote_item.tn_selected`; plugin lọc item khi tính tổng/checkout; đặt hàng chỉ món đã tích, món còn lại chuyển sang giỏ mới; xem 5.5 |
 | `TechNest_Mail` | SMTP thật | Xem 5.7 |
 | `TechNest_QuickView` | Xem nhanh | Modal AJAX (ưu tiên thấp) |
 | `TechNest_Search` | Tìm kiếm gợi ý | Autocomplete ô tìm kiếm: từ khoá phổ biến + sản phẩm gợi ý (ảnh, tên, giá theo tiền tệ store; OpenSearch + khớp tên theo tiền tố), chọn sản phẩm mở thẳng trang chi tiết (chủ dự án duyệt 2026-10-26) |
