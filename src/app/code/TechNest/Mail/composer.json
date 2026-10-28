@@ -1,0 +1,19 @@
+{
+    "name": "technest/module-mail",
+    "description": "TechNest mail: send store emails through an SMTP server (Gmail, Brevo, Mailcatcher) configured in Admin or the environment",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/module-config": "*",
+        "magento/module-email": "*",
+        "magento/module-store": "*",
+        "technest/module-base": "*",
+        "symfony/mailer": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {"TechNest\\Mail\\": ""}
+    }
+}

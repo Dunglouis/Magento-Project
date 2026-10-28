@@ -28,6 +28,11 @@ class CheckoutLoginIntent
         'customer_account_forgotpasswordpost',
         'customer_section_load',
         'checkout_index_index',
+        // TechNest_GoogleLogin: Google round trip and the phone number page after it
+        'technest_google_oauth_start',
+        'technest_google_oauth_callback',
+        'technest_google_phone_index',
+        'technest_google_phone_save',
     ];
 
     /**
