@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="technest_cart_select_checkout_config" type="TechNest\CartSelect\Plugin\CheckoutConfigOfSelectedLines"/>
+    </type>
+    <type name="Magento\Checkout\Controller\Index\Index">
+        <plugin name="technest_cart_select_require_selection" type="TechNest\CartSelect\Plugin\RequireSelectedItemsForCheckout"/>
+    </type>
+</config>

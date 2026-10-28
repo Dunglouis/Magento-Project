@@ -92,6 +92,31 @@ class SeedData
     }
 
     /**
+     * Test customer accounts: [{email, firstname, lastname, store, phone_number, password_env, address}].
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    public function getAccounts(): array
+    {
+        return $this->read('accounts.json');
+    }
+
+    /**
+     * Price rules: {catalog_rules: [...], cart_rules: [...]}.
+     *
+     * Catalog rule: {name, description, category, discount, sort_order};
+     * cart rule: {name, coupon, discount, free_shipping, uses_per_customer, sort_order, label: {en, vi}}.
+     *
+     * Flash sale: {days, products: [{sku, discount}]}.
+     *
+     * @return array<string, mixed>
+     */
+    public function getPromotions(): array
+    {
+        return $this->read('promotions.json');
+    }
+
+    /**
      * CMS page/block definition from data/cms/<name>.json:
      * {type?: page|block, identifier, page_layout?, stores: {code: {title, content_heading?, meta_*?, template}}}
      *

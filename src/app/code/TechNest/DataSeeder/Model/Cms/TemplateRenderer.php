@@ -12,6 +12,7 @@ use Magento\Widget\Helper\Conditions;
  *  - %image:SKU%          -> {{media url="catalog/product/..."}} of the product's base image
  *  - %products:SKU1,SKU2% -> Catalog Products List widget (grid) limited to those SKUs
  *  - %shelf:SKU1,SKU2%    -> same widget with the theme's horizontal "shelf" template
+ *  - %flashsale%          -> TechNest_Base flash sale shelf (products whose special price runs today)
  */
 class TemplateRenderer
 {
@@ -19,6 +20,9 @@ class TemplateRenderer
         'products' => 'Magento_CatalogWidget::product/widget/content/grid.phtml',
         'shelf' => 'Magento_CatalogWidget::product/widget/content/shelf.phtml',
     ];
+
+    public const FLASH_SALE_WIDGET = '{{widget type="TechNest\\Base\\Block\\Widget\\FlashSale" show_pager="0"'
+        . ' products_count="12" template="TechNest_Base::widget/flash-sale.phtml"}}';
 
     /**
      * @param Conditions $conditionsHelper
@@ -45,6 +49,8 @@ class TemplateRenderer
             },
             $template
         );
+
+        $content = str_replace('%flashsale%', self::FLASH_SALE_WIDGET, $content);
 
         return (string)preg_replace_callback(
             '/%(products|shelf):([A-Za-z0-9_,-]+)%/',

@@ -21,6 +21,8 @@
                 <item name="related" xsi:type="object">TechNest\DataSeeder\Model\Step\Related\Proxy</item>
                 <item name="content" xsi:type="object">TechNest\DataSeeder\Model\Step\Content\Proxy</item>
                 <item name="reviews" xsi:type="object">TechNest\DataSeeder\Model\Step\Reviews\Proxy</item>
+                <item name="promotions" xsi:type="object">TechNest\DataSeeder\Model\Step\Promotions\Proxy</item>
+                <item name="accounts" xsi:type="object">TechNest\DataSeeder\Model\Step\Accounts\Proxy</item>
             </argument>
         </arguments>
     </type>

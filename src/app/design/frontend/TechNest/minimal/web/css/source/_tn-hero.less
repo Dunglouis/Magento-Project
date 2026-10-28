@@ -1,0 +1,187 @@
+//
+//  Home hero slider (CMS block "technest-hero", js/tn-hero.js)
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .tn-hero {
+        margin: 0 0 @indent__xl;
+        position: relative;
+    }
+
+    // One slide per view; swipe or scroll snaps to the next one
+    .tn-hero__track {
+        .tn-no-scrollbar();
+        display: flex;
+        gap: @indent__base;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+    }
+
+    .tn-hero__slide {
+        align-items: center;
+        background: @tn-bg-alt;
+        border-radius: @tn-card__radius;
+        box-sizing: border-box;
+        display: flex;
+        flex: 0 0 100%;
+        flex-direction: column-reverse;
+        gap: @indent__base;
+        margin: 0;
+        overflow: hidden;
+        padding: @indent__l;
+        scroll-snap-align: start;
+        text-align: center;
+    }
+
+    // Promotions use the sale red (see _tn-sale.less) for the eyebrow and the button
+    .tn-hero__eyebrow {
+        color: @tn-sale;
+        font-size: 1.4rem;
+        font-weight: @font-weight__semibold;
+        margin: 0 0 @indent__xs;
+    }
+
+    .tn-hero__title {
+        font-size: 3rem;
+        font-weight: @font-weight__semibold;
+        letter-spacing: -.015em;
+        line-height: 1.1;
+        margin: 0 0 @indent__s;
+    }
+
+    .tn-hero__copy {
+        color: @tn-muted;
+        font-size: 1.6rem;
+        line-height: 1.45;
+        margin: 0 auto @indent__base;
+        max-width: 46ch;
+    }
+
+    .tn-hero__code {
+        background: @tn-bg;
+        border: 1px dashed @tn-border;
+        border-radius: 8px;
+        color: @tn-ink;
+        letter-spacing: .04em;
+        padding: 1px 8px;
+        white-space: nowrap;
+    }
+
+    .tn-hero__cta.action.primary {
+        background: @tn-sale;
+        border: 1px solid @tn-sale;
+        border-radius: 999px;
+        color: @tn-bg;
+        padding: 10px 22px;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background: darken(@tn-sale, 6%);
+            border-color: darken(@tn-sale, 6%);
+            color: @tn-bg;
+        }
+    }
+
+    // Catalog photos have a white background: multiply blends it into the grey slide
+    .tn-hero__media {
+        height: 200px;
+        max-width: 100%;
+        mix-blend-mode: multiply;
+        object-fit: contain;
+        width: auto;
+    }
+
+    .tn-hero__dots {
+        display: flex;
+        gap: @indent__s;
+        justify-content: center;
+        margin-top: @indent__s;
+    }
+
+    // 24px hit area around an 8px dot
+    .tn-hero__dot {
+        background: none;
+        border: 0;
+        box-shadow: none;
+        cursor: pointer;
+        height: 24px;
+        padding: 0;
+        width: 24px;
+
+        &:before {
+            background: @tn-border;
+            border-radius: 50%;
+            content: '';
+            display: block;
+            height: 8px;
+            margin: auto;
+            transition: transform 300ms @tn-ease, background-color 300ms @tn-ease;
+            width: 8px;
+        }
+
+        &:hover,
+        &:focus {
+            background: none;
+            border: 0;
+            box-shadow: none;
+        }
+
+        &[aria-current='true']:before {
+            background: @tn-ink;
+            transform: scale(1.25);
+        }
+    }
+}
+
+// Tablet and up: text on the left, product on the right
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .tn-hero__slide {
+        flex-direction: row;
+        justify-content: space-between;
+        min-height: 400px;
+        padding: @indent__xl 56px;
+        text-align: left;
+    }
+
+    .tn-hero__text {
+        flex: 1 1 55%;
+        min-width: 0;
+    }
+
+    .tn-hero__copy {
+        margin-left: 0;
+    }
+
+    .tn-hero__title {
+        font-size: 3.6rem;
+    }
+
+    .tn-hero__media {
+        flex: 0 1 45%;
+        height: 280px;
+        max-width: 45%;
+    }
+}
+
+// Desktop: larger headline and product
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .tn-hero__title {
+        font-size: 4.8rem;
+    }
+
+    .tn-hero__media {
+        height: 320px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tn-hero__track {
+        scroll-behavior: auto;
+    }
+
+    .tn-hero__dot:before {
+        transition: none;
+    }
+}

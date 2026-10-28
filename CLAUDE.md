@@ -41,7 +41,7 @@ Repo GitHub đã khởi tạo và liên kết, có CI/CD base. Trước khi làm
 
 - **Ý nghĩa logo:** chim ưng robot ghép từ chữ **T** (đôi cánh, thân và đuôi vút) và chữ **N** (thân, cổ, đầu chim); mắt phát sáng màu `#0071e3` tượng trưng cho công nghệ; cánh chuyển xanh → bạc gợi tốc độ và tương lai. Logo là ngoại lệ duy nhất được dùng gradient. Ảnh gốc tham chiếu: `brand/source/technest-reference.png`.
 - File trong thư mục `brand/`: `technest-logo.svg` / `technest-logo.png` (logo ngang, biểu tượng + chữ; dùng cho header và email), `technest-mark.svg` (biểu tượng nền tối bo góc), `technest-mark-plain.svg` / `technest-mark-plain-512.png` (biểu tượng không nền, dùng trên nền sáng), `technest-mark-{32,180,512}.png`, `favicon.ico`.
-- Bảng màu: chữ/nền tối `#1d1d1f`, nền trang `#ffffff`, nền phụ `#f5f5f7`, màu nhấn duy nhất `#0071e3`. Font: stack hệ thống (`-apple-system, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif`), không tải font ngoài.
+- Bảng màu: chữ/nền tối `#1d1d1f`, nền trang `#ffffff`, nền phụ `#f5f5f7`, màu nhấn chính `#0071e3`; ngoại lệ duy nhất: đỏ dịu `#cf3f3f` (biến LESS `@tn-sale`) chỉ dùng cho khuyến mãi (nhãn Sale, chữ và nút trên banner trang chủ), chủ dự án duyệt 2026-10-27. Font: stack hệ thống (`-apple-system, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif`), không tải font ngoài.
 - Áp dụng: logo header (SVG, qua layout XML của theme), favicon (PNG/ICO), tên cửa hàng trong **Stores > Configuration > General > Store Information**, tiêu đề trang, footer, email giao dịch (header email dùng logo PNG), meta title mặc định "TechNest".
 
 ## 5. Quyết định thiết kế đã chốt
@@ -100,6 +100,7 @@ Phương án lai, chạy lặp lại được (idempotent):
 ### 5.5 Tài khoản và mua hàng
 
 - **Khách vãng lai được thêm vào giỏ nhưng phải có tài khoản mới mua được** (chủ dự án đổi ngày 2026-10-21): tắt guest checkout; khi chưa đăng nhập mà vào Checkout thì chuyển sang trang đăng nhập/đăng ký, đăng nhập xong quay lại checkout và giữ giỏ hàng (module `TechNest_CustomerAccess`). Review: ai cũng xem được.
+- **Chọn sản phẩm để mua trong giỏ** (chủ dự án duyệt 2026-10-28, module `TechNest_CartSelect`): mỗi dòng giỏ có ô tích + "Chọn tất cả"; tổng tiền, mã giảm giá, phí ship, free ship theo ngưỡng và checkout chỉ tính món đã tích; đặt hàng xong món chưa tích vẫn ở lại giỏ (chưa tích). Không có giỏ phụ hiển thị.
 - **Đăng ký bằng email** + trường bổ sung **Số điện thoại** (thuộc tính khách hàng `phone_number`, bắt buộc, validate số di động Việt Nam `^(0|\+84)(3|5|7|8|9)\d{8}$`, hiển thị/sửa ở trang tài khoản). **Không** OTP SMS, SĐT không dùng để đăng nhập.
 - **Đăng nhập Google (OAuth 2.0)** do **tự viết module** `TechNest_GoogleLogin`:
   - Authorization Code flow, có `state` chống CSRF (và PKCE nếu thư viện hỗ trợ); scope `openid email profile`; chỉ nhận email đã xác minh.
@@ -122,7 +123,7 @@ Phương án lai, chạy lặp lại được (idempotent):
 ### 5.7 Đơn hàng và email
 
 - Luồng: Order → Invoice → Shipment → Credit Memo.
-- **Trạng thái đơn tùy chỉnh** (ví dụ "Chờ xác nhận chuyển khoản", "Đang đóng gói", "Đang giao") gắn với state có sẵn.
+- **Trạng thái đơn tùy chỉnh** gắn với state có sẵn (chủ dự án duyệt 2026-10-27): "Chờ xác nhận chuyển khoản" → `new` (status mặc định của đơn Bank Transfer; không dùng `pending_payment` vì thanh toán offline luôn tạo đơn `new` và cron core tự hủy đơn `pending_payment`), "Đang đóng gói" → `processing` (mặc định sau invoice), "Đang giao" → `complete` (mặc định sau shipment), "Đã giao" → `complete` (admin chọn tay). Đơn "Chờ xác nhận chuyển khoản" quá 3 ngày tự hủy bằng cron của `TechNest_Automation`.
 - **Email giao dịch gửi thật** (đơn hàng mới, invoice, shipment, credit memo, xác nhận tài khoản/quên mật khẩu), có bản **tiếng Việt và tiếng Anh**, header dùng logo TechNest.
 - **SMTP thật** qua module nhỏ `TechNest_Mail`:
   - Trước hết kiểm tra lớp transport mail mà framework Magento 2.4.9 đang dùng (xem `vendor/magento/framework/Mail`), rồi viết plugin/chèn transport SMTP phù hợp. Cấu hình ở Admin hoặc `.env` (host, port, mã hóa, user, password, from).
@@ -144,9 +145,10 @@ Vendor namespace: **`TechNest`**; thư mục `app/code/TechNest/<Module>/`; comp
 | `TechNest_ProductSpecs` (A) | Bảng thông số, so sánh | Block specs theo attribute set; tùy biến trang Compare (highlight khác biệt) |
 | `TechNest_Warranty` (B, G, H) | Bảo hành theo serial | Bảng `technest_warranty` (declarative schema); **admin grid + form CRUD (UI Component)**; trang tra cứu frontend; **REST API** `GET /V1/technest/warranty/:serial` (+ GraphQL nếu còn thời gian); ACL |
 | `TechNest_Installment` (C) | Trả góp | Block trang sản phẩm tính trả góp 3/6/12 tháng (lãi suất cấu hình admin), đúng khi đổi tiền tệ |
-| `TechNest_Automation` (I) | Cron, CLI, observer | Cron (kiểm tra hết hạn flash sale, dọn dữ liệu), CLI, observer sau đặt hàng → tạo bản ghi bảo hành và/hoặc gửi email |
+| `TechNest_Automation` (I) | Cron, CLI, observer | Cron (kiểm tra hết hạn flash sale, tự hủy đơn "Chờ xác nhận chuyển khoản" quá 3 ngày, dọn dữ liệu), CLI, observer sau đặt hàng → tạo bản ghi bảo hành và/hoặc gửi email |
 | `TechNest_GoogleLogin` | Đăng nhập Google | Xem 5.5 |
 | `TechNest_CustomerAccess` | Bắt đăng nhập trước khi thanh toán, trường SĐT | Xem 5.5 |
+| `TechNest_CartSelect` | Chọn món trong giỏ để mua | Cột `quote_item.tn_selected`; plugin lọc item khi tính tổng/checkout; đặt hàng chỉ món đã tích, món còn lại chuyển sang giỏ mới; xem 5.5 |
 | `TechNest_Mail` | SMTP thật | Xem 5.7 |
 | `TechNest_QuickView` | Xem nhanh | Modal AJAX (ưu tiên thấp) |
 | `TechNest_Search` | Tìm kiếm gợi ý | Autocomplete ô tìm kiếm: từ khoá phổ biến + sản phẩm gợi ý (ảnh, tên, giá theo tiền tệ store; OpenSearch + khớp tên theo tiền tố), chọn sản phẩm mở thẳng trang chi tiết (chủ dự án duyệt 2026-10-26) |

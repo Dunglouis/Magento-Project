@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="technest_flash_sale" class="TechNest\Base\Block\Widget\FlashSale" ttl="86400">
+        <label translate="true">TechNest Flash Sale</label>
+        <description translate="true">Products whose special price runs today, with a countdown</description>
+        <parameters>
+            <parameter name="products_count" xsi:type="text" required="true" visible="true">
+                <label translate="true">Number of Products to Display</label>
+                <value>12</value>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="TechNest_Base::widget/flash-sale.phtml" selected="true">
+                        <label translate="true">Flash Sale Shelf</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

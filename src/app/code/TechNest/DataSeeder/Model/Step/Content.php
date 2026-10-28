@@ -26,7 +26,7 @@ use TechNest\DataSeeder\Model\StepInterface;
  */
 class Content implements StepInterface
 {
-    private const ITEMS = ['home', 'about-us', 'customer-service', 'footer'];
+    private const ITEMS = ['hero', 'home', 'about-us', 'customer-service', 'footer'];
     private const TYPE_BLOCK = 'block';
 
     /**
@@ -60,7 +60,7 @@ class Content implements StepInterface
      */
     public function getDescription(): string
     {
-        return 'CMS pages (home, about us, customer service) and blocks (footer) per store view';
+        return 'CMS pages (home, about us, customer service) and blocks (home hero, footer) per store view';
     }
 
     /**

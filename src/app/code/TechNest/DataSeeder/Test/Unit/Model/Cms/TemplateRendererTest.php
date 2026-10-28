@@ -38,6 +38,14 @@ class TemplateRendererTest extends TestCase
         self::assertSame('<img src="{{media url="catalog/product/a/b/a.jpg"}}"><img src="">', $html);
     }
 
+    public function testFlashSalePlaceholderBecomesFlashSaleWidget(): void
+    {
+        $html = $this->renderer->render('<div>%flashsale%</div>', static fn (): ?string => null);
+
+        self::assertSame('<div>' . TemplateRenderer::FLASH_SALE_WIDGET . '</div>', $html);
+        self::assertStringContainsString('type="TechNest\\Base\\Block\\Widget\\FlashSale"', $html);
+    }
+
     public function testProductsPlaceholderBecomesSkuFilteredWidget(): void
     {
         $html = $this->renderer->render('<div>%products:TN-A,TN-B%</div>', static fn (): ?string => null);
