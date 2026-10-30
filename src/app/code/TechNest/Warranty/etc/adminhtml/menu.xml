@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="TechNest_Warranty::warranty" title="Warranties" translate="title" module="TechNest_Warranty"
+             sortOrder="60" parent="Magento_Sales::sales_operation" action="technest_warranty/warranty/index"
+             resource="TechNest_Warranty::warranty"/>
+    </menu>
+</config>

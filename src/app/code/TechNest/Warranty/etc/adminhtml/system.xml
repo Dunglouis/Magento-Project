@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="technest_warranty" translate="label" sortOrder="320" showInDefault="1">
+            <label>Warranty</label>
+            <tab>technest</tab>
+            <resource>TechNest_Warranty::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1">
+                <label>Warranty</label>
+                <field id="default_months" translate="label comment" type="text" sortOrder="10" showInDefault="1">
+                    <label>Default Cover (months)</label>
+                    <comment>Used when the product has no "Warranty (months)" value.</comment>
+                    <validate>required-entry validate-digits validate-greater-than-zero</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="TechNest\Warranty\Api\Data\WarrantyInterface" type="TechNest\Warranty\Model\Warranty"/>
+    <preference for="TechNest\Warranty\Api\WarrantyRepositoryInterface" type="TechNest\Warranty\Model\WarrantyRepository"/>
+    <preference for="TechNest\Warranty\Api\Data\WarrantySearchResultsInterface" type="TechNest\Warranty\Model\WarrantySearchResults"/>
+
+    <!-- Admin grid -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="technest_warranty_listing_data_source" xsi:type="string">TechNest\Warranty\Model\ResourceModel\Warranty\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="TechNest\Warranty\Model\ResourceModel\Warranty\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">technest_warranty</argument>
+            <argument name="resourceModel" xsi:type="string">TechNest\Warranty\Model\ResourceModel\Warranty</argument>
+        </arguments>
+    </virtualType>
+</config>

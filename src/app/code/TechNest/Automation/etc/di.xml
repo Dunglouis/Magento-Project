@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="technest_orders_cancel_stale" xsi:type="object">TechNest\Automation\Console\Command\CancelStaleTransfers</item>
+                <item name="technest_warranty_expire" xsi:type="object">TechNest\Automation\Console\Command\ExpireWarranties</item>
+                <item name="technest_flash_sale_cleanup" xsi:type="object">TechNest\Automation\Console\Command\CleanupFlashSale</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="TechNest\Automation\Console\Command\CancelStaleTransfers">
+        <arguments>
+            <argument name="staleTransfers" xsi:type="object">TechNest\Automation\Model\StaleTransfers\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="TechNest\Automation\Console\Command\ExpireWarranties">
+        <arguments>
+            <argument name="warrantyExpiry" xsi:type="object">TechNest\Automation\Model\WarrantyExpiry\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="TechNest\Automation\Console\Command\CleanupFlashSale">
+        <arguments>
+            <argument name="flashSaleCleanup" xsi:type="object">TechNest\Automation\Model\FlashSaleCleanup\Proxy</argument>
+        </arguments>
+    </type>
+</config>

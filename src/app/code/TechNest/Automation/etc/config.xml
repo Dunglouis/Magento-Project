@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <technest_automation>
+            <orders>
+                <cancel_stale_transfers>1</cancel_stale_transfers>
+                <transfer_days>3</transfer_days>
+            </orders>
+            <flash_sale>
+                <cleanup>1</cleanup>
+            </flash_sale>
+        </technest_automation>
+    </default>
+</config>

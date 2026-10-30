@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- Full record incl. customer data: admin or integration token with the warranty ACL -->
+    <route url="/V1/technest/warranty/:serial" method="GET">
+        <service class="TechNest\Warranty\Api\WarrantyRepositoryInterface" method="getBySerial"/>
+        <resources>
+            <resource ref="TechNest_Warranty::warranty"/>
+        </resources>
+    </route>
+</routes>

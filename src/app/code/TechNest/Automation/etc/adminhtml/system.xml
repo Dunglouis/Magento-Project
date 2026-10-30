@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="technest_automation" translate="label" sortOrder="330" showInDefault="1">
+            <label>Automation</label>
+            <tab>technest</tab>
+            <resource>TechNest_Automation::config</resource>
+            <group id="orders" translate="label" sortOrder="10" showInDefault="1">
+                <label>Unpaid Bank Transfer Orders</label>
+                <field id="cancel_stale_transfers" translate="label comment" type="select" sortOrder="10" showInDefault="1">
+                    <label>Cancel Automatically</label>
+                    <comment>Cron cancels orders still "Awaiting transfer confirmation" after the waiting time.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="transfer_days" translate="label" type="text" sortOrder="20" showInDefault="1">
+                    <label>Waiting Time (days)</label>
+                    <validate>required-entry validate-digits validate-greater-than-zero</validate>
+                    <depends><field id="cancel_stale_transfers">1</field></depends>
+                </field>
+            </group>
+            <group id="flash_sale" translate="label" sortOrder="20" showInDefault="1">
+                <label>Flash Sale</label>
+                <field id="cleanup" translate="label comment" type="select" sortOrder="10" showInDefault="1">
+                    <label>Clean Up Ended Sales</label>
+                    <comment>Cron removes special prices whose end date has passed and refreshes the cached pages showing them.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

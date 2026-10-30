@@ -2,6 +2,9 @@
  {
   "sku": "TN-WR-EXT-12M",
   "type": "virtual",
+  "attributes": {
+   "warranty_months": 12
+  },
   "set": "Default",
   "visibility": "search",
   "price": 49,
@@ -18,6 +21,9 @@
  {
   "sku": "TN-WR-EXT-24M",
   "type": "virtual",
+  "attributes": {
+   "warranty_months": 24
+  },
   "set": "Default",
   "visibility": "search",
   "price": 89,
