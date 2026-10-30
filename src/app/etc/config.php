@@ -395,6 +395,7 @@ return [
         'TechNest_GoogleLogin' => 1,
         'TechNest_Mail' => 1,
         'TechNest_Search' => 1,
+        'TechNest_Shipping' => 1,
         'TechNest_Automation' => 1
     ]
 ];

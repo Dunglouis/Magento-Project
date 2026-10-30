@@ -1,0 +1,21 @@
+{
+    "name": "technest/module-shipping",
+    "description": "TechNest Shipping: the 34 Vietnamese provinces and a carrier that prices delivery by region (North, Central, South)",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/module-config": "*",
+        "magento/module-directory": "*",
+        "magento/module-offline-shipping": "*",
+        "magento/module-quote": "*",
+        "magento/module-shipping": "*",
+        "magento/module-store": "*",
+        "technest/module-base": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {"TechNest\\Shipping\\": ""}
+    }
+}

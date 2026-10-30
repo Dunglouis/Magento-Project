@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="carriers">
+            <group id="technest_regional" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>TechNest Regional Delivery</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Title</label>
+                </field>
+                <field id="name" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Method Name</label>
+                    <comment>The region of the delivery address is added after the name, e.g. "Regional delivery (North Vietnam)".</comment>
+                </field>
+                <field id="price_north" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Fee: North Vietnam</label>
+                    <comment>Per order, in the base currency.</comment>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="price_central" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Fee: Central Vietnam</label>
+                    <comment>Per order, in the base currency.</comment>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="price_south" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Fee: South Vietnam</label>
+                    <comment>Per order, in the base currency.</comment>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="price_default" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Fee: Unknown Province</label>
+                    <comment>Used when the province of the address is typed as free text and can't be matched.</comment>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="free_over_threshold" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Free Above the Free Shipping Threshold</label>
+                    <comment>Uses "Minimum Order Amount" of the Free Shipping method. Free shipping coupons always apply.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sallowspecific" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Ship to Applicable Countries</label>
+                    <frontend_class>shipping-applicable-country</frontend_class>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="91" showInDefault="1" showInWebsite="1">
+                    <label>Ship to Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="showmethod" translate="label" type="select" sortOrder="92" showInDefault="1" showInWebsite="1">
+                    <label>Show Method if Not Applicable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>shipping-skip-hide</frontend_class>
+                </field>
+                <field id="specificerrmsg" translate="label" type="textarea" sortOrder="95" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Displayed Error Message</label>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1">
+                    <label>Sort Order</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
