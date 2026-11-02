@@ -396,6 +396,7 @@ return [
         'TechNest_Installment' => 1,
         'TechNest_Mail' => 1,
         'TechNest_ProductSpecs' => 1,
+        'TechNest_QuickView' => 1,
         'TechNest_Search' => 1,
         'TechNest_Shipping' => 1,
         'TechNest_Automation' => 1

@@ -5,12 +5,12 @@ namespace TechNest\ProductSpecs\ViewModel;
 
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\ResourceModel\Eav\Attribute;
-use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
 use Magento\Eav\Model\ResourceModel\Entity\Attribute\Group\CollectionFactory as GroupCollectionFactory;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\GroupedProduct\Model\Product\Type\Grouped;
 use TechNest\ProductSpecs\Model\SpecSheet;
+use TechNest\ProductSpecs\Model\VariantValues;
 
 /**
  * Specification sheet of the product page ("Specifications" tab), grouped by the attribute groups of its set.
@@ -28,11 +28,13 @@ class Specs implements ArgumentInterface
      * @param SpecSheet $specSheet
      * @param GroupCollectionFactory $groupCollectionFactory
      * @param ScopeConfigInterface $scopeConfig
+     * @param VariantValues $variantValues
      */
     public function __construct(
         private readonly SpecSheet $specSheet,
         private readonly GroupCollectionFactory $groupCollectionFactory,
-        private readonly ScopeConfigInterface $scopeConfig
+        private readonly ScopeConfigInterface $scopeConfig,
+        private readonly VariantValues $variantValues
     ) {
     }
 
@@ -46,7 +48,7 @@ class Specs implements ArgumentInterface
     {
         $setId = (int)$product->getAttributeSetId();
         $groupNames = $this->getGroupNames($setId);
-        $variantValues = $this->getVariantValues($product);
+        $variantValues = $this->variantValues->get($product);
 
         $rows = [];
         /** @var Attribute $attribute */
@@ -112,39 +114,6 @@ class Specs implements ArgumentInterface
             'label' => (string)__('Warranty period'),
             'value' => $months > 0 ? (string)__('%1 months', $months) : '',
         ];
-    }
-
-    /**
-     * Values of the configurable attributes across the variants, in option order
-     *
-     * @param Product $product
-     * @return array<string, string> Attribute code => "value, value"
-     */
-    private function getVariantValues(Product $product): array
-    {
-        $type = $product->getTypeInstance();
-        if (!$type instanceof Configurable) {
-            return [];
-        }
-        $children = $type->getUsedProducts($product);
-        $values = [];
-        foreach ($type->getConfigurableAttributes($product) as $configurableAttribute) {
-            $attribute = $configurableAttribute->getProductAttribute();
-            $code = (string)$attribute->getAttributeCode();
-            $used = [];
-            /** @var Product $child */
-            foreach ($children as $child) {
-                $used[(string)$child->getData($code)] = true;
-            }
-            $labels = [];
-            foreach ($attribute->getSource()->getAllOptions() as $option) {
-                if ((string)$option['value'] !== '' && isset($used[(string)$option['value']])) {
-                    $labels[] = (string)$option['label'];
-                }
-            }
-            $values[$code] = implode(', ', $labels);
-        }
-        return $values;
     }
 
     /**
