@@ -1,0 +1,83 @@
+//
+//  Product page: instalment plans under the price (TechNest_Installment)
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .tn-installment {
+        background: @tn-bg-alt;
+        border-radius: @tn-radius-sm;
+        margin-bottom: @indent__base;
+        padding: 12px 16px;
+
+        &[hidden] {
+            display: none;
+        }
+
+        &__summary {
+            cursor: pointer;
+            list-style: none;
+
+            &::-webkit-details-marker {
+                display: none;
+            }
+
+            // Chevron that turns when the plans open
+            &::after {
+                border-bottom: 1.5px solid @tn-muted;
+                border-right: 1.5px solid @tn-muted;
+                content: '';
+                display: inline-block;
+                height: 6px;
+                margin-left: @indent__s;
+                transform: translateY(-3px) rotate(45deg);
+                transition: transform 300ms @tn-ease;
+                width: 6px;
+            }
+
+            strong {
+                color: @tn-ink;
+            }
+        }
+
+        &[open] &__summary::after {
+            transform: translateY(0) rotate(-135deg);
+        }
+
+        &__table {
+            font-size: 1.4rem;
+            margin-top: @indent__s;
+            width: 100%;
+
+            th,
+            td {
+                border-bottom: 1px solid @tn-border;
+                padding: 8px 8px 8px 0;
+                text-align: left;
+            }
+
+            thead th {
+                color: @tn-muted;
+                font-weight: @font-weight__regular;
+            }
+
+            tbody th {
+                font-weight: @font-weight__semibold;
+            }
+        }
+
+        &__caption {
+            .lib-visually-hidden();
+        }
+
+        &__free {
+            color: @tn-accent;
+            font-weight: @font-weight__semibold;
+        }
+
+        &__note {
+            color: @tn-muted;
+            font-size: 1.2rem;
+            margin: @indent__s 0 0;
+        }
+    }
+}

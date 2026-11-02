@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="technest_installment" translate="label" sortOrder="330" showInDefault="1" showInWebsite="1">
+            <label>Installment</label>
+            <tab>technest</tab>
+            <resource>TechNest_Installment::config</resource>
+            <group id="general" translate="label comment" sortOrder="10" showInDefault="1" showInWebsite="1">
+                <label>Installment Plans</label>
+                <comment>Flat interest: each month the buyer pays the price divided by the term, plus the monthly rate on the full price.</comment>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Show on Product Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="min_price" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>Minimum Product Price</label>
+                    <comment>In the base currency. Cheaper products show no plans.</comment>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="rate_3" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>3 Months: Interest (% per month)</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="rate_6" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>6 Months: Interest (% per month)</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="rate_12" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" canRestore="1">
+                    <label>12 Months: Interest (% per month)</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

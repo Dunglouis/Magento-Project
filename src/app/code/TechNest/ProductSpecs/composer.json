@@ -1,0 +1,19 @@
+{
+    "name": "technest/module-product-specs",
+    "description": "TechNest ProductSpecs: specification sheet grouped by attribute group, differences highlighted on the compare page",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/module-catalog": "*",
+        "magento/module-configurable-product": "*",
+        "magento/module-eav": "*",
+        "magento/module-grouped-product": "*",
+        "technest/module-base": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {"TechNest\\ProductSpecs\\": ""}
+    }
+}

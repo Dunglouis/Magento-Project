@@ -393,7 +393,9 @@ return [
         'TechNest_CustomerAccess' => 1,
         'TechNest_DataSeeder' => 1,
         'TechNest_GoogleLogin' => 1,
+        'TechNest_Installment' => 1,
         'TechNest_Mail' => 1,
+        'TechNest_ProductSpecs' => 1,
         'TechNest_Search' => 1,
         'TechNest_Shipping' => 1,
         'TechNest_Automation' => 1

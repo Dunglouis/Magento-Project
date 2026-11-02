@@ -1,0 +1,80 @@
+//
+//  Specification sheet groups (TechNest_ProductSpecs) and "Show differences only" on the compare page
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .catalog-product-view .tn-specs .additional-attributes {
+        width: 100%;
+
+        > tbody > tr.tn-specs__group {
+            border-bottom: 0;
+
+            > th {
+                color: @tn-ink;
+                font-size: 1.7rem;
+                font-weight: @font-weight__semibold;
+                padding: @indent__l 0 @indent__xs;
+                width: auto;
+            }
+        }
+
+        > tbody:first-of-type > tr.tn-specs__group > th {
+            padding-top: @indent__xs;
+        }
+    }
+
+    .tn-compare-diff {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: @indent__s @indent__base;
+        margin-bottom: @indent__base;
+
+        &[hidden] {
+            display: none;
+        }
+
+        &__switch {
+            align-items: center;
+            cursor: pointer;
+            display: inline-flex;
+            font-weight: @font-weight__semibold;
+            gap: @indent__s;
+
+            input {
+                accent-color: @tn-accent;
+                height: 18px;
+                margin: 0;
+                width: 18px;
+            }
+        }
+
+        &__count {
+            color: @tn-muted;
+            font-size: 1.3rem;
+        }
+    }
+
+    // Rows whose values differ get an accent marker on their label
+    .table-comparison {
+        tr.tn-diff > th {
+            box-shadow: inset 3px 0 0 @tn-accent;
+        }
+
+        tr.tn-diff > td {
+            background: fade(@tn-accent, 5%);
+        }
+
+        &.tn-only-diff tr.tn-attr:not(.tn-diff) {
+            display: none;
+        }
+    }
+}
+
+// Luma stacks table cells on phones and hides the row headers; keep the group headings
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .catalog-product-view .table-wrapper.tn-specs .table.additional-attributes > tbody > tr.tn-specs__group > th {
+        display: block;
+        padding-left: 0;
+    }
+}

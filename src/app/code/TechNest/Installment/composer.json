@@ -1,0 +1,19 @@
+{
+    "name": "technest/module-installment",
+    "description": "TechNest Installment: 3/6/12-month instalment plans with flat interest on the product page",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/module-catalog": "*",
+        "magento/module-config": "*",
+        "magento/module-directory": "*",
+        "magento/module-store": "*",
+        "technest/module-base": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {"TechNest\\Installment\\": ""}
+    }
+}

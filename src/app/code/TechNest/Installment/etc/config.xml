@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <technest_installment>
+            <general>
+                <enabled>1</enabled>
+                <min_price>100</min_price>
+                <rate_3>0</rate_3>
+                <rate_6>0</rate_6>
+                <rate_12>1</rate_12>
+            </general>
+        </technest_installment>
+    </default>
+</config>
