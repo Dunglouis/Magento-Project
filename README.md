@@ -47,8 +47,11 @@ The environment runs on Docker, based on [markshust/docker-magento](https://gith
 ├── compose*.yaml        container definitions
 ├── env/*.env.example    environment variable templates (passwords masked)
 ├── lib/, template/      docker-magento support files
+├── docs/                project documents (performance report...)
 ├── scripts/qa.sh        static checks + unit tests (see section 6)
+├── scripts/perf*.sh     production/developer mode switch and k6 load test (see section 6)
 ├── tests/qa/            PHPCS and PHPStan configuration
+├── tests/perf/          k6 load test script and results
 ├── CLAUDE.md            project specification and phase plan
 └── src/                 Magento code
     ├── composer.json    pins the Magento version and extra packages (vi_VN language pack)
@@ -209,6 +212,16 @@ scripts/qa.sh --compile  # same, plus setup:di:compile (about 3 minutes)
 
 The script checks only `src/app/code/TechNest`. PHPUnit runs once a module has a `Test/Unit` folder. CI runs the same script on every push and pull request to `dev` and `main`.
 
+### Performance
+
+```bash
+scripts/perf-mode.sh prod    # production mode + minify/merge (6-8 minutes, needs free memory)
+scripts/perf.sh after-prod   # k6 load test: 20 users, category -> search -> product -> cart -> COD order
+scripts/perf-mode.sh dev     # back to developer mode before working on code or the theme
+```
+
+`scripts/perf.sh` runs k6 from the `grafana/k6` Docker image. It places real COD orders as `perf-NN@technest.test` and turns off email and cron while it runs. Results and settings are in [docs/performance.md](docs/performance.md).
+
 ### Branches and commits
 
 | Branch | Role |
@@ -231,4 +244,5 @@ Commit messages follow [Conventional Commits](https://www.conventionalcommits.or
 | Composer reports `Could not resolve host` | Container DNS is flaky. Run the command again |
 | Docker reports WSL integration stopped | Open Docker Desktop, wait for "Engine running", then open Ubuntu |
 | VS Code shows `Undefined type '...Factory'` | Factories are generated at runtime. Run `bin/magento setup:di:compile`, then *Intelephense: Index workspace* |
+| Cron jobs stopped running (orders not emailed, indexers behind) after recreating `phpfpm` | The crontab lives inside the container. Run `bin/magento cron:install`, then `bin/cron start` |
 | Blank page or HTTP 500 | Check `bin/log` and `src/var/report/` |
