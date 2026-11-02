@@ -1,0 +1,17 @@
+<?php
+/**
+ * Adds "Quick view" buttons to the product grid of category and search pages
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<script type="text/x-magento-init">
+<?= /* @noEscape */ json_encode(['*' => ['TechNest_QuickView/js/quickview' => [
+    'url' => $block->getUrl('quickview/product/view'),
+    'label' => (string)__('Quick view'),
+    'ariaLabel' => (string)__('Quick view: %1', '%1'),
+    'loading' => (string)__('Loading...'),
+    'error' => (string)__('Sorry, this product can\'t be shown right now.'),
+]]], JSON_THROW_ON_ERROR) ?>
+</script>

@@ -1,0 +1,19 @@
+<?php
+/**
+ * Compare page: "Show differences only" switch; js/compare-diff marks the rows whose values differ
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<div class="tn-compare-diff" data-role="tn-compare-diff" hidden>
+    <label class="tn-compare-diff__switch">
+        <input type="checkbox" data-role="only-diff"/>
+        <span><?= $escaper->escapeHtml(__('Show differences only')) ?></span>
+    </label>
+    <span class="tn-compare-diff__count" data-role="diff-count"
+          data-template="<?= $escaper->escapeHtmlAttr(__('%1 of %2 specs differ')) ?>"></span>
+</div>
+<script type="text/x-magento-init">
+{"[data-role=tn-compare-diff]": {"TechNest_ProductSpecs/js/compare-diff": {"table": "#product-comparison"}}}
+</script>

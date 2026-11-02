@@ -1,0 +1,58 @@
+<?php
+/**
+ * My Warranties: serials of the signed-in customer
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \TechNest\Warranty\ViewModel\CustomerWarranties $viewModel
+ * @var \TechNest\Warranty\ViewModel\Lookup $lookup
+ */
+$viewModel = $block->getData('view_model');
+$lookup = $block->getData('lookup_view_model');
+$warranties = $viewModel->getWarranties();
+?>
+<?php if (!$warranties): ?>
+    <div class="message info empty">
+        <span>
+            <?= $escaper->escapeHtml(__('You have no warranties yet. They are created when you place an order.')) ?>
+        </span>
+    </div>
+<?php else: ?>
+    <div class="table-wrapper tn-warranty-list">
+        <table class="data table">
+            <caption class="table-caption"><?= $escaper->escapeHtml(__('My Warranties')) ?></caption>
+            <thead>
+            <tr>
+                <th scope="col"><?= $escaper->escapeHtml(__('Serial Number')) ?></th>
+                <th scope="col"><?= $escaper->escapeHtml(__('Product')) ?></th>
+                <th scope="col"><?= $escaper->escapeHtml(__('Order #')) ?></th>
+                <th scope="col"><?= $escaper->escapeHtml(__('Ends')) ?></th>
+                <th scope="col"><?= $escaper->escapeHtml(__('Status')) ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($warranties as $warranty): ?>
+                <tr>
+                    <td data-th="<?= $escaper->escapeHtmlAttr(__('Serial Number')) ?>">
+                        <a href="<?= $escaper->escapeUrl($viewModel->getLookupUrl($warranty)) ?>">
+                            <?= $escaper->escapeHtml($warranty->getSerial()) ?>
+                        </a>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtmlAttr(__('Product')) ?>">
+                        <?= $escaper->escapeHtml($warranty->getProductName()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtmlAttr(__('Order #')) ?>">
+                        <?= $escaper->escapeHtml((string)$warranty->getOrderIncrementId()) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtmlAttr(__('Ends')) ?>">
+                        <?= $escaper->escapeHtml($lookup->formatDate($warranty->getExpiresAt())) ?>
+                    </td>
+                    <td data-th="<?= $escaper->escapeHtmlAttr(__('Status')) ?>">
+                        <?= $escaper->escapeHtml($lookup->getStatusLabel($warranty)) ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif; ?>

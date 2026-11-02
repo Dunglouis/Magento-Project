@@ -1,0 +1,59 @@
+<?php
+/**
+ * Instalment plans under the product price; js/installment recalculates them when an option changes the price
+ *
+ * @var \Magento\Catalog\Block\Product\View $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+/** @var \TechNest\Installment\ViewModel\Installment $viewModel */
+$viewModel = $block->getData('view_model');
+$product = $block->getProduct();
+if (!$viewModel->isOffered($product)) {
+    return;
+}
+$plans = $viewModel->getPlans($product);
+$lowest = $viewModel->getLowestMonthly($plans);
+$format = static fn (?float $amount): string => $amount === null ? '' : $viewModel->formatPrice($amount);
+?>
+<details class="tn-installment" data-role="tn-installment"<?= $plans ? '' : ' hidden' ?>>
+    <summary class="tn-installment__summary">
+        <?= $escaper->escapeHtml(__('Pay in installments from')) ?>
+        <strong data-role="lowest"><?= $escaper->escapeHtml($format($lowest)) ?></strong><?=
+            $escaper->escapeHtml(__('/month')) ?>
+    </summary>
+    <table class="tn-installment__table">
+        <caption class="tn-installment__caption"><?= $escaper->escapeHtml(__('Installment plans')) ?></caption>
+        <thead>
+            <tr>
+                <th scope="col"><?= $escaper->escapeHtml(__('Term')) ?></th>
+                <th scope="col"><?= $escaper->escapeHtml(__('Per month')) ?></th>
+                <th scope="col"><?= $escaper->escapeHtml(__('Interest rate')) ?></th>
+                <th scope="col"><?= $escaper->escapeHtml(__('Total to pay')) ?></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($viewModel->getTerms() as $months => $rate): ?>
+            <tr data-months="<?= (int)$months ?>">
+                <th scope="row"><?= $escaper->escapeHtml(__('%1 months', $months)) ?></th>
+                <td data-role="monthly"><?= $escaper->escapeHtml($format($plans[$months]['monthly'] ?? null)) ?></td>
+                <td>
+                    <?php if ($rate > 0): ?>
+                        <?= $escaper->escapeHtml(__('%1%/month', $rate)) ?>
+                    <?php else: ?>
+                        <span class="tn-installment__free"><?= $escaper->escapeHtml(__('0% interest')) ?></span>
+                    <?php endif; ?>
+                </td>
+                <td data-role="total"><?= $escaper->escapeHtml($format($plans[$months]['total'] ?? null)) ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <p class="tn-installment__note"><?= $escaper->escapeHtml(
+        __('For reference only, calculated with flat interest on the current price.')
+    ) ?></p>
+</details>
+<script type="text/x-magento-init">
+<?= /* @noEscape */ json_encode(['[data-role=tn-installment]' => [
+    'TechNest_Installment/js/installment' => $viewModel->getJsConfig($product),
+]], JSON_THROW_ON_ERROR) ?>
+</script>

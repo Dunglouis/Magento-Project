@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="technest_cancel_stale_transfers" instance="TechNest\Automation\Cron\CancelStaleTransfers" method="execute">
+            <schedule>*/30 * * * *</schedule>
+        </job>
+        <job name="technest_expire_warranties" instance="TechNest\Automation\Cron\ExpireWarranties" method="execute">
+            <schedule>10 0 * * *</schedule>
+        </job>
+        <job name="technest_cleanup_flash_sale" instance="TechNest\Automation\Cron\CleanupFlashSale" method="execute">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+    </group>
+</config>

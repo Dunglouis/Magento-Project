@@ -1,0 +1,79 @@
+<?php
+/**
+ * Warranty lookup form and result
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \TechNest\Warranty\ViewModel\Lookup $viewModel
+ */
+$viewModel = $block->getData('view_model');
+$warranty = $viewModel->getWarranty();
+$error = $viewModel->getError();
+?>
+<div class="tn-warranty">
+    <p class="tn-warranty__intro">
+        <?= $escaper->escapeHtml(
+            __('Enter the serial number printed on your warranty card or listed under My Warranties.')
+        ) ?>
+    </p>
+    <form class="form tn-warranty__form" method="get" action="<?= $escaper->escapeUrl($viewModel->getActionUrl()) ?>">
+        <div class="field required">
+            <label class="label" for="tn-warranty-serial">
+                <span><?= $escaper->escapeHtml(__('Serial Number')) ?></span>
+            </label>
+            <div class="control">
+                <input type="text" id="tn-warranty-serial" name="serial" class="input-text" required
+                       maxlength="32" autocomplete="off" placeholder="TN-2610-7KQ3ZP"
+                       value="<?= $escaper->escapeHtmlAttr($viewModel->getSerial()) ?>">
+            </div>
+        </div>
+        <div class="actions-toolbar">
+            <button type="submit" class="action primary"><span><?= $escaper->escapeHtml(__('Check')) ?></span></button>
+        </div>
+    </form>
+
+    <?php if ($error): ?>
+        <div class="message error"><div><?= $escaper->escapeHtml($error) ?></div></div>
+    <?php elseif ($warranty): ?>
+        <?php $daysLeft = $viewModel->getDaysLeft($warranty); ?>
+        <div class="tn-warranty__result tn-warranty__result--<?= $escaper->escapeHtmlAttr($warranty->getStatus()) ?>">
+            <h2 class="tn-warranty__product"><?= $escaper->escapeHtml($warranty->getProductName()) ?></h2>
+            <p class="tn-warranty__status">
+                <?= $escaper->escapeHtml($viewModel->getStatusLabel($warranty)) ?>
+                <?php if ($daysLeft > 0): ?>
+                    · <?= $escaper->escapeHtml(__('%1 days left', $daysLeft)) ?>
+                <?php endif; ?>
+            </p>
+            <table class="data table tn-warranty__table">
+                <tbody>
+                <tr>
+                    <th scope="row"><?= $escaper->escapeHtml(__('Serial Number')) ?></th>
+                    <td><?= $escaper->escapeHtml($warranty->getSerial()) ?></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?= $escaper->escapeHtml(__('Product Code')) ?></th>
+                    <td><?= $escaper->escapeHtml($warranty->getSku()) ?></td>
+                </tr>
+                <?php if ($warranty->getCustomerName()): ?>
+                    <tr>
+                        <th scope="row"><?= $escaper->escapeHtml(__('Owner')) ?></th>
+                        <td><?= $escaper->escapeHtml($viewModel->maskName($warranty->getCustomerName())) ?></td>
+                    </tr>
+                <?php endif; ?>
+                <tr>
+                    <th scope="row"><?= $escaper->escapeHtml(__('Cover')) ?></th>
+                    <td><?= $escaper->escapeHtml(__('%1 months', $warranty->getMonths())) ?></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?= $escaper->escapeHtml(__('Starts')) ?></th>
+                    <td><?= $escaper->escapeHtml($viewModel->formatDate($warranty->getStartsAt())) ?></td>
+                </tr>
+                <tr>
+                    <th scope="row"><?= $escaper->escapeHtml(__('Ends')) ?></th>
+                    <td><?= $escaper->escapeHtml($viewModel->formatDate($warranty->getExpiresAt())) ?></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    <?php endif; ?>
+</div>
