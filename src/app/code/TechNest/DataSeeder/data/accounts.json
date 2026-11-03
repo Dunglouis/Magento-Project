@@ -10,6 +10,7 @@
             "street": ["1 Tràng Tiền"],
             "city": "Hà Nội",
             "region": "Hà Nội",
+            "region_code": "HN",
             "postcode": "100000",
             "country_id": "VN"
         }

@@ -20,6 +20,7 @@
             <module name="Magento_CatalogRule"/>
             <module name="Magento_OfflineShipping"/>
             <module name="Magento_Customer"/>
+            <module name="Magento_Directory"/>
             <module name="Magento_Swatches"/>
             <module name="Magento_Review"/>
         </sequence>

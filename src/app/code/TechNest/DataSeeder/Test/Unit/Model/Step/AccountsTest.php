@@ -7,6 +7,7 @@ use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Api\Data\AddressInterfaceFactory;
 use Magento\Customer\Api\Data\CustomerInterfaceFactory;
 use Magento\Customer\Api\Data\RegionInterfaceFactory;
+use Magento\Directory\Model\RegionFactory as DirectoryRegionFactory;
 use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use PHPUnit\Framework\TestCase;
@@ -29,7 +30,8 @@ class AccountsTest extends TestCase
             $this->createStub(CustomerInterfaceFactory::class),
             $this->createStub(AddressInterfaceFactory::class),
             $this->createStub(RegionInterfaceFactory::class),
-            $this->createStub(EncryptorInterface::class)
+            $this->createStub(EncryptorInterface::class),
+            $this->createStub(DirectoryRegionFactory::class)
         );
     }
 

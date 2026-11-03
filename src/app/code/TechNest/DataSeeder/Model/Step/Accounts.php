@@ -7,7 +7,9 @@ use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Api\Data\AddressInterfaceFactory;
 use Magento\Customer\Api\Data\CustomerInterface;
 use Magento\Customer\Api\Data\CustomerInterfaceFactory;
+use Magento\Customer\Api\Data\AddressInterface;
 use Magento\Customer\Api\Data\RegionInterfaceFactory;
+use Magento\Directory\Model\RegionFactory as DirectoryRegionFactory;
 use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Store\Model\StoreManagerInterface;
@@ -17,6 +19,8 @@ use TechNest\DataSeeder\Model\StepInterface;
 
 /**
  * Test/demo customer accounts from data/accounts.json, with a default address and phone number.
+ * The address province comes from its region_code (directory region, used by the regional carrier); addresses
+ * saved without a province get it on the next run.
  * Passwords never live in the repo: each account names an environment variable (env/phpfpm.env);
  * accounts whose variable is empty are skipped. Re-runs reset the password and keep the rest.
  */
@@ -32,6 +36,7 @@ class Accounts implements StepInterface
      * @param AddressInterfaceFactory $addressFactory
      * @param RegionInterfaceFactory $regionFactory
      * @param EncryptorInterface $encryptor
+     * @param DirectoryRegionFactory $directoryRegionFactory
      */
     public function __construct(
         private readonly SeedData $seedData,
@@ -40,7 +45,8 @@ class Accounts implements StepInterface
         private readonly CustomerInterfaceFactory $customerFactory,
         private readonly AddressInterfaceFactory $addressFactory,
         private readonly RegionInterfaceFactory $regionFactory,
-        private readonly EncryptorInterface $encryptor
+        private readonly EncryptorInterface $encryptor,
+        private readonly DirectoryRegionFactory $directoryRegionFactory
     ) {
     }
 
@@ -79,8 +85,14 @@ class Accounts implements StepInterface
                 ->setWebsiteId((int)$store->getWebsiteId())
                 ->setStoreId((int)$store->getId())
                 ->setCustomAttribute('phone_number', $entry['phone_number']);
-            if (!$customer->getAddresses()) {
+            $addresses = $customer->getAddresses() ?: [];
+            if (!$addresses) {
                 $customer->setAddresses([$this->address($entry)]);
+            }
+            foreach ($addresses as $address) {
+                if (!$address->getRegionId()) {
+                    $this->applyRegion($address, $entry['address']);
+                }
             }
             $this->customerRepository->save($customer, $this->encryptor->getHash($password, true));
             $output->writeln(sprintf('  %s %s', $isNew ? 'created' : 'updated', $entry['email']));
@@ -119,21 +131,46 @@ class Accounts implements StepInterface
      * Default billing + shipping address
      *
      * @param array<string,mixed> $entry
-     * @return \Magento\Customer\Api\Data\AddressInterface
+     * @return AddressInterface
      */
-    private function address(array $entry): \Magento\Customer\Api\Data\AddressInterface
+    private function address(array $entry): AddressInterface
     {
         $data = $entry['address'];
-        return $this->addressFactory->create()
+        $address = $this->addressFactory->create()
             ->setFirstname($entry['firstname'])
             ->setLastname($entry['lastname'])
             ->setStreet($data['street'])
             ->setCity($data['city'])
-            ->setRegion($this->regionFactory->create()->setRegion($data['region']))
+            ->setRegion($this->regionFactory->create()->setRegion($data['region']));
+        $this->applyRegion($address, $data);
+        return $address
             ->setPostcode($data['postcode'])
             ->setCountryId($data['country_id'])
             ->setTelephone($entry['phone_number'])
             ->setIsDefaultBilling(true)
             ->setIsDefaultShipping(true);
+    }
+
+    /**
+     * Province from the seed region_code (e.g. "HN"); keeps the plain region text when the code is unknown
+     *
+     * @param AddressInterface $address
+     * @param array<string,mixed> $data seed address
+     * @return void
+     */
+    private function applyRegion(AddressInterface $address, array $data): void
+    {
+        if (empty($data['region_code'])) {
+            return;
+        }
+        $region = $this->directoryRegionFactory->create()->loadByCode($data['region_code'], $data['country_id']);
+        if (!$region->getId()) {
+            return;
+        }
+        $address->setRegionId((int)$region->getId())
+            ->setRegion($this->regionFactory->create()
+                ->setRegionId((int)$region->getId())
+                ->setRegionCode((string)$region->getCode())
+                ->setRegion((string)$region->getName()));
     }
 }
