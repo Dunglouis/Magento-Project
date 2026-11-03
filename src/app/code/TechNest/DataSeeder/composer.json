@@ -18,6 +18,7 @@
         "magento/module-catalog-rule": "*",
         "magento/module-offline-shipping": "*",
         "magento/module-customer": "*",
+        "magento/module-directory": "*",
         "magento/module-swatches": "*",
         "magento/module-review": "*",
         "magento/module-store": "*",

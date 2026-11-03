@@ -128,6 +128,9 @@
         margin: 0 -@indent__xs;
         overflow-x: auto;
         padding: @indent__s @indent__xs @indent__l; // room for the card shadow
+        // Containing block for the cards' positioned children, so they stay clipped by the scroller
+        // (without it the page scrolls sideways on mobile)
+        position: relative;
         scroll-padding: 0 @indent__xs;
         scroll-snap-type: x mandatory;
     }
