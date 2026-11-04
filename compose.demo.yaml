@@ -1,0 +1,62 @@
+## TechNest public demo (Phase 6, see CLAUDE.md section 10).
+##
+## A separate Compose project, run from its own clone of `main` through
+## scripts/demo/compose.sh, never together with the dev stack (not enough RAM).
+## Load order: compose.yaml < compose.healthcheck.yaml < compose.override.yaml
+## < compose.demo.yaml.
+##
+## - The whole ./src is the Magento root: code comes from git, vendor/, pub/media,
+##   pub/static and generated/ are written next to it by composer and bin/magento.
+## - Only nginx HTTPS is published, on 127.0.0.1:8443. Tailscale Funnel on Windows
+##   forwards https://technest.gourami-pirate.ts.net to https+insecure://localhost:8443,
+##   so Magento sees HTTPS through the nginx fastcgi_params.
+## - DB, Valkey, OpenSearch and RabbitMQ publish no ports: Docker port rules bypass
+##   the host firewall.
+
+name: technest-demo
+
+services:
+  app:
+    image: markoshust/magento-nginx:1.28-0
+    ports: !override
+      - "127.0.0.1:8443:8443"
+    volumes: !override
+      - ~/.composer:/var/www/.composer:cached
+      - ./src:/var/www/html
+      - sockdata:/sock
+    restart: unless-stopped
+
+  phpfpm:
+    image: markoshust/magento-php:8.5-fpm-0
+    volumes: !override
+      - ~/.composer:/var/www/.composer:cached
+      - ./src:/var/www/html
+      - sockdata:/sock
+    restart: unless-stopped
+
+  db:
+    image: mariadb:11.8
+    ports: !reset []
+    restart: unless-stopped
+
+  redis:
+    image: valkey/valkey:9.1-alpine
+    ports: !reset []
+    restart: unless-stopped
+
+  opensearch:
+    image: markoshust/magento-opensearch:3-0
+    ports: !reset []
+    restart: unless-stopped
+
+  rabbitmq:
+    image: markoshust/magento-rabbitmq:4.2-0
+    ports: !reset []
+    restart: unless-stopped
+
+  ## Not used by the demo: no Xdebug, real SMTP instead of Mailcatcher
+  phpfpm-xdebug:
+    profiles: [disabled]
+
+  mailcatcher:
+    profiles: [disabled]
