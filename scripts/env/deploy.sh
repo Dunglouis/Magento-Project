@@ -55,6 +55,7 @@ release() {
   tn_magento maintenance:enable &&
     git checkout --quiet --force -B "$TN_BRANCH" "$commit" &&
     tn_composer_install &&
+    tn_nginx_conf &&
     tn_compile_static &&
     if [[ "$upgrade" == upgrade ]]; then tn_magento setup:upgrade --keep-generated; fi &&
     tn_magento cache:flush &&
