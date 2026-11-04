@@ -4,7 +4,8 @@
 #   --branch  clone another branch than the environment's own (to try a feature branch first)
 #
 # 1. Clones the repo into ~/Sites/technest-<env> and copies env/*.env of the dev repo
-#    (Google redirect URI set to the environment URL, admin password reset to "changeme"),
+#    (Google redirect URI set to the environment URL, admin password reset to "changeme";
+#    the Icecat username CONFIG__DEFAULT__TECHNEST_SEEDER__ICECAT__USERNAME must be in it),
 #    then stops: set the admin account in ~/Sites/technest-<env>/env/magento.env and run again.
 # 2. Starts the stack, composer install --no-dev, setup:install with the environment URL,
 #    seeds the TechNest catalog, removes the sample data catalog, production mode.
@@ -41,18 +42,22 @@ main() {
     exit 2
   fi
 
+  # DummyJSON/Icecat answers cached by the dev seeder: same products, no API calls
+  if [[ -d "$dev_dir/src/var/technest_seed" && ! -d src/var/technest_seed ]]; then
+    mkdir -p src/var
+    cp -r "$dev_dir/src/var/technest_seed" src/var/
+  fi
+
   tn_stop_others
   tn_log "Starting the stack"
   tn_compose up -d --wait
 
   tn_log "composer install --no-dev"
   tn_composer_install
-  if [[ ! -f src/nginx.conf ]]; then
-    cp src/nginx.conf.sample src/nginx.conf
-    tn_compose exec -T app nginx -s reload
-  fi
+  tn_nginx_conf
 
-  if [[ ! -f src/app/etc/env.php ]]; then
+  # env.php gets its 'install' date only when setup:install has finished
+  if ! grep -qs "'install'" src/app/etc/env.php; then
     tn_log "setup:install for $TN_BASE_URL"
     setup_install
   fi
