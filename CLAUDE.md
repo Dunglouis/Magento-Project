@@ -172,21 +172,27 @@ Test bắt buộc: PHPUnit unit test cho logic chính (tính trả góp, tính p
 
 ## 9. Git, CI/CD (GitHub)
 
-- Nhánh: `main` (ổn định/deploy), `dev` (tích hợp, nhánh feature tách từ đây), `feature/<ten>`; commit theo Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`), commit nhỏ và thường xuyên.
+- Nhánh theo môi trường (GitLab Flow, chủ dự án đổi ngày 2026-11-04): `feature/<ten>` → PR vào `dev` (tích hợp, stack dev) → PR vào `staging` (stack staging) → PR vào `main` (production, gắn tag `vX.Y.Z`). Code chỉ đi lên một chiều, không commit thẳng vào `staging`/`main`; sửa gấp: `hotfix/<ten>` từ `main` → `main`, rồi merge `main` xuống `staging` và `dev`. Ruleset GitHub `protected-envs` (`main`, `staging`, `dev`): bắt PR, CI xanh, cấm force push/xóa. Commit theo Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`), commit nhỏ và thường xuyên.
 - **CI (GitHub Actions)** khi push/PR: PHPCS, PHPStan, PHPUnit, `setup:di:compile`.
-- **CD** khi merge vào `main` (kiểu pull, chủ dự án đổi ngày 2026-11-03): máy chạy demo tự kiểm tra `origin/main` mỗi 5 phút, có commit mới thì backup DB → maintenance → checkout → `composer install --no-dev` → `setup:upgrade` → compile → deploy static → flush cache → health check; lỗi thì quay về commit trước và khôi phục DB. Không dùng self-hosted runner (repo public).
+- **CD** kiểu pull (chủ dự án đổi ngày 2026-11-03): môi trường đang chạy (staging theo `origin/staging`, production theo `origin/main`) tự kiểm tra nhánh của nó mỗi 5 phút, có commit mới thì backup DB → maintenance → checkout → `composer install --no-dev` → `setup:upgrade` → compile → deploy static → flush cache → health check; lỗi thì quay về commit trước và khôi phục DB. Không dùng self-hosted runner (repo public).
 - Secrets CI lưu ở **GitHub Secrets** (`COMPOSER_AUTH`); secret của demo nằm trong `env/*.env` trên máy chạy demo. `.gitignore` chuẩn Magento.
 - Cấu trúc repo: `app/code`, `app/design`, `brand/`, `docker/`, `docs/`, `scripts/`, `tests/` (unit, e2e, perf), `.github/workflows/`.
 
 ## 10. Triển khai: tự host trên PC + Tailscale Funnel
 
-Chủ dự án đổi ngày 2026-11-03 (Oracle từ chối thẻ, không thuê VPS).
+Chủ dự án đổi ngày 2026-11-03 (Oracle từ chối thẻ, không thuê VPS); 3 môi trường từ 2026-11-04.
 
-- **Máy:** PC Windows + WSL2 + Docker Desktop (7.8GB RAM) của chủ dự án. Stack demo là Compose project riêng `technest-demo` (`compose.demo.yaml`, clone riêng nhánh `main` ở `~/Sites/technest-demo`, volume riêng); không chạy cùng lúc với stack dev vì thiếu RAM.
-- **Mạng:** chỉ mở nginx HTTPS ở `127.0.0.1:8443`; DB/Valkey/OpenSearch/RabbitMQ không mở cổng ra máy chủ.
-- **Domain/HTTPS:** **Tailscale Funnel** (cài trên Windows) công khai `https://technest.gourami-pirate.ts.net` và tự cấp chứng chỉ, chuyển tiếp vào `https+insecure://localhost:8443`. Đặt Magento `base_url` về domain này. Không dùng DuckDNS/Caddy.
-- **Rủi ro cần biết:** (1) demo chỉ truy cập được khi PC bật, không ngủ và đang chạy `scripts/demo/up.sh`; (2) khi demo chạy thì không làm dev được; (3) sao lưu DB định kỳ (`mysqldump`) ra `backups/demo/`.
-- Dữ liệu demo: chạy `technest:seed:run` trên stack demo, tạo tài khoản demo (khách + admin phân quyền) và ghi vào `docs/`, **không** ghi mật khẩu thật vào repo.
+| Môi trường | Nhánh | Thư mục | Compose project | URL |
+|---|---|---|---|---|
+| Dev | `dev` (và feature) | `~/Sites/magento` | `magento` | `https://technest.test` (developer mode) |
+| Staging | `staging` | `~/Sites/technest-staging` | `technest-staging` | `https://localhost:9443` (production mode, chỉ máy chủ dự án) |
+| Production | `main` | `~/Sites/technest-production` | `technest-production` | `https://technest.gourami-pirate.ts.net` (production mode, công khai) |
+
+- **Máy:** PC Windows + WSL2 + Docker Desktop (7.8GB RAM) của chủ dự án. Staging và production dùng chung `compose.deploy.yaml` (gọi qua `scripts/env/compose.sh <staging|production>`), mỗi môi trường một clone, DB, media, `env.php` riêng. Mỗi lúc chỉ chạy **một** môi trường vì thiếu RAM.
+- **Mạng:** chỉ mở nginx HTTPS ở `127.0.0.1` (staging `9443`, production `8443`); DB/Valkey/OpenSearch/RabbitMQ không mở cổng ra máy chủ.
+- **Domain/HTTPS:** **Tailscale Funnel** (cài trên Windows) chỉ cho production: công khai `https://technest.gourami-pirate.ts.net`, tự cấp chứng chỉ, chuyển tiếp vào `https+insecure://localhost:8443`. Không dùng DuckDNS/Caddy.
+- **Rủi ro cần biết:** (1) production chỉ truy cập được khi PC bật, không ngủ và đang chạy `scripts/env/up.sh production`; (2) khi staging/production chạy thì không làm dev được; (3) sao lưu DB định kỳ (`mysqldump`) ra `backups/<môi trường>/`.
+- Dữ liệu demo: chạy `technest:seed:run` trên từng môi trường, tạo tài khoản demo (khách + admin phân quyền) và ghi vào `docs/`, **không** ghi mật khẩu thật vào repo.
 
 ## 11. Kế hoạch theo phase (≈ 12 buổi x 2h)
 
@@ -198,7 +204,7 @@ Chủ dự án đổi ngày 2026-11-03 (Oracle từ chối thẻ, không thuê V
 | 3. Khuyến mãi, checkout, tài khoản | 6-7 | Price rules, flash sale + countdown, free ship, COD/Bank transfer, order status, SMTP thật + email VI/EN, Google login |
 | 4. Custom module | 8-9 | Warranty (CRUD/API/ACL), Installment, ProductSpecs, Shipping, Automation, QuickView; test |
 | 5. Hiệu năng | 10 | Production mode, cache, k6, báo cáo trước/sau |
-| 6. Deploy | 11 | Stack demo trên PC + Tailscale Funnel, HTTPS, CD kiểu pull, dữ liệu demo, tài khoản demo |
+| 6. Deploy | 11 | Staging + production trên PC, Tailscale Funnel, HTTPS, CD kiểu pull, dữ liệu demo, tài khoản demo |
 | 7. Tài liệu | 12 | README, sơ đồ kiến trúc (Mermaid), tài liệu nghiệp vụ chuẩn BA (mục tiêu, phạm vi, yêu cầu chức năng/phi chức năng, use case, luồng nghiệp vụ, quy tắc nghiệp vụ, ma trận truy vết, test case) |
 
 Nếu trễ tiến độ, cắt theo thứ tự: QuickView → GraphQL → Varnish → Virtual product → Grouped.
@@ -234,7 +240,7 @@ Nếu trễ tiến độ, cắt theo thứ tự: QuickView → GraphQL → Varni
 |---|---|---|
 | Phase 3 (Google login) | **Google OAuth Client ID + Secret**: Google Cloud Console → tạo project → OAuth consent screen (External, Testing; thêm email người xem demo vào Test users, hoặc Publish) → Credentials → OAuth client ID loại *Web application*. Redirect URI: dev `http://localhost:<cổng>/technest_google/oauth/callback`, prod `https://<domain>/technest_google/oauth/callback` | Tự nhập vào Admin config hoặc `.env`, **không dán vào chat/commit** |
 | Phase 3 (email thật) | **Gmail App Password** (bật 2-Step Verification → Security → App passwords) hoặc tài khoản Brevo; địa chỉ gửi đi | Tự nhập vào Admin config hoặc `.env` |
-| Phase 6 (deploy) | Tài khoản **Tailscale** (miễn phí), Tailscale cho Windows, bật MagicDNS + HTTPS Certificates + quyền Funnel; hostname ts.net; redirect URI Google cho domain ts.net | Hostname nói trong chat (đã có: `technest.gourami-pirate.ts.net`) |
+| Phase 6 (deploy) | Tài khoản **Tailscale** (miễn phí), Tailscale cho Windows, bật MagicDNS + HTTPS Certificates + quyền Funnel; hostname ts.net; redirect URI Google cho domain ts.net và `https://localhost:9443` (staging) | Hostname nói trong chat (đã có: `technest.gourami-pirate.ts.net`) |
 
 ## 14. Tiến độ (agent cập nhật)
 
