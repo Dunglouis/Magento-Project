@@ -1,0 +1,54 @@
+//
+//  Home page, Apple Store style: headline, category row, horizontal shelves, quick links
+//  (CMS content from TechNest_DataSeeder data/cms/home.*.html, components in _tn-components.less)
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .cms-index-index {
+        .page-main {
+            padding-top: @indent__base;
+        }
+
+        // Page heading
+        .tn-store-head {
+            display: flex;
+            flex-direction: column;
+            gap: @indent__m;
+            margin: @indent__m 0 @indent__xl;
+
+            .tn-headline {
+                font-size: 3.2rem;
+                max-width: 14em;
+            }
+        }
+
+        .tn-store-head__help {
+            align-items: center;
+            display: flex;
+            gap: @indent__s;
+
+            p {
+                font-size: 1.4rem;
+                font-weight: @font-weight__semibold;
+                line-height: 1.4;
+                margin: 0;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .cms-index-index {
+        .tn-store-head {
+            align-items: flex-end;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: @indent__l;
+
+            .tn-headline {
+                font-size: 4.8rem;
+                margin: 0;
+            }
+        }
+    }
+}

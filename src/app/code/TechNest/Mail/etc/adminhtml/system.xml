@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="technest_mail" translate="label" sortOrder="300" showInDefault="1">
+            <label>Mail (SMTP)</label>
+            <tab>technest</tab>
+            <resource>TechNest_Mail::config</resource>
+            <group id="smtp" translate="label comment" sortOrder="10" showInDefault="1">
+                <label>SMTP Server</label>
+                <comment>Every field can also come from env/phpfpm.env, e.g. CONFIG__DEFAULT__TECHNEST_MAIL__SMTP__HOST. A value set there wins over this page.</comment>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1">
+                    <label>Send Through SMTP</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="host" translate="label comment" type="text" sortOrder="20" showInDefault="1">
+                    <label>Host</label>
+                    <comment>Gmail: smtp.gmail.com. Brevo: smtp-relay.brevo.com. Docker dev: mailcatcher.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="port" translate="label comment" type="text" sortOrder="30" showInDefault="1">
+                    <label>Port</label>
+                    <comment>587 with TLS (STARTTLS) or 465 with SSL. Port 25 is blocked by most cloud hosts.</comment>
+                    <validate>validate-digits</validate>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="encryption" translate="label" type="select" sortOrder="40" showInDefault="1">
+                    <label>Encryption</label>
+                    <source_model>TechNest\Mail\Model\Config\Source\Encryption</source_model>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="auth" translate="label" type="select" sortOrder="50" showInDefault="1">
+                    <label>Authentication</label>
+                    <source_model>TechNest\Mail\Model\Config\Source\Auth</source_model>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="username" translate="label" type="text" sortOrder="60" showInDefault="1">
+                    <label>Username</label>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="password" translate="label comment" type="obscure" sortOrder="70" showInDefault="1">
+                    <label>Password</label>
+                    <comment>For Gmail use an App Password, not the account password.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="from_email" translate="label comment" type="text" sortOrder="80" showInDefault="1">
+                    <label>Sender Email</label>
+                    <comment>Replaces the address of every store sender (the name stays). Leave empty to keep Stores > Configuration > General > Store Email Addresses. Gmail only accepts its own address here.</comment>
+                    <validate>validate-email</validate>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,145 @@
+//
+//  Quick view: button on the product cards of the grid and the modal (TechNest_QuickView)
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .page-products .product-item-info {
+        position: relative;
+    }
+
+    // Pill over the top right corner of the photo; always shown on touch screens, on hover elsewhere
+    .page-products .product-item-info .tn-quickview-trigger {
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        background: fade(@tn-bg-alt, 92%);
+        border: 1px solid @tn-border;
+        border-radius: 980px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, .08);
+        color: @tn-ink;
+        font-size: 1.2rem;
+        font-weight: @font-weight__semibold;
+        padding: 6px 12px;
+        position: absolute;
+        right: @indent__s;
+        top: @indent__s;
+        transition: opacity 200ms @tn-ease, transform 200ms @tn-ease;
+        z-index: 2;
+
+        &:hover,
+        &:focus {
+            background: @tn-bg;
+            border-color: @tn-accent;
+            color: @tn-accent;
+        }
+    }
+
+    @media (hover: hover) {
+        .page-products .product-item-info .tn-quickview-trigger {
+            opacity: 0;
+            transform: translateY(-4px);
+        }
+
+        .page-products .product-item-info:hover .tn-quickview-trigger,
+        .page-products .product-item-info .tn-quickview-trigger:focus {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .tn-quickview-modal {
+        .modal-inner-wrap {
+            border-radius: @tn-card__radius;
+            max-width: 880px;
+        }
+
+        .modal-header {
+            padding-bottom: 0;
+        }
+    }
+
+    .tn-quickview {
+        &__loading {
+            color: @tn-muted;
+            padding: @indent__xl 0;
+            text-align: center;
+        }
+
+        &__body {
+            display: grid;
+            gap: @indent__l;
+        }
+
+        &__media {
+            align-items: center;
+            background: @tn-bg-alt;
+            border-radius: @tn-radius-sm;
+            display: flex;
+            justify-content: center;
+            padding: @indent__base;
+
+            img {
+                max-height: 340px;
+                mix-blend-mode: multiply;
+                object-fit: contain;
+                width: 100%;
+            }
+        }
+
+        &__name {
+            font-size: 2.4rem;
+            font-weight: @font-weight__semibold;
+            line-height: 1.2;
+            margin: 0 0 @indent__s;
+        }
+
+        &__price .price {
+            font-size: 2.2rem;
+            font-weight: @font-weight__semibold;
+        }
+
+        &__summary {
+            color: @tn-muted;
+            line-height: 1.5;
+            margin: @indent__s 0 @indent__base;
+        }
+
+        &__specs {
+            display: grid;
+            font-size: 1.4rem;
+            gap: 6px @indent__base;
+            grid-template-columns: max-content 1fr;
+            margin: 0 0 @indent__base;
+
+            dt {
+                color: @tn-muted;
+                font-weight: @font-weight__regular;
+            }
+
+            dd {
+                margin: 0;
+            }
+        }
+
+        &__actions {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: @indent__s @indent__base;
+
+            form {
+                margin: 0;
+            }
+        }
+
+        &__more {
+            font-weight: @font-weight__semibold;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .tn-quickview__body {
+        align-items: start;
+        grid-template-columns: 1fr 1fr;
+    }
+}

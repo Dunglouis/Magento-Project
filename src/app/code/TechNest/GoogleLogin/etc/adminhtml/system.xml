@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="technest_google" translate="label" sortOrder="310" showInDefault="1">
+            <label>Google Login</label>
+            <tab>technest</tab>
+            <resource>TechNest_GoogleLogin::config</resource>
+            <group id="general" translate="label comment" sortOrder="10" showInDefault="1">
+                <label>Sign in with Google</label>
+                <comment>Google Cloud Console > APIs &amp; Services > Credentials > OAuth client ID (Web application). Fields can also come from env/phpfpm.env, e.g. CONFIG__DEFAULT__TECHNEST_GOOGLE__GENERAL__CLIENT_ID.</comment>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="client_id" translate="label" type="text" sortOrder="20" showInDefault="1">
+                    <label>Client ID</label>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="client_secret" translate="label" type="obscure" sortOrder="30" showInDefault="1">
+                    <label>Client Secret</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="redirect_uri" translate="label comment" type="text" sortOrder="40" showInDefault="1">
+                    <label>Redirect URI</label>
+                    <comment>Must match an "Authorized redirect URI" of the OAuth client. Leave empty for {store URL}/technest_google/oauth/callback. Docker dev: http://localhost/technest_google/oauth/callback (Google refuses .test domains).</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

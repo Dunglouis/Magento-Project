@@ -1,0 +1,35 @@
+<?php
+/**
+ * Specification sheet: one table, a heading row per attribute group
+ *
+ * @var \Magento\Catalog\Block\Product\View\Attributes $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+/** @var \TechNest\ProductSpecs\ViewModel\Specs $viewModel */
+$viewModel = $block->getData('view_model');
+$groups = $viewModel->getGroups($block->getProduct());
+if (!$groups) {
+    return;
+}
+?>
+<div class="additional-attributes-wrapper table-wrapper tn-specs">
+    <table class="data table additional-attributes" id="product-attribute-specs-table">
+        <caption class="table-caption"><?= $escaper->escapeHtml(__('Specifications')) ?></caption>
+        <?php foreach ($groups as $group): ?>
+            <tbody>
+                <?php if (count($groups) > 1): ?>
+                    <tr class="tn-specs__group">
+                        <th colspan="2" scope="rowgroup"><?= $escaper->escapeHtml(__($group['label'])) ?></th>
+                    </tr>
+                <?php endif; ?>
+                <?php foreach ($group['rows'] as $row): ?>
+                    <tr data-code="<?= $escaper->escapeHtmlAttr($row['code']) ?>">
+                        <th class="col label" scope="row"><?= $escaper->escapeHtml($row['label']) ?></th>
+                        <td class="col data" data-th="<?= $escaper->escapeHtmlAttr($row['label']) ?>"><?=
+                            $escaper->escapeHtml($row['value']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        <?php endforeach; ?>
+    </table>
+</div>

@@ -1,0 +1,19 @@
+{
+    "type": "page",
+    "identifier": "about-us",
+    "page_layout": "1column",
+    "stores": {
+        "en": {
+            "title": "About TechNest",
+            "content_heading": "About TechNest",
+            "meta_description": "TechNest is an electronics store for laptops, phones, PCs and accessories. Technology, simplified.",
+            "template": "about-us.en.html"
+        },
+        "vi": {
+            "title": "Về TechNest",
+            "content_heading": "Về TechNest",
+            "meta_description": "TechNest là cửa hàng laptop, điện thoại, PC và phụ kiện. Công nghệ, gọn gàng.",
+            "template": "about-us.vi.html"
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "name": "technest/module-cart-select",
+    "description": "TechNest cart: tick the cart items to buy; totals, checkout and the order only use the ticked ones",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/module-quote": "*",
+        "magento/module-checkout": "*",
+        "magento/module-customer": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {"TechNest\\CartSelect\\": ""}
+    }
+}

@@ -1,0 +1,60 @@
+<?php
+/**
+ * Quick view modal content, loaded by js/quickview from /quickview/product/view
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+/** @var \TechNest\QuickView\ViewModel\QuickView $viewModel */
+$viewModel = $block->getData('view_model');
+/** @var \Magento\Catalog\Model\Product $product */
+$product = $block->getData('product');
+$name = (string)$product->getName();
+$summary = $viewModel->getSummary($product);
+$specs = $viewModel->getKeySpecs($product);
+?>
+<div class="tn-quickview__body" data-product-id="<?= (int)$product->getId() ?>">
+    <div class="tn-quickview__media">
+        <img src="<?= $escaper->escapeUrl($viewModel->getImageUrl($product)) ?>"
+             alt="<?= $escaper->escapeHtmlAttr($name) ?>" loading="lazy"/>
+    </div>
+    <div class="tn-quickview__info">
+        <h2 class="tn-quickview__name"><?= $escaper->escapeHtml($name) ?></h2>
+        <div class="tn-quickview__price"><?= /* @noEscape */ $viewModel->getPriceHtml($product) ?></div>
+        <?php if ($summary !== ''): ?>
+            <p class="tn-quickview__summary"><?= $escaper->escapeHtml($summary) ?></p>
+        <?php endif; ?>
+        <?php if ($specs): ?>
+            <dl class="tn-quickview__specs">
+                <?php foreach ($specs as $row): ?>
+                    <dt><?= $escaper->escapeHtml((string)$row['label']) ?></dt>
+                    <dd><?= $escaper->escapeHtml((string)$row['value']) ?></dd>
+                <?php endforeach; ?>
+            </dl>
+        <?php endif; ?>
+        <div class="tn-quickview__actions">
+            <?php if ($viewModel->canAddDirectly($product)): ?>
+                <form action="<?= $escaper->escapeUrl($viewModel->getAddToCartUrl($product)) ?>" method="post"
+                      data-role="tocart-form" data-product-sku="<?= $escaper->escapeHtmlAttr($product->getSku()) ?>"
+                      data-mage-init='{"catalogAddToCart": {}}'>
+                    <input type="hidden" name="product" value="<?= (int)$product->getId() ?>"/>
+                    <input type="hidden" name="qty" value="1"/>
+                    <input type="hidden" name="form_key"
+                           value="<?= $escaper->escapeHtmlAttr($viewModel->getFormKey()) ?>"/>
+                    <button type="submit" class="action tocart primary">
+                        <span><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
+                    </button>
+                </form>
+            <?php elseif ($product->isSalable()): ?>
+                <a class="action primary" href="<?= $escaper->escapeUrl($product->getProductUrl()) ?>">
+                    <span><?= $escaper->escapeHtml(__('Choose options')) ?></span>
+                </a>
+            <?php else: ?>
+                <div class="stock unavailable"><span><?= $escaper->escapeHtml(__('Out of stock')) ?></span></div>
+            <?php endif; ?>
+            <a class="tn-quickview__more" href="<?= $escaper->escapeUrl($product->getProductUrl()) ?>">
+                <?= $escaper->escapeHtml(__('View full details')) ?>
+            </a>
+        </div>
+    </div>
+</div>

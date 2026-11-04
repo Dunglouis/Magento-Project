@@ -1,0 +1,64 @@
+## TechNest staging and production stacks (Phase 6, see CLAUDE.md section 10).
+##
+## One Compose project per environment, each run from its own clone through
+## scripts/env/compose.sh <staging|production>, never together with another
+## stack (not enough RAM). That script sets TN_ENV and TN_HTTPS_PORT.
+## Load order: compose.yaml < compose.healthcheck.yaml < compose.override.yaml
+## < compose.deploy.yaml.
+##
+## - The whole ./src is the Magento root: code comes from git, vendor/, pub/media,
+##   pub/static and generated/ are written next to it by composer and bin/magento.
+## - Only nginx HTTPS is published, on 127.0.0.1:${TN_HTTPS_PORT}. On production,
+##   Tailscale Funnel on Windows forwards https://technest.gourami-pirate.ts.net to
+##   https+insecure://localhost:8443, so Magento sees HTTPS through the nginx
+##   fastcgi_params.
+## - DB, Valkey, OpenSearch and RabbitMQ publish no ports: Docker port rules bypass
+##   the host firewall.
+
+name: technest-${TN_ENV:?run through scripts/env/compose.sh}
+
+services:
+  app:
+    image: markoshust/magento-nginx:1.28-0
+    ports: !override
+      - "127.0.0.1:${TN_HTTPS_PORT:?run through scripts/env/compose.sh}:8443"
+    volumes: !override
+      - ~/.composer:/var/www/.composer:cached
+      - ./src:/var/www/html
+      - sockdata:/sock
+    restart: unless-stopped
+
+  phpfpm:
+    image: markoshust/magento-php:8.5-fpm-0
+    volumes: !override
+      - ~/.composer:/var/www/.composer:cached
+      - ./src:/var/www/html
+      - sockdata:/sock
+    restart: unless-stopped
+
+  db:
+    image: mariadb:11.8
+    ports: !reset []
+    restart: unless-stopped
+
+  redis:
+    image: valkey/valkey:9.1-alpine
+    ports: !reset []
+    restart: unless-stopped
+
+  opensearch:
+    image: markoshust/magento-opensearch:3-0
+    ports: !reset []
+    restart: unless-stopped
+
+  rabbitmq:
+    image: markoshust/magento-rabbitmq:4.2-0
+    ports: !reset []
+    restart: unless-stopped
+
+  ## Not used outside dev: no Xdebug, real SMTP instead of Mailcatcher
+  phpfpm-xdebug:
+    profiles: [disabled]
+
+  mailcatcher:
+    profiles: [disabled]

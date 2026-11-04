@@ -1,0 +1,44 @@
+<?php
+/**
+ * Account menu: the "Welcome, Name!" greeting itself opens the menu (no arrow button).
+ * Based on Magento_Customer::account/customer.phtml; the separate greeting in header.phtml is hidden by CSS
+ * and js/tn-account-greeting.js puts the customer's name here once customer data is loaded.
+ */
+
+/** @var Magento\Customer\Block\Account\Customer $block */
+/** @var Magento\Framework\Escaper $escaper */
+?>
+<?php if ($block->customerLoggedIn()): ?>
+    <li class="customer-welcome">
+        <span class="customer-name"
+              role="button"
+              tabindex="0"
+              aria-haspopup="true"
+              data-mage-init='{"dropdown":{}}'
+              data-toggle="dropdown"
+              data-trigger-keypress-button="true">
+            <?php /* Name filled in by js/tn-account-greeting.js (no knockout inside the dropdown toggle) */ ?>
+            <span class="tn-greeting"
+                  data-greeting="<?= $escaper->escapeHtmlAttr(__('Welcome, %1!', '%1')) ?>"><?=
+                $escaper->escapeHtml(__('Welcome!')) ?></span>
+        </span>
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "customer": {
+                            "component": "Magento_Customer/js/view/customer"
+                        }
+                    }
+                }
+            }
+        }
+        </script>
+        <?php if ($block->getChildHtml()): ?>
+            <div class="customer-menu" data-target="dropdown">
+                <?= $block->getChildHtml() ?>
+            </div>
+        <?php endif; ?>
+    </li>
+<?php endif; ?>

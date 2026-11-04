@@ -1,0 +1,31 @@
+{
+    "technest_warranty": {
+        "column": {
+            "warranty_id": true,
+            "serial": true,
+            "order_id": true,
+            "order_increment_id": true,
+            "sku": true,
+            "product_name": true,
+            "customer_id": true,
+            "customer_email": true,
+            "customer_name": true,
+            "starts_at": true,
+            "months": true,
+            "expires_at": true,
+            "status": true,
+            "note": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "TECHNEST_WARRANTY_STATUS_EXPIRES_AT": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "TECHNEST_WARRANTY_SERIAL": true,
+            "TECHNEST_WARRANTY_ORDER_ID_SALES_ORDER_ENTITY_ID": true,
+            "TECHNEST_WARRANTY_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "name": "technest/module-data-seeder",
+    "description": "TechNest catalog seeder: attributes, categories, products, CMS pages (DummyJSON + seed JSON)",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/module-catalog": "*",
+        "magento/module-configurable-product": "*",
+        "magento/module-bundle": "*",
+        "magento/module-grouped-product": "*",
+        "magento/module-catalog-inventory": "*",
+        "magento/module-cms": "*",
+        "magento/module-widget": "*",
+        "magento/module-catalog-widget": "*",
+        "magento/module-sales-rule": "*",
+        "magento/module-catalog-rule": "*",
+        "magento/module-offline-shipping": "*",
+        "magento/module-customer": "*",
+        "magento/module-directory": "*",
+        "magento/module-swatches": "*",
+        "magento/module-review": "*",
+        "magento/module-store": "*",
+        "technest/module-base": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {"TechNest\\DataSeeder\\": ""}
+    }
+}

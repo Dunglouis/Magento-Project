@@ -1,0 +1,42 @@
+<?php
+/**
+ * Home page flash sale: headline, countdown to the earliest end, then the products as a shelf.
+ * Renders nothing when no product is on flash sale today; tn-countdown.js hides it when the time runs out.
+ */
+
+use Magento\Framework\Escaper;
+use TechNest\Base\Block\Widget\FlashSale;
+
+/** @var Escaper $escaper */
+/** @var FlashSale $block */
+?>
+<?php $endsAt = $block->getEndsAt(); ?>
+<?php if ($endsAt): ?>
+    <section class="tn-shelf-section tn-flash" id="flash-sale" data-tn-countdown-scope>
+        <div class="tn-flash__head">
+            <h2 class="tn-headline">
+                <?= $escaper->escapeHtml(__('Flash sale.')) ?>
+                <span><?= $escaper->escapeHtml(__('Big savings, for a few days only.')) ?></span>
+            </h2>
+            <div class="tn-countdown tn-countdown--boxes" data-tn-countdown="<?= (int)$endsAt ?>" role="timer"
+                 aria-label="<?= $escaper->escapeHtmlAttr(__('Time left in the flash sale')) ?>">
+                <span class="tn-countdown__label"><?= $escaper->escapeHtml(__('Ends in')) ?></span>
+                <span class="tn-countdown__box">
+                    <span data-part="days">0</span><small><?= $escaper->escapeHtml(__('days')) ?></small>
+                </span>
+                <span class="tn-countdown__box">
+                    <span data-part="hours">00</span><small><?= $escaper->escapeHtml(__('hours')) ?></small>
+                </span>
+                <span class="tn-countdown__box">
+                    <span data-part="minutes">00</span><small><?= $escaper->escapeHtml(__('minutes')) ?></small>
+                </span>
+                <span class="tn-countdown__box">
+                    <span data-part="seconds">00</span><small><?= $escaper->escapeHtml(__('seconds')) ?></small>
+                </span>
+            </div>
+        </div>
+        <?= /* @noEscape */ $block->fetchView(
+            $block->getTemplateFile('Magento_CatalogWidget::product/widget/content/shelf.phtml')
+        ) ?>
+    </section>
+<?php endif; ?>

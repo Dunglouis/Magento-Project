@@ -1,0 +1,263 @@
+{
+    "metrics": {
+        "iterations": {
+            "count": 67,
+            "rate": 0.5179199395227267
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 529,
+            "thresholds": {
+                "rate==0": false
+            },
+            "value": 0
+        },
+        "http_req_duration{expected_response:true}": {
+            "avg": 1837.7336615217362,
+            "med": 1644.980963,
+            "p(90)": 3209.4649821999997,
+            "p(95)": 3807.068386599999,
+            "max": 10874.321737
+        },
+        "http_req_duration{name:search}": {
+            "avg": 1345.5456014328358,
+            "med": 1218.570585,
+            "p(90)": 2170.9144911999997,
+            "p(95)": 2383.7345380999996,
+            "max": 4959.768981,
+            "thresholds": {
+                "max>=0": false
+            }
+        },
+        "http_req_duration{name:category}": {
+            "avg": 1257.2341075970148,
+            "med": 1158.067668,
+            "p(90)": 1733.0978837999999,
+            "p(95)": 2001.1228451999998,
+            "max": 6725.460131,
+            "thresholds": {
+                "max>=0": false
+            }
+        },
+        "http_req_duration{name:product}": {
+            "avg": 1382.129525925373,
+            "med": 1320.44337,
+            "p(90)": 2009.6565959999998,
+            "p(95)": 2202.4849517,
+            "max": 6011.077616,
+            "thresholds": {
+                "max>=0": false
+            }
+        },
+        "http_req_waiting": {
+            "avg": 1793.5381470075602,
+            "med": 1616.642004,
+            "p(90)": 3178.2379486,
+            "p(95)": 3718.8066085999994,
+            "max": 10873.080353
+        },
+        "checks": {
+            "passes": 402,
+            "fails": 0,
+            "thresholds": {
+                "rate==1": false
+            },
+            "value": 1
+        },
+        "http_req_duration{name:cart}": {
+            "p(95)": 2516.9922434,
+            "max": 7482.523895,
+            "avg": 1820.5335325820895,
+            "med": 1746.952553,
+            "p(90)": 2444.2711884,
+            "thresholds": {
+                "max>=0": false
+            }
+        },
+        "http_req_duration{name:place order}": {
+            "avg": 3131.319217731343,
+            "med": 2922.587085,
+            "p(90)": 3959.3486012,
+            "p(95)": 4326.3468966,
+            "max": 10874.321737,
+            "thresholds": {
+                "max>=0": false
+            }
+        },
+        "http_req_waiting{type:page}": {
+            "p(95)": 2085.037545,
+            "max": 3900.384624,
+            "avg": 1215.6479713084575,
+            "med": 1189.625226,
+            "p(90)": 1946.780871,
+            "thresholds": {
+                "p(95)<500": true
+            }
+        },
+        "http_req_blocked": {
+            "avg": 1.0642324725897954,
+            "med": 0.0007,
+            "p(90)": 0.001,
+            "p(95)": 0.004579999999999956,
+            "max": 86.878486
+        },
+        "http_req_duration": {
+            "avg": 1837.7336615217362,
+            "med": 1644.980963,
+            "p(90)": 3209.4649821999997,
+            "p(95)": 3807.068386599999,
+            "max": 10874.321737
+        },
+        "http_req_tls_handshaking": {
+            "p(90)": 0,
+            "p(95)": 0,
+            "max": 69.890215,
+            "avg": 0.7806630378071834,
+            "med": 0
+        },
+        "http_req_duration{name:add to cart}": {
+            "p(90)": 3516.3610267999998,
+            "p(95)": 3865.4796470999986,
+            "max": 6293.496434,
+            "avg": 2242.8837529552243,
+            "med": 2103.762403,
+            "thresholds": {
+                "max>=0": false
+            }
+        },
+        "vus": {
+            "value": 2,
+            "min": 0,
+            "max": 20
+        },
+        "http_reqs": {
+            "count": 529,
+            "rate": 4.089248477724215
+        },
+        "http_req_connecting": {
+            "p(95)": 0,
+            "max": 16.783756,
+            "avg": 0.21918911531190927,
+            "med": 0,
+            "p(90)": 0
+        },
+        "http_req_sending": {
+            "avg": 0.689987415879017,
+            "med": 0.252218,
+            "p(90)": 1.4462442,
+            "p(95)": 2.5688167999999902,
+            "max": 16.900398
+        },
+        "http_req_duration{name:shipping}": {
+            "avg": 2578.538467761194,
+            "med": 2558.116469,
+            "p(90)": 3422.2185743999994,
+            "p(95)": 3752.203068,
+            "max": 7088.289926,
+            "thresholds": {
+                "max>=0": false
+            }
+        },
+        "http_req_receiving": {
+            "avg": 43.50552709829871,
+            "med": 0.285715,
+            "p(90)": 51.03137519999999,
+            "p(95)": 85.57849959999989,
+            "max": 3612.52839
+        },
+        "data_sent": {
+            "count": 212879,
+            "rate": 1645.5862508307246
+        },
+        "data_received": {
+            "count": 31279010,
+            "rate": 241791.38757508603
+        },
+        "vus_max": {
+            "min": 20,
+            "max": 20,
+            "value": 20
+        },
+        "iteration_duration": {
+            "avg": 19263.050727656704,
+            "med": 19086.800831,
+            "p(90)": 22372.1161098,
+            "p(95)": 23649.9555219,
+            "max": 25549.707103
+        }
+    },
+    "setup_data": {
+        "tokens": [
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjksInV0eXBpZCI6MywiaWF0IjoxNzkzNjMyNDYxLCJleHAiOjE3OTM2MzYwNjF9.YB8l_4pxIYHsBpEsNWFwCBZRWdbVTqH1oIbpE7NX-aw",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjEwLCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ2OSwiZXhwIjoxNzkzNjM2MDY5fQ.hCSIj3GvOxNYI8jBVRZsENou9yhGwWPp_lO7hMk6pa0",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjExLCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ3MywiZXhwIjoxNzkzNjM2MDczfQ.YEgczo4eoSW7GlxM6tM8HINpLwkopl17gW_bMcWBvYc",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjEyLCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ3NCwiZXhwIjoxNzkzNjM2MDc0fQ.uCh4_u2ULFkDfWOt7q36yjoimo3SVQuYKjp2utqIAE4",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjEzLCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ3NSwiZXhwIjoxNzkzNjM2MDc1fQ.oXde1vsJgvaZycxyPy0e64lkfOmgsnjoaOPGbyMG-4Q",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjE0LCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ3NSwiZXhwIjoxNzkzNjM2MDc1fQ.ZBTimP-hE3gqNh5vkLl0OPKXSf3T5dtL27IEsiOgyzA",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjE1LCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ3NiwiZXhwIjoxNzkzNjM2MDc2fQ.ndF3Cp0t7zlg--hGib5FPMAql-46fsJNsbOlqFZskdo",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjE2LCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ3NiwiZXhwIjoxNzkzNjM2MDc2fQ.kjphMIJzZ_AMR_sHU84-LZ6Q3a4A8ZFWyKhKlxirieo",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjE3LCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ3NywiZXhwIjoxNzkzNjM2MDc3fQ.KXDjltvMML_HdHtuTeFlSQ8PQ25EK-wddIW8e9rRSC4",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjE4LCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ3OCwiZXhwIjoxNzkzNjM2MDc4fQ.0BLcducPHNk4wgqCvjeYocu33SJiRbGuo8F8sypGNqo",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjE5LCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ3OCwiZXhwIjoxNzkzNjM2MDc4fQ.KTPK0za3rSfRH0xIibQQ8b722lGCfyKB-GAbufYX2LM",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjIwLCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ3OSwiZXhwIjoxNzkzNjM2MDc5fQ.dQL8uJwDvMm3r4l2v_955J79I2w4GO4Bc7KFcgXhWOw",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjIxLCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ4MCwiZXhwIjoxNzkzNjM2MDgwfQ.5uMbiHjfpBYHrt9xE8dKQe-tfvlrsKUZFYk7cIM0cok",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjIyLCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ4MSwiZXhwIjoxNzkzNjM2MDgxfQ.ZMKIySGuAdFdqq_RSuQfDNB6Vwg80_sQH-eGo-1BH4s",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjIzLCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ4MiwiZXhwIjoxNzkzNjM2MDgyfQ.G6rvTkLdCmyFLc__eomStGwHhO9n9F1zCnYyMLOac08",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjI0LCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ4MywiZXhwIjoxNzkzNjM2MDgzfQ.4qO8lGVOMDWUrIchwv_butZZPCfdy9KoG7SaSRydMHg",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjI1LCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ4MywiZXhwIjoxNzkzNjM2MDgzfQ.qeVoxK6-IwxGJhAsI8ycWY7V93lvCBeaj1dObqawSdY",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjI2LCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ4NCwiZXhwIjoxNzkzNjM2MDg0fQ.3VHzyC2BqBSToWVGtyLzPGTqvGucqMSr6jaWFWKcC5A",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjI3LCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ4NCwiZXhwIjoxNzkzNjM2MDg0fQ.mrcq6mj5JkJsvCBi7hyeRzUS0byF7ra0LwUNIPtODEc",
+            "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjI4LCJ1dHlwaWQiOjMsImlhdCI6MTc5MzYzMjQ4NSwiZXhwIjoxNzkzNjM2MDg1fQ.Qw31nCfiJ1zNgZ06HCo_CznS3SSIV2d1HQtUjlz9c7o"
+        ]
+    },
+    "root_group": {
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {},
+        "checks": {
+                "category 200": {
+                    "name": "category 200",
+                    "path": "::category 200",
+                    "id": "af382476c76f88f9c2b10f328c4f6391",
+                    "passes": 67,
+                    "fails": 0
+                },
+                "search 200": {
+                    "name": "search 200",
+                    "path": "::search 200",
+                    "id": "f1430541508c538fdf29bbd85cfe5de5",
+                    "passes": 67,
+                    "fails": 0
+                },
+                "product 200": {
+                    "passes": 67,
+                    "fails": 0,
+                    "name": "product 200",
+                    "path": "::product 200",
+                    "id": "f4785261ac3a9b6f0cec42b8cbb7b4f9"
+                },
+                "add to cart 200": {
+                    "name": "add to cart 200",
+                    "path": "::add to cart 200",
+                    "id": "4820c0770cf6175cdb6a17ed2c0e2bfe",
+                    "passes": 67,
+                    "fails": 0
+                },
+                "shipping 200": {
+                    "path": "::shipping 200",
+                    "id": "d05bd772ae66bf36400822008ac99f8f",
+                    "passes": 67,
+                    "fails": 0,
+                    "name": "shipping 200"
+                },
+                "place order 200": {
+                    "path": "::place order 200",
+                    "id": "2cc593b19d7b1f64131c9a2f52f0e76c",
+                    "passes": 67,
+                    "fails": 0,
+                    "name": "place order 200"
+                }
+            }
+    }
+}

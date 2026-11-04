@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <technest_mail>
+            <smtp>
+                <enabled>0</enabled>
+                <host>smtp.gmail.com</host>
+                <port>587</port>
+                <encryption>tls</encryption>
+                <auth>login</auth>
+                <password backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+            </smtp>
+        </technest_mail>
+    </default>
+</config>

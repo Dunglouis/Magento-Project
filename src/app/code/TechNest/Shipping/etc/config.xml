@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <technest_regional>
+                <active>1</active>
+                <model>TechNest\Shipping\Model\Carrier\Regional</model>
+                <title>TechNest Delivery</title>
+                <name>Regional delivery</name>
+                <price_north>2</price_north>
+                <price_central>4</price_central>
+                <price_south>5</price_south>
+                <price_default>5</price_default>
+                <free_over_threshold>1</free_over_threshold>
+                <sallowspecific>1</sallowspecific>
+                <specificcountry>VN</specificcountry>
+                <showmethod>0</showmethod>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+                <sort_order>15</sort_order>
+            </technest_regional>
+        </carriers>
+    </default>
+</config>
