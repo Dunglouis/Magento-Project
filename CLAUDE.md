@@ -128,7 +128,7 @@ Phương án lai, chạy lặp lại được (idempotent):
 - **SMTP thật** qua module nhỏ `TechNest_Mail`:
   - Trước hết kiểm tra lớp transport mail mà framework Magento 2.4.9 đang dùng (xem `vendor/magento/framework/Mail`), rồi viết plugin/chèn transport SMTP phù hợp. Cấu hình ở Admin hoặc `.env` (host, port, mã hóa, user, password, from).
   - Nhà cung cấp mặc định: **Gmail SMTP** (`smtp.gmail.com`, cổng 587 STARTTLS) với **App Password**. Phương án thay thế: Brevo free (300 mail/ngày).
-  - Dùng cổng 587/465, không dùng cổng 25 (Oracle Cloud chặn cổng 25 outbound).
+  - Dùng cổng 587/465, không dùng cổng 25 (nhiều nhà mạng/cloud chặn cổng 25 outbound).
   - Dev dùng Mailpit; kiểm tra thật bằng cách gửi mail đơn hàng tới hộp thư của chủ dự án.
 
 ### 5.8 Phân quyền admin
@@ -174,18 +174,19 @@ Test bắt buộc: PHPUnit unit test cho logic chính (tính trả góp, tính p
 
 - Nhánh: `main` (ổn định/deploy), `dev` (tích hợp, nhánh feature tách từ đây), `feature/<ten>`; commit theo Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`), commit nhỏ và thường xuyên.
 - **CI (GitHub Actions)** khi push/PR: PHPCS, PHPStan, PHPUnit, `setup:di:compile`.
-- **CD** khi merge vào `main`: SSH vào server demo → pull → `composer install --no-dev` → `setup:upgrade` → compile → deploy static → flush cache → health check, có rollback đơn giản (giữ release trước).
-- Secrets lưu ở **GitHub Secrets** (`DEPLOY_HOST`, `DEPLOY_USER`, `DEPLOY_SSH_KEY`, ...). `.gitignore` chuẩn Magento.
+- **CD** khi merge vào `main` (kiểu pull, chủ dự án đổi ngày 2026-11-03): máy chạy demo tự kiểm tra `origin/main` mỗi 5 phút, có commit mới thì backup DB → maintenance → checkout → `composer install --no-dev` → `setup:upgrade` → compile → deploy static → flush cache → health check; lỗi thì quay về commit trước và khôi phục DB. Không dùng self-hosted runner (repo public).
+- Secrets CI lưu ở **GitHub Secrets** (`COMPOSER_AUTH`); secret của demo nằm trong `env/*.env` trên máy chạy demo. `.gitignore` chuẩn Magento.
 - Cấu trúc repo: `app/code`, `app/design`, `brand/`, `docker/`, `docs/`, `scripts/`, `tests/` (unit, e2e, perf), `.github/workflows/`.
 
-## 10. Triển khai: Oracle Cloud Always Free
+## 10. Triển khai: tự host trên PC + Tailscale Funnel
 
-- **VM:** `VM.Standard.A1.Flex` (ARM64, tối đa 4 OCPU/24GB RAM, dùng khoảng 4 OCPU/16-24GB), Ubuntu LTS aarch64, boot volume 100GB+. Tạo swap 4GB.
-- **Docker:** dùng lại stack docker compose; xác nhận mọi image (PHP 8.5, MariaDB, OpenSearch 3, Valkey, RabbitMQ, nginx) có bản **arm64**; build image PHP trên chính VM nếu cần.
-- **Mạng:** mở cổng 80/443 ở VCN Security List **và** firewall hệ điều hành (iptables/ufw); SSH chỉ bằng key.
-- **Domain/HTTPS:** subdomain miễn phí **DuckDNS** (ví dụ `technest-demo.duckdns.org`) trỏ về IP công khai; **Caddy** làm reverse proxy trước nginx, tự cấp Let's Encrypt. Đặt Magento `base_url` về domain này.
-- **Rủi ro cần biết:** (1) hay báo "Out of capacity" khi tạo VM ARM, cần thử lại/đổi availability domain; (2) Oracle có thể thu hồi instance Always Free nếu rảnh kéo dài, nên giữ có hoạt động hoặc nâng cấp tài khoản lên Pay As You Go (vẫn dùng tài nguyên Always Free miễn phí); (3) sao lưu DB định kỳ bằng cron (`mysqldump`) ra thư mục backup.
-- Dữ liệu demo: chạy `technest:seed:run` trên server, tạo tài khoản demo (khách + admin phân quyền) và ghi vào `docs/`, **không** ghi mật khẩu thật vào repo.
+Chủ dự án đổi ngày 2026-11-03 (Oracle từ chối thẻ, không thuê VPS).
+
+- **Máy:** PC Windows + WSL2 + Docker Desktop (7.8GB RAM) của chủ dự án. Stack demo là Compose project riêng `technest-demo` (`compose.demo.yaml`, clone riêng nhánh `main` ở `~/Sites/technest-demo`, volume riêng); không chạy cùng lúc với stack dev vì thiếu RAM.
+- **Mạng:** chỉ mở nginx HTTPS ở `127.0.0.1:8443`; DB/Valkey/OpenSearch/RabbitMQ không mở cổng ra máy chủ.
+- **Domain/HTTPS:** **Tailscale Funnel** (cài trên Windows) công khai `https://technest.gourami-pirate.ts.net` và tự cấp chứng chỉ, chuyển tiếp vào `https+insecure://localhost:8443`. Đặt Magento `base_url` về domain này. Không dùng DuckDNS/Caddy.
+- **Rủi ro cần biết:** (1) demo chỉ truy cập được khi PC bật, không ngủ và đang chạy `scripts/demo/up.sh`; (2) khi demo chạy thì không làm dev được; (3) sao lưu DB định kỳ (`mysqldump`) ra `backups/demo/`.
+- Dữ liệu demo: chạy `technest:seed:run` trên stack demo, tạo tài khoản demo (khách + admin phân quyền) và ghi vào `docs/`, **không** ghi mật khẩu thật vào repo.
 
 ## 11. Kế hoạch theo phase (≈ 12 buổi x 2h)
 
@@ -197,7 +198,7 @@ Test bắt buộc: PHPUnit unit test cho logic chính (tính trả góp, tính p
 | 3. Khuyến mãi, checkout, tài khoản | 6-7 | Price rules, flash sale + countdown, free ship, COD/Bank transfer, order status, SMTP thật + email VI/EN, Google login |
 | 4. Custom module | 8-9 | Warranty (CRUD/API/ACL), Installment, ProductSpecs, Shipping, Automation, QuickView; test |
 | 5. Hiệu năng | 10 | Production mode, cache, k6, báo cáo trước/sau |
-| 6. Deploy | 11 | Oracle VM, HTTPS, CD, dữ liệu demo, tài khoản demo |
+| 6. Deploy | 11 | Stack demo trên PC + Tailscale Funnel, HTTPS, CD kiểu pull, dữ liệu demo, tài khoản demo |
 | 7. Tài liệu | 12 | README, sơ đồ kiến trúc (Mermaid), tài liệu nghiệp vụ chuẩn BA (mục tiêu, phạm vi, yêu cầu chức năng/phi chức năng, use case, luồng nghiệp vụ, quy tắc nghiệp vụ, ma trận truy vết, test case) |
 
 Nếu trễ tiến độ, cắt theo thứ tự: QuickView → GraphQL → Varnish → Virtual product → Grouped.
@@ -233,8 +234,7 @@ Nếu trễ tiến độ, cắt theo thứ tự: QuickView → GraphQL → Varni
 |---|---|---|
 | Phase 3 (Google login) | **Google OAuth Client ID + Secret**: Google Cloud Console → tạo project → OAuth consent screen (External, Testing; thêm email người xem demo vào Test users, hoặc Publish) → Credentials → OAuth client ID loại *Web application*. Redirect URI: dev `http://localhost:<cổng>/technest_google/oauth/callback`, prod `https://<domain>/technest_google/oauth/callback` | Tự nhập vào Admin config hoặc `.env`, **không dán vào chat/commit** |
 | Phase 3 (email thật) | **Gmail App Password** (bật 2-Step Verification → Security → App passwords) hoặc tài khoản Brevo; địa chỉ gửi đi | Tự nhập vào Admin config hoặc `.env` |
-| Phase 6 (deploy) | Tài khoản **Oracle Cloud** (cần thẻ để xác minh), VM ARM đã tạo hoặc quyền để hướng dẫn tạo, **IP công khai**, cặp SSH key (private key đưa vào GitHub Secrets) | GitHub Secrets; IP nói trong chat |
-| Phase 6 (domain) | Tài khoản **DuckDNS** (miễn phí) và tên subdomain mong muốn | Token đưa vào GitHub Secrets/`.env` của server |
+| Phase 6 (deploy) | Tài khoản **Tailscale** (miễn phí), Tailscale cho Windows, bật MagicDNS + HTTPS Certificates + quyền Funnel; hostname ts.net; redirect URI Google cho domain ts.net | Hostname nói trong chat (đã có: `technest.gourami-pirate.ts.net`) |
 
 ## 14. Tiến độ (agent cập nhật)
 
