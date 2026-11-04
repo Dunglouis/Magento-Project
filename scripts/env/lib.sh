@@ -61,15 +61,26 @@ tn_magento() {
 }
 
 tn_composer_install() {
-  tn_cli composer install --no-dev --no-interaction --no-progress --optimize-autoloader
+  tn_cli composer install --no-dev --no-interaction --no-progress
 }
 
-# Compiled DI and static files for production mode (same themes/locales as scripts/perf-mode.sh)
+# src/nginx.conf from Magento's sample, routed through the upstream map of the nginx image
+# (same rewrite as bin/setup-nginx), then reloaded
+tn_nginx_conf() {
+  # shellcheck disable=SC2016 # $fastcgi_backend is the nginx variable
+  sed -E 's|fastcgi_pass[[:space:]]+fastcgi_backend;|fastcgi_pass $fastcgi_backend;|g' \
+    "$TN_DIR/src/nginx.conf.sample" > "$TN_DIR/src/nginx.conf" &&
+    tn_compose exec -T app nginx -s reload
+}
+
+# Compiled DI and static files for production mode (same themes/locales as scripts/perf-mode.sh),
+# then the optimized class map, built only now so it never lists generated files deleted later
 tn_compile_static() {
   tn_cli rm -rf generated/code generated/metadata var/view_preprocessed pub/static/frontend \
     pub/static/adminhtml pub/static/deployed_version.txt &&
     tn_magento setup:di:compile &&
-    tn_magento setup:static-content:deploy -f --jobs 1 "${TN_THEMES[@]}" "${TN_LOCALES[@]}"
+    tn_magento setup:static-content:deploy -f --jobs 1 "${TN_THEMES[@]}" "${TN_LOCALES[@]}" &&
+    tn_cli composer dump-autoload --no-dev --optimize
 }
 
 # Gzipped mysqldump into $TN_DIR/backups/<kind>-<date>[-<label>].sql.gz, keeps the 7 newest

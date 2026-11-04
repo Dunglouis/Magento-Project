@@ -16,6 +16,10 @@
             <module name="Magento_SalesRule"/>
             <module name="Magento_ConfigurableProduct"/>
             <module name="Magento_CatalogWidget"/>
+            <module name="Magento_Authorization"/>
+            <module name="Magento_Cms"/>
+            <module name="Magento_Customer"/>
+            <module name="Magento_Widget"/>
         </sequence>
     </module>
 </config>
