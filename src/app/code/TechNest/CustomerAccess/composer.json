@@ -1,0 +1,17 @@
+{
+    "name": "technest/module-customer-access",
+    "description": "TechNest customer access: phone number attribute, sign-in required before checkout",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/module-customer": "*",
+        "magento/module-checkout": "*",
+        "magento/module-eav": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {"TechNest\\CustomerAccess\\": ""}
+    }
+}

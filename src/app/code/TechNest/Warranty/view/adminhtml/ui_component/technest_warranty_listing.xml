@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">technest_warranty_listing.technest_warranty_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New Warranty</label>
+                <aclResource>TechNest_Warranty::manage</aclResource>
+            </button>
+        </buttons>
+        <spinner>technest_warranty_columns</spinner>
+        <deps>
+            <dep>technest_warranty_listing.technest_warranty_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="technest_warranty_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">warranty_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>TechNest_Warranty::warranty</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider"
+                      name="technest_warranty_listing_data_source">
+            <settings>
+                <requestFieldName>warranty_id</requestFieldName>
+                <primaryFieldName>warranty_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete the selected warranties?</message>
+                        <title translate="true">Delete</title>
+                    </confirm>
+                    <url path="technest_warranty/warranty/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+    <columns name="technest_warranty_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>warranty_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="warranty_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="serial" sortOrder="20">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Serial Number</label>
+            </settings>
+        </column>
+        <column name="product_name" sortOrder="30">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Product</label>
+            </settings>
+        </column>
+        <column name="sku" sortOrder="40">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">SKU</label>
+            </settings>
+        </column>
+        <column name="order_increment_id" sortOrder="50">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Order #</label>
+            </settings>
+        </column>
+        <column name="customer_name" sortOrder="60">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Customer</label>
+            </settings>
+        </column>
+        <column name="customer_email" sortOrder="70">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Email</label>
+            </settings>
+        </column>
+        <column name="starts_at" class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date" sortOrder="80">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <dateFormat>MMM d, y</dateFormat>
+                <timezone>false</timezone>
+                <label translate="true">Starts</label>
+            </settings>
+        </column>
+        <column name="months" sortOrder="90">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Months</label>
+            </settings>
+        </column>
+        <column name="expires_at" class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date" sortOrder="100">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <dateFormat>MMM d, y</dateFormat>
+                <timezone>false</timezone>
+                <label translate="true">Ends</label>
+            </settings>
+        </column>
+        <column name="status" component="Magento_Ui/js/grid/columns/select" sortOrder="110">
+            <settings>
+                <options class="TechNest\Warranty\Model\Source\Status"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="TechNest\Warranty\Ui\Component\Listing\Column\Actions" sortOrder="200">
+            <settings>
+                <indexField>warranty_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

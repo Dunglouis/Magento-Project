@@ -1,0 +1,25 @@
+<?php
+/**
+ * "Continue with Google" button (sign-in and register pages)
+ */
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use TechNest\GoogleLogin\ViewModel\GoogleButton;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var GoogleButton $viewModel */
+$viewModel = $block->getData('view_model');
+if (!$viewModel->isEnabled()) {
+    return;
+}
+?>
+<div class="tn-google-login">
+    <p class="tn-google-login__divider"><span><?= $escaper->escapeHtml(__('or')) ?></span></p>
+    <a class="tn-google-login__button" href="<?= $escaper->escapeUrl($viewModel->getStartUrl()) ?>">
+        <img class="tn-google-login__icon" alt="" width="20" height="20"
+             src="<?= $escaper->escapeUrl($block->getViewFileUrl('TechNest_GoogleLogin::images/google-g.svg')) ?>">
+        <span><?= $escaper->escapeHtml(__('Continue with Google')) ?></span>
+    </a>
+</div>

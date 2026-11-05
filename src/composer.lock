@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "648583320ed23b18894573d514e6b169",
+    "content-hash": "5d481e078a0ff2bd2e39c192cbe0c79f",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -778,6 +778,41 @@
                 "source": "https://github.com/colinmollenhour/php-redis-session-abstract/tree/v2.1.2"
             },
             "time": "2025-05-05T07:31:11+00:00"
+        },
+        {
+            "name": "community-engineering/language-vi_vn",
+            "version": "0.0.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magento-l10n/language-vi_VN.git",
+                "reference": "07aadad77985e49b5457179b3662aaff8d078270"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magento-l10n/language-vi_VN/zipball/07aadad77985e49b5457179b3662aaff8d078270",
+                "reference": "07aadad77985e49b5457179b3662aaff8d078270",
+                "shasum": ""
+            },
+            "require": {
+                "magento/framework": "*"
+            },
+            "type": "magento2-language",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "vi_VN language package.",
+            "support": {
+                "issues": "https://github.com/magento-l10n/language-vi_VN/issues",
+                "source": "https://github.com/magento-l10n/language-vi_VN/tree/v0.0.10"
+            },
+            "time": "2024-11-06T19:27:52+00:00"
         },
         {
             "name": "composer/ca-bundle",

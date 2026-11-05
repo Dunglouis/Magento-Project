@@ -1,0 +1,20 @@
+{
+    "name": "technest/module-google-login",
+    "description": "TechNest Google Login: sign in with Google (OAuth 2.0 authorization code + PKCE), account linking, phone number after first sign-in",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/module-config": "*",
+        "magento/module-customer": "*",
+        "magento/module-store": "*",
+        "technest/module-base": "*",
+        "technest/module-customer-access": "*",
+        "guzzlehttp/guzzle": "^7.5"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {"TechNest\\GoogleLogin\\": ""}
+    }
+}

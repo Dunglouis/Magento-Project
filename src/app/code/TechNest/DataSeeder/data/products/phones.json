@@ -1,0 +1,689 @@
+[
+ {
+  "sku": "TN-PH-IPHONE-13-PRO",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/flagship"
+  ],
+  "qty": 10,
+  "dummyjson_id": 123,
+  "description": {
+   "vi": "iPhone 13 Pro với màn hình ProMotion 120 Hz, chip A15 Bionic và cụm 3 camera chuyên nghiệp."
+  },
+  "attributes": {
+   "brand": "Apple",
+   "tn_chipset": "Apple A15 Bionic",
+   "tn_camera": "12 MP triple",
+   "tn_battery": "3095 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Silver",
+    "Gold"
+   ],
+   "tn_storage": [
+    "128 GB",
+    {
+     "value": "256 GB",
+     "price": 100
+    },
+    {
+     "value": "512 GB",
+     "price": 300
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-IPHONE-X",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/flagship"
+  ],
+  "qty": 8,
+  "dummyjson_id": 124,
+  "description": {
+   "vi": "iPhone X với màn hình Super Retina OLED tràn viền và Face ID."
+  },
+  "attributes": {
+   "brand": "Apple",
+   "tn_chipset": "Apple A11 Bionic",
+   "tn_camera": "12 MP dual",
+   "tn_battery": "2716 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Space Gray",
+    "Silver"
+   ],
+   "tn_storage": [
+    "64 GB",
+    {
+     "value": "256 GB",
+     "price": 150
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-GALAXY-S10",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/flagship"
+  ],
+  "qty": 8,
+  "dummyjson_id": 133,
+  "description": {
+   "vi": "Galaxy S10 với màn hình Dynamic AMOLED, cảm biến vân tay siêu âm và 3 camera sau."
+  },
+  "attributes": {
+   "brand": "Samsung",
+   "tn_chipset": "Exynos 9820",
+   "tn_camera": "12 + 12 + 16 MP",
+   "tn_battery": "3400 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Black",
+    "White"
+   ],
+   "tn_storage": [
+    "128 GB",
+    {
+     "value": "512 GB",
+     "price": 250
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-GALAXY-S24",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/flagship"
+  ],
+  "price": 799,
+  "qty": 15,
+  "icecat": {
+   "brand": "Samsung",
+   "mpn": "SM-S921BZKDEUB"
+  },
+  "name": {
+   "en": "Samsung Galaxy S24"
+  },
+  "description": {
+   "en": "Compact 6.2-inch flagship with Galaxy AI, Exynos 2400 and a 50 MP triple camera.",
+   "vi": "Flagship nhỏ gọn 6.2 inch với Galaxy AI, Exynos 2400 và 3 camera 50 MP."
+  },
+  "attributes": {
+   "brand": "Samsung",
+   "tn_chipset": "Exynos 2400",
+   "tn_camera": "50 MP triple",
+   "tn_battery": "4000 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Black",
+    "Purple"
+   ],
+   "tn_storage": [
+    "128 GB",
+    {
+     "value": "256 GB",
+     "price": 60
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-GALAXY-S24-ULTRA",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/flagship"
+  ],
+  "price": 1199,
+  "qty": 10,
+  "icecat": {
+   "brand": "Samsung",
+   "mpn": "SM-S928BZKHEUB"
+  },
+  "name": {
+   "en": "Samsung Galaxy S24 Ultra"
+  },
+  "description": {
+   "en": "6.8-inch titanium flagship with S Pen, Snapdragon 8 Gen 3 and a 200 MP camera.",
+   "vi": "Flagship khung titan 6.8 inch có bút S Pen, Snapdragon 8 Gen 3 và camera 200 MP."
+  },
+  "attributes": {
+   "brand": "Samsung",
+   "tn_chipset": "Snapdragon 8 Gen 3",
+   "tn_camera": "200 MP quad",
+   "tn_battery": "5000 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Black",
+    "Silver"
+   ],
+   "tn_storage": [
+    "256 GB",
+    {
+     "value": "512 GB",
+     "price": 120
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-GALAXY-S25",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/flagship"
+  ],
+  "price": 859,
+  "qty": 15,
+  "icecat": {
+   "brand": "Samsung",
+   "mpn": "SM-S931BZKDEUB"
+  },
+  "name": {
+   "en": "Samsung Galaxy S25"
+  },
+  "description": {
+   "en": "6.2-inch Galaxy AI phone with Snapdragon 8 Elite for Galaxy and 12 GB RAM.",
+   "vi": "Điện thoại Galaxy AI 6.2 inch, Snapdragon 8 Elite for Galaxy và RAM 12 GB."
+  },
+  "attributes": {
+   "brand": "Samsung",
+   "tn_chipset": "Snapdragon 8 Elite",
+   "tn_camera": "50 MP triple",
+   "tn_battery": "4000 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Blue",
+    "Silver"
+   ],
+   "tn_storage": [
+    "128 GB",
+    {
+     "value": "256 GB",
+     "price": 60
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-OPPO-F19-PRO-PLUS",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/mid-range"
+  ],
+  "qty": 15,
+  "dummyjson_id": 126,
+  "name": {
+   "en": "Oppo F19 Pro+"
+  },
+  "description": {
+   "vi": "Oppo F19 Pro+ 5G với sạc nhanh 50 W, 4 camera 48 MP và màn hình AMOLED."
+  },
+  "attributes": {
+   "brand": "Oppo",
+   "tn_chipset": "MediaTek Dimensity 800U",
+   "tn_camera": "48 MP quad",
+   "tn_battery": "4310 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Black",
+    "Silver"
+   ],
+   "tn_storage": [
+    "128 GB",
+    {
+     "value": "256 GB",
+     "price": 50
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-REALME-X",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/mid-range"
+  ],
+  "qty": 15,
+  "dummyjson_id": 129,
+  "description": {
+   "vi": "Realme X với camera selfie pop-up và màn hình AMOLED tràn viền."
+  },
+  "attributes": {
+   "brand": "Realme",
+   "tn_chipset": "Snapdragon 710",
+   "tn_camera": "48 MP dual",
+   "tn_battery": "3765 mAh"
+  },
+  "configurable": {
+   "color": [
+    "White",
+    "Blue"
+   ],
+   "tn_storage": [
+    "64 GB",
+    {
+     "value": "128 GB",
+     "price": 40
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-REALME-XT",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/mid-range"
+  ],
+  "qty": 15,
+  "dummyjson_id": 130,
+  "description": {
+   "vi": "Realme XT với camera chính 64 MP và sạc nhanh VOOC 20 W."
+  },
+  "attributes": {
+   "brand": "Realme",
+   "tn_chipset": "Snapdragon 712",
+   "tn_camera": "64 MP quad",
+   "tn_battery": "4000 mAh"
+  },
+  "configurable": {
+   "color": [
+    "White",
+    "Blue"
+   ],
+   "tn_storage": [
+    "64 GB",
+    {
+     "value": "128 GB",
+     "price": 40
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-GALAXY-S8",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/mid-range"
+  ],
+  "qty": 10,
+  "dummyjson_id": 132,
+  "description": {
+   "vi": "Galaxy S8 với màn hình vô cực cong 2 cạnh, chống nước IP68."
+  },
+  "attributes": {
+   "brand": "Samsung",
+   "tn_chipset": "Exynos 8895",
+   "tn_camera": "12 MP",
+   "tn_battery": "3000 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Black",
+    "Silver"
+   ],
+   "tn_storage": [
+    "64 GB",
+    {
+     "value": "128 GB",
+     "price": 50
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-VIVO-S1",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/mid-range"
+  ],
+  "qty": 15,
+  "dummyjson_id": 134,
+  "description": {
+   "vi": "Vivo S1 với 3 camera sau, cảm biến vân tay trong màn hình và pin 4500 mAh."
+  },
+  "attributes": {
+   "brand": "Vivo",
+   "tn_chipset": "MediaTek Helio P65",
+   "tn_camera": "16 MP triple",
+   "tn_battery": "4500 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Blue",
+    "Black"
+   ],
+   "tn_storage": [
+    "64 GB",
+    {
+     "value": "128 GB",
+     "price": 30
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-VIVO-X21",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/mid-range"
+  ],
+  "qty": 10,
+  "dummyjson_id": 136,
+  "description": {
+   "vi": "Vivo X21 với cảm biến vân tay dưới màn hình và camera kép AI."
+  },
+  "attributes": {
+   "brand": "Vivo",
+   "tn_chipset": "Snapdragon 660",
+   "tn_camera": "12 + 5 MP",
+   "tn_battery": "3200 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Black",
+    "Red"
+   ],
+   "tn_storage": [
+    "64 GB",
+    {
+     "value": "128 GB",
+     "price": 50
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-GALAXY-A35",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/mid-range"
+  ],
+  "price": 349,
+  "qty": 20,
+  "icecat": {
+   "brand": "Samsung",
+   "mpn": "SM-A356BZKBEUB"
+  },
+  "name": {
+   "en": "Samsung Galaxy A35 5G"
+  },
+  "description": {
+   "en": "6.6-inch 5G phone with a 120 Hz Super AMOLED screen, IP67 and a 5000 mAh battery.",
+   "vi": "Điện thoại 5G 6.6 inch, màn hình Super AMOLED 120 Hz, chuẩn IP67 và pin 5000 mAh."
+  },
+  "attributes": {
+   "brand": "Samsung",
+   "tn_chipset": "Exynos 1380",
+   "tn_camera": "50 MP triple",
+   "tn_battery": "5000 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Blue",
+    "Purple"
+   ],
+   "tn_storage": [
+    "128 GB",
+    {
+     "value": "256 GB",
+     "price": 40
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-IPHONE-6",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/budget"
+  ],
+  "qty": 10,
+  "dummyjson_id": 122,
+  "description": {
+   "vi": "iPhone 6 thiết kế mỏng bo cong, màn hình Retina HD 4.7 inch."
+  },
+  "attributes": {
+   "brand": "Apple",
+   "tn_chipset": "Apple A8",
+   "tn_camera": "8 MP",
+   "tn_battery": "1810 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Space Gray",
+    "Gold"
+   ],
+   "tn_storage": [
+    "64 GB",
+    {
+     "value": "128 GB",
+     "price": 50
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-OPPO-A57",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/budget"
+  ],
+  "qty": 20,
+  "dummyjson_id": 125,
+  "description": {
+   "vi": "Oppo A57 pin 5000 mAh, sạc nhanh 33 W, giá dễ tiếp cận."
+  },
+  "attributes": {
+   "brand": "Oppo",
+   "tn_chipset": "MediaTek Helio G35",
+   "tn_camera": "13 MP",
+   "tn_battery": "5000 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Black",
+    "Green"
+   ],
+   "tn_storage": [
+    "64 GB",
+    {
+     "value": "128 GB",
+     "price": 30
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-OPPO-K1",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/budget"
+  ],
+  "qty": 15,
+  "dummyjson_id": 127,
+  "description": {
+   "vi": "Oppo K1 với cảm biến vân tay trong màn hình và mặt lưng chuyển màu."
+  },
+  "attributes": {
+   "brand": "Oppo",
+   "tn_chipset": "Snapdragon 660",
+   "tn_camera": "16 + 2 MP",
+   "tn_battery": "3600 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Blue",
+    "Red"
+   ],
+   "tn_storage": [
+    "64 GB",
+    {
+     "value": "128 GB",
+     "price": 40
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-REALME-C35",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/budget"
+  ],
+  "qty": 20,
+  "dummyjson_id": 128,
+  "description": {
+   "vi": "Realme C35 với camera 50 MP, màn hình 6.6 inch và pin 5000 mAh."
+  },
+  "attributes": {
+   "brand": "Realme",
+   "tn_chipset": "Unisoc T616",
+   "tn_camera": "50 MP",
+   "tn_battery": "5000 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Black",
+    "Green"
+   ],
+   "tn_storage": [
+    "64 GB",
+    {
+     "value": "128 GB",
+     "price": 20
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-GALAXY-S7",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/budget"
+  ],
+  "qty": 8,
+  "dummyjson_id": 131,
+  "description": {
+   "vi": "Galaxy S7 nhỏ gọn, chống nước IP68 và camera Dual Pixel chụp đêm tốt."
+  },
+  "attributes": {
+   "brand": "Samsung",
+   "tn_chipset": "Exynos 8890",
+   "tn_camera": "12 MP",
+   "tn_battery": "3000 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Black",
+    "Gold"
+   ],
+   "tn_storage": [
+    "32 GB",
+    {
+     "value": "64 GB",
+     "price": 40
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-VIVO-V9",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/budget"
+  ],
+  "qty": 15,
+  "dummyjson_id": 135,
+  "description": {
+   "vi": "Vivo V9 với màn hình FullView 6.3 inch và camera selfie 24 MP."
+  },
+  "attributes": {
+   "brand": "Vivo",
+   "tn_chipset": "Snapdragon 626",
+   "tn_camera": "16 + 5 MP",
+   "tn_battery": "3260 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Black",
+    "Gold"
+   ],
+   "tn_storage": [
+    "64 GB",
+    {
+     "value": "128 GB",
+     "price": 40
+    }
+   ]
+  }
+ },
+ {
+  "sku": "TN-PH-GALAXY-A15",
+  "type": "configurable",
+  "set": "TechNest Phone",
+  "categories": [
+   "phones/budget"
+  ],
+  "price": 179,
+  "qty": 25,
+  "icecat": {
+   "brand": "Samsung",
+   "mpn": "SM-A155FZKDEUB"
+  },
+  "name": {
+   "en": "Samsung Galaxy A15"
+  },
+  "description": {
+   "en": "Affordable 6.5-inch Super AMOLED phone with a 50 MP camera and a 5000 mAh battery.",
+   "vi": "Điện thoại giá tốt màn hình Super AMOLED 6.5 inch, camera 50 MP và pin 5000 mAh."
+  },
+  "attributes": {
+   "brand": "Samsung",
+   "tn_chipset": "MediaTek Helio G99",
+   "tn_camera": "50 MP triple",
+   "tn_battery": "5000 mAh"
+  },
+  "configurable": {
+   "color": [
+    "Black",
+    "Blue"
+   ],
+   "tn_storage": [
+    "128 GB",
+    {
+     "value": "256 GB",
+     "price": 30
+    }
+   ]
+  }
+ }
+]

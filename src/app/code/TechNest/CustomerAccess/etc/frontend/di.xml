@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Customer\Model\Account\Redirect">
+        <plugin name="technest_login_redirect" type="TechNest\CustomerAccess\Plugin\LoginRedirect"/>
+    </type>
+    <type name="Magento\Customer\Block\Account\AuthenticationPopup">
+        <plugin name="technest_popup_register_url" type="TechNest\CustomerAccess\Plugin\AuthenticationPopupRegisterUrl"/>
+    </type>
+    <type name="Magento\Customer\Block\Form\Login\Info">
+        <plugin name="technest_login_create_account_url" type="TechNest\CustomerAccess\Plugin\LoginPageCreateAccountUrl"/>
+    </type>
+</config>

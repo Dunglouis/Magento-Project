@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- "Laptops. Tagline" heading + subcategory row replace the plain title and description -->
+        <referenceBlock name="page.main.title" remove="true"/>
+        <referenceBlock name="category.description" remove="true"/>
+        <referenceContainer name="columns.top">
+            <block class="Magento\Framework\View\Element\Template" name="technest.category.header"
+                   template="Magento_Catalog::category/tn-header.phtml" before="-">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">TechNest\Base\ViewModel\CategoryHeader</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

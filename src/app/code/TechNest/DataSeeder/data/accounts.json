@@ -1,0 +1,18 @@
+[
+    {
+        "email": "qa@technest.test",
+        "firstname": "QA",
+        "lastname": "TechNest",
+        "store": "vi",
+        "phone_number": "0912345678",
+        "password_env": "TECHNEST_QA_PASSWORD",
+        "address": {
+            "street": ["1 Tràng Tiền"],
+            "city": "Hà Nội",
+            "region": "Hà Nội",
+            "region_code": "HN",
+            "postcode": "100000",
+            "country_id": "VN"
+        }
+    }
+]

@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">technest_warranty_form.technest_warranty_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Warranty</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="TechNest\Warranty\Block\Adminhtml\Warranty\Edit\BackButton"/>
+            <button name="delete" class="TechNest\Warranty\Block\Adminhtml\Warranty\Edit\DeleteButton"/>
+            <button name="save_and_continue" class="TechNest\Warranty\Block\Adminhtml\Warranty\Edit\SaveAndContinueButton"/>
+            <button name="save" class="TechNest\Warranty\Block\Adminhtml\Warranty\Edit\SaveButton"/>
+        </buttons>
+        <namespace>technest_warranty_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>technest_warranty_form.technest_warranty_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="technest_warranty_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="technest_warranty/warranty/save"/>
+        </settings>
+        <dataProvider class="TechNest\Warranty\Model\Warranty\DataProvider" name="technest_warranty_form_data_source">
+            <settings>
+                <requestFieldName>warranty_id</requestFieldName>
+                <primaryFieldName>warranty_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+        <field name="warranty_id" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+            </settings>
+        </field>
+        <field name="serial" formElement="input" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Serial Number</label>
+                <notice translate="true">Format TN-YYMM-XXXXXX. Leave empty to generate one.</notice>
+            </settings>
+        </field>
+        <field name="status" formElement="select" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Status</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="TechNest\Warranty\Model\Source\Status"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="product_name" formElement="input" sortOrder="30">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Product</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="sku" formElement="input" sortOrder="40">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">SKU</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="order_increment_id" formElement="input" sortOrder="50">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Order #</label>
+            </settings>
+        </field>
+        <field name="customer_name" formElement="input" sortOrder="60">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Customer</label>
+            </settings>
+        </field>
+        <field name="customer_email" formElement="input" sortOrder="70">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Email</label>
+                <validation>
+                    <rule name="validate-email" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="starts_at" formElement="date" sortOrder="80">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="outputDateFormat" xsi:type="string">y-MM-dd</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Starts</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="months" formElement="input" sortOrder="90">
+            <settings>
+                <dataType>number</dataType>
+                <label translate="true">Months</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
+                    <rule name="validate-greater-than-zero" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="expires_at" formElement="date" sortOrder="100">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="outputDateFormat" xsi:type="string">y-MM-dd</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Ends</label>
+                <notice translate="true">Leave empty to compute it from the start date and the months.</notice>
+            </settings>
+        </field>
+        <field name="note" formElement="textarea" sortOrder="110">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Note</label>
+            </settings>
+        </field>
+    </fieldset>
+</form>

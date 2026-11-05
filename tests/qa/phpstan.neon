@@ -1,0 +1,8 @@
+includes:
+    # Magento's own config: bootstrap + DataObject magic getter/setter support
+    - ../static/testsuite/Magento/Test/Php/_files/phpstan/phpstan.neon
+
+parameters:
+    level: 6
+    paths:
+        - ../../../app/code/TechNest

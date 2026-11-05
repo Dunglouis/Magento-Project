@@ -1,0 +1,97 @@
+//
+//  "Sale" badge on product cards and flash sale countdowns (home section + cards)
+//  _____________________________________________
+
+// Muted red, only for the sale badge (white text on it: 4.7:1 contrast)
+@tn-sale: #cf3f3f;
+
+& when (@media-common = true) {
+    // The badge sits over the top-left corner of the product photo
+    .product-image-container {
+        position: relative;
+    }
+
+    .tn-sale {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        gap: @indent__xs;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+    }
+
+    .tn-sale__badge {
+        background: @tn-sale;
+        border-radius: 999px;
+        color: @tn-bg;
+        font-size: 1.2rem;
+        font-weight: @font-weight__semibold;
+        letter-spacing: .02em;
+        line-height: 1;
+        padding: 5px 10px;
+    }
+
+    .tn-sale__ends {
+        background: fade(@tn-bg-alt, 92%);
+        border-radius: 999px;
+        color: @tn-ink;
+        font-size: 1.1rem;
+        line-height: 1;
+        padding: 4px 8px;
+        white-space: nowrap;
+    }
+
+    .tn-countdown {
+        font-variant-numeric: tabular-nums;
+    }
+
+    // Home: headline on the left, countdown boxes on the right (stacked on phones)
+    .tn-flash__head {
+        align-items: flex-end;
+        display: flex;
+        flex-wrap: wrap;
+        gap: @indent__base;
+        justify-content: space-between;
+        margin-bottom: @indent__base;
+
+        .tn-headline {
+            margin: 0;
+        }
+    }
+
+    .tn-countdown--boxes {
+        align-items: center;
+        display: flex;
+        gap: @indent__s;
+    }
+
+    .tn-countdown__label {
+        color: @tn-muted;
+        font-size: 1.4rem;
+        margin-right: @indent__xs;
+    }
+
+    .tn-countdown__box {
+        align-items: center;
+        background: @tn-bg-alt;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        min-width: 56px;
+        padding: @indent__xs @indent__s;
+
+        [data-part] {
+            font-size: 2.2rem;
+            font-weight: @font-weight__semibold;
+            line-height: 1.2;
+        }
+
+        small {
+            color: @tn-muted;
+            font-size: 1.1rem;
+        }
+    }
+}

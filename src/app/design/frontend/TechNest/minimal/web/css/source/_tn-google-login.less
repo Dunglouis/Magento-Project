@@ -1,0 +1,113 @@
+//
+//  "Continue with Google" (TechNest_GoogleLogin) on the sign-in / register pages + phone page
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .tn-google-login {
+        clear: both;
+        padding-top: @indent__base;
+    }
+
+    .tn-google-login__divider {
+        align-items: center;
+        color: @tn-muted;
+        display: flex;
+        gap: @indent__s;
+        margin: 0 0 @indent__base;
+
+        &:before,
+        &:after {
+            border-top: 1px solid @tn-border;
+            content: '';
+            flex: 1;
+        }
+    }
+
+    .tn-google-login__button {
+        align-items: center;
+        background: @tn-bg;
+        border: 1px solid @tn-border;
+        border-radius: @tn-radius-sm;
+        color: @tn-ink;
+        display: flex;
+        font-weight: @font-weight__semibold;
+        gap: @indent__s;
+        justify-content: center;
+        padding: 12px @indent__base;
+        transition: box-shadow 200ms @tn-ease, transform 200ms @tn-ease;
+
+        &:visited {
+            color: @tn-ink;
+        }
+
+        &:hover,
+        &:focus {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .08), 0 8px 24px rgba(0, 0, 0, .06);
+            color: @tn-ink;
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+    }
+
+    .tn-google-login__icon {
+        height: 20px;
+        width: 20px;
+    }
+
+    .technest_google-phone-index .tn-google-phone {
+        .tn-panel();
+        max-width: 520px;
+        padding: @indent__l;
+    }
+
+    .tn-google-phone__intro {
+        color: @tn-muted;
+    }
+}
+
+// Phones: the panels stack; the button follows the sign-in panel, before "New customers"
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .customer-account-login .login-container {
+        display: flex;
+        flex-direction: column;
+
+        .block-customer-login {
+            order: 1;
+        }
+
+        .tn-google-login {
+            margin-bottom: @indent__l;
+            order: 2;
+            padding-top: 0;
+        }
+
+        .block-new-customer {
+            order: 3;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    // Under the sign-in panel (left column), the "New customers" panel stays on the right
+    .customer-account-login .login-container .tn-google-login {
+        clear: left;
+        float: left;
+        padding-top: 0;
+        width: 48%;
+    }
+
+    .customer-account-create .tn-google-login {
+        max-width: 720px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tn-google-login__button {
+        transition: none;
+
+        &:hover,
+        &:focus {
+            transform: none;
+        }
+    }
+}

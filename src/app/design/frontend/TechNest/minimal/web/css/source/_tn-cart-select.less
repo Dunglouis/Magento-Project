@@ -1,0 +1,64 @@
+//
+//  Cart: tick boxes per line and "Select all" (TechNest_CartSelect, js/cart-select)
+//  _____________________________________________
+
+& when (@media-common = true) {
+    // Sits as the first cell of the line, before the product photo
+    .cart.item .col.item .tn-select {
+        display: table-cell;
+        padding-right: @indent__base;
+        vertical-align: middle;
+        width: 1%;
+    }
+
+    .tn-select__box {
+        accent-color: @tn-accent;
+        cursor: pointer;
+        height: 20px;
+        margin: 0;
+        width: 20px;
+    }
+
+    .tn-select-all {
+        margin-bottom: @indent__s;
+
+        .tn-select {
+            align-items: center;
+            cursor: pointer;
+            display: inline-flex;
+            font-weight: @font-weight__semibold;
+            gap: @indent__s;
+        }
+    }
+
+    .tn-select-all__count {
+        color: @tn-muted;
+        font-weight: @font-weight__regular;
+    }
+
+    // Unticked lines stay in the cart but fade back
+    .cart.item.tn-unselected {
+        .product-item-photo,
+        .product-item-details,
+        .col.price,
+        .col.subtotal {
+            opacity: .45;
+            transition: opacity 200ms @tn-ease;
+        }
+    }
+
+    .tn-select-busy .tn-select__box {
+        cursor: progress;
+    }
+
+    .cart-summary .action.primary.checkout:disabled {
+        cursor: not-allowed;
+        opacity: .5;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cart.item.tn-unselected * {
+        transition: none;
+    }
+}

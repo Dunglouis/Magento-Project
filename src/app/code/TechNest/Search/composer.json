@@ -1,0 +1,18 @@
+{
+    "name": "technest/module-search",
+    "description": "TechNest search: product suggestions (image, name, price) in the header search autocomplete",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/module-search": "*",
+        "magento/module-advanced-search": "*",
+        "magento/module-catalog": "*",
+        "magento/module-store": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {"TechNest\\Search\\": ""}
+    }
+}

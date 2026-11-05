@@ -1,0 +1,21 @@
+{
+    "name": "technest/module-automation",
+    "description": "TechNest Automation: warranties after checkout, cron + CLI to cancel unpaid bank transfer orders, expire warranties and clean up ended flash sales",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "require": {
+        "php": "~8.3.0||~8.4.0||~8.5.0",
+        "magento/framework": "*",
+        "magento/module-catalog": "*",
+        "magento/module-config": "*",
+        "magento/module-cron": "*",
+        "magento/module-sales": "*",
+        "magento/module-store": "*",
+        "technest/module-base": "*",
+        "technest/module-warranty": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": {"TechNest\\Automation\\": ""}
+    }
+}

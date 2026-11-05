@@ -14,9 +14,14 @@ services:
       - ./src/package.json.sample:/var/www/html/package.json:cached
       - ./src/generated:/var/www/html/generated:cached
       - ./src/var:/var/www/html/var:cached
+      - ./tests/qa:/var/www/html/dev/tests/technest:cached
       #- ./src/auth.json:/var/www/html/auth.json:cached
       #- ./src/m2-hotfixes:/var/www/html/m2-hotfixes:cached
       #- ./src/patches:/var/www/html/patches:cached
+    ## Google Login on dev: http://localhost/technest_google/oauth/callback -> https://technest.test
+    configs:
+      - source: nginx-google-oauth-dev
+        target: /etc/nginx/conf.d/technest-google-oauth.conf
 
   phpfpm:
     volumes: *appvolumes
@@ -38,3 +43,7 @@ services:
   #  ports:
   #    - "5900:5900"
   #  extra_hosts: *appextrahosts
+
+configs:
+  nginx-google-oauth-dev:
+    file: ./template/dev/nginx/technest-google-oauth.conf

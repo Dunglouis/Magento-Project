@@ -1,0 +1,50 @@
+<?php
+/**
+ * Phone number form after the first Google sign-in
+ */
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use TechNest\CustomerAccess\ViewModel\PhoneField;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var PhoneField $phoneField */
+$phoneField = $block->getData('phone_field');
+$name = $phoneField->getName();
+?>
+<form class="form tn-google-phone" method="post" data-mage-init='{"validation": {}}'
+      action="<?= $escaper->escapeUrl($block->getUrl('technest_google/phone/save')) ?>">
+    <?= $block->getBlockHtml('formkey') ?>
+    <fieldset class="fieldset">
+        <p class="tn-google-phone__intro">
+            <?= $escaper->escapeHtml(__('One last step: we need your mobile number to deliver your orders.')) ?>
+        </p>
+        <div class="field <?= $escaper->escapeHtmlAttr($name) ?> required">
+            <label class="label" for="<?= $escaper->escapeHtmlAttr($name) ?>">
+                <span><?= $escaper->escapeHtml(__('Phone Number')) ?></span>
+            </label>
+            <div class="control">
+                <input type="tel" name="<?= $escaper->escapeHtmlAttr($name) ?>"
+                       id="<?= $escaper->escapeHtmlAttr($name) ?>"
+                       class="input-text" autocomplete="tel" inputmode="tel" placeholder="0912345678" autofocus
+                       data-validate="<?= $escaper->escapeHtmlAttr(json_encode($phoneField->getValidationRules())) ?>"
+                       data-msg-pattern="<?= $escaper->escapeHtmlAttr(
+                           __('Please enter a valid Vietnamese mobile number, for example 0912345678.')
+                       ) ?>">
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary">
+                <span><?= $escaper->escapeHtml(__('Save and continue')) ?></span>
+            </button>
+        </div>
+        <div class="secondary">
+            <a class="action" href="<?= $escaper->escapeUrl($block->getUrl('customer/account/logout')) ?>">
+                <?= $escaper->escapeHtml(__('Sign Out')) ?>
+            </a>
+        </div>
+    </div>
+</form>
