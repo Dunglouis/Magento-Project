@@ -98,6 +98,8 @@ Then open each file and replace every `changeme` value with a password of your c
 | `env/db.env` | `MYSQL_ROOT_PASSWORD`, `MYSQL_PASSWORD`, `MYSQL_INTEGRATION_ROOT_PASSWORD`, `MYSQL_INTEGRATION_PASSWORD` |
 | `env/magento.env` | `MAGENTO_ADMIN_PASSWORD` (at least 7 characters, letters and numbers) |
 | `env/rabbitmq.env` | `RABBITMQ_DEFAULT_PASS` |
+| `env/phpfpm.env` | `TECHNEST_QA_PASSWORD` (QA customer), `CONFIG__DEFAULT__TECHNEST_SEEDER__ICECAT__USERNAME` (free [Open Icecat](https://icecat.biz) account, product images and specs); optional: SMTP and Google Login, see the comments in the file |
+| `env/perf.env` | `TECHNEST_PERF_PASSWORD` (load test customers) |
 
 The real `.env` files are blocked by `.gitignore`, so passwords never reach the repository.
 
@@ -179,6 +181,10 @@ Close every browser window and reopen it. Firefox needs `security.enterprise_roo
 | https://technest.test/admin | Admin panel. Credentials come from `env/magento.env` |
 | http://technest.test:1080 | Mailcatcher, shows emails sent by Magento |
 | http://localhost:8080 | phpMyAdmin, database browser |
+| https://localhost:9443 | Staging (branch `staging`, this PC only). See [docs/deploy.md](docs/deploy.md) |
+| https://technest.gourami-pirate.ts.net | Production (branch `main`), public through Tailscale Funnel while the PC runs it |
+
+Demo accounts, coupon codes and staff roles: [docs/demo-accounts.md](docs/demo-accounts.md).
 
 ## 5. Daily commands
 
@@ -210,7 +216,7 @@ scripts/qa.sh            # PHPCS (Magento2 standard) + PHPStan (level 6) + PHPUn
 scripts/qa.sh --compile  # same, plus setup:di:compile (about 3 minutes)
 ```
 
-The script checks only `src/app/code/TechNest`. PHPUnit runs once a module has a `Test/Unit` folder. CI runs the same script on every push and pull request to `dev` and `main`.
+The script checks only `src/app/code/TechNest`. PHPUnit runs once a module has a `Test/Unit` folder. CI runs the same script on every push and pull request to `dev`, `staging` and `main`.
 
 ### Performance
 
@@ -224,13 +230,29 @@ scripts/perf-mode.sh dev     # back to developer mode before working on code or 
 
 ### Branches and commits
 
+One branch per environment (GitLab Flow). Code moves up one way, always by pull request with a green CI; the ruleset `protected-envs` blocks direct pushes, force pushes and deletion of `dev`, `staging` and `main`.
+
 | Branch | Role |
 |---|---|
-| `main` | Stable, deployed to the demo server |
-| `dev` | Integration. Feature branches start here and are merged back by pull request |
-| `feature/<name>` | One phase or one module, for example `feature/data-seeder` |
+| `feature/<name>` | One phase or one module, from `dev`, for example `feature/data-seeder` |
+| `dev` | Integration, runs on the dev stack (https://technest.test) |
+| `staging` | Deployed automatically to staging (https://localhost:9443) |
+| `main` | Production, tagged `vX.Y.Z` on release |
+| `hotfix/<name>` | Urgent fix from `main` into `main`, then `main` is merged into `staging` and `dev` |
 
 Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:`, `docs:`, `chore:`, `ci:`, with an optional scope such as `feat(base): ...`.
+
+### Deployment
+
+Staging and production run on the same PC as dev, one at a time, from their own clones (`~/Sites/technest-staging`, `~/Sites/technest-production`):
+
+```bash
+scripts/env/install.sh staging   # first install (asks for the admin account in env/magento.env)
+scripts/env/up.sh staging        # start (stops dev); a watcher deploys new commits of the branch every 5 minutes
+scripts/env/down.sh staging      # stop; then bin/start for dev
+```
+
+Each deploy backs up the database first and rolls back if the health check fails. Details, release steps, backups and troubleshooting: [docs/deploy.md](docs/deploy.md).
 
 ## 7. Troubleshooting
 
