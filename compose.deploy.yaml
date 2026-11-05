@@ -14,6 +14,8 @@
 ##   fastcgi_params.
 ## - DB, Valkey, OpenSearch and RabbitMQ publish no ports: Docker port rules bypass
 ##   the host firewall.
+## - OpenSearch keeps its index in the opensearchdata volume (markshust keeps it in
+##   the container, so up.sh --force-recreate would empty the catalog pages).
 
 name: technest-${TN_ENV:?run through scripts/env/compose.sh}
 
@@ -49,6 +51,8 @@ services:
   opensearch:
     image: markoshust/magento-opensearch:3-0
     ports: !reset []
+    volumes:
+      - opensearchdata:/usr/share/opensearch/data
     restart: unless-stopped
 
   rabbitmq:
@@ -62,3 +66,6 @@ services:
 
   mailcatcher:
     profiles: [disabled]
+
+volumes:
+  opensearchdata:
