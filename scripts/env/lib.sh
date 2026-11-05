@@ -154,3 +154,13 @@ tn_stop_others() {
 tn_watch_pid_file() {
   echo "$TN_DIR/backups/watch.pid"
 }
+
+# Pid of the running CD watcher, or nothing. The pid file survives a restart,
+# when its pid may belong to another process.
+tn_watch_pid() {
+  local pid
+  pid="$(cat "$(tn_watch_pid_file)" 2> /dev/null || true)"
+  if [[ -n "$pid" ]] && grep -qs watch.sh "/proc/$pid/cmdline"; then
+    echo "$pid"
+  fi
+}
