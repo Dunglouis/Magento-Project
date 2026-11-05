@@ -25,6 +25,14 @@ main() {
   tn_root service cron start
   tn_magento cron:install --force
 
+  # Catalog pages list products from OpenSearch: rebuild its index when it is missing
+  # (empty opensearchdata volume, for example its first start)
+  if ! tn_cli curl -sf "opensearch:9200/_cat/indices/*_product_*?h=index" | grep -q .; then
+    tn_log "OpenSearch has no product index, reindexing catalog search"
+    tn_magento indexer:reindex catalogsearch_fulltext
+    tn_magento cache:clean full_page block_html
+  fi
+
   if [[ "$TN_FUNNEL" == 1 ]]; then
     tn_log "Opening Tailscale Funnel ${TN_BASE_URL} -> localhost:$TN_HTTPS_PORT"
     "$TN_TAILSCALE" funnel --bg "https+insecure://localhost:$TN_HTTPS_PORT"
