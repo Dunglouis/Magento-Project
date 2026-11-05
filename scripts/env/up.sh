@@ -17,7 +17,9 @@ main() {
 
   tn_stop_others
   tn_log "Starting the stack"
-  tn_compose up -d --wait
+  # Recreated: after a Windows restart Docker Desktop starts the containers before the WSL disk
+  # is mounted, so their src/ bind mount is empty
+  tn_compose up -d --force-recreate --wait
 
   # The crontab lives in the container, so it is lost when the container is recreated
   tn_root service cron start
@@ -31,7 +33,8 @@ main() {
   local pid_file pid
   pid_file="$(tn_watch_pid_file)"
   pid="$(cat "$pid_file" 2> /dev/null || true)"
-  if [[ -n "$pid" ]] && kill -0 "$pid" 2> /dev/null; then
+  # The pid file survives a restart, when the pid may belong to another process
+  if [[ -n "$pid" ]] && grep -qs watch.sh "/proc/$pid/cmdline"; then
     tn_log "CD watcher already running (pid $pid)"
   else
     nohup setsid "$TN_DIR/scripts/env/watch.sh" "$TN_ENV" >> logs/watch.log 2>&1 < /dev/null &
