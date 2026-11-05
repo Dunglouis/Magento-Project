@@ -30,15 +30,13 @@ main() {
     "$TN_TAILSCALE" funnel --bg "https+insecure://localhost:$TN_HTTPS_PORT"
   fi
 
-  local pid_file pid
-  pid_file="$(tn_watch_pid_file)"
-  pid="$(cat "$pid_file" 2> /dev/null || true)"
-  # The pid file survives a restart, when the pid may belong to another process
-  if [[ -n "$pid" ]] && grep -qs watch.sh "/proc/$pid/cmdline"; then
+  local pid
+  pid="$(tn_watch_pid)"
+  if [[ -n "$pid" ]]; then
     tn_log "CD watcher already running (pid $pid)"
   else
     nohup setsid "$TN_DIR/scripts/env/watch.sh" "$TN_ENV" >> logs/watch.log 2>&1 < /dev/null &
-    echo $! > "$pid_file"
+    echo $! > "$(tn_watch_pid_file)"
     tn_log "CD watcher started (pid $!, log $TN_DIR/logs/watch.log)"
   fi
 
