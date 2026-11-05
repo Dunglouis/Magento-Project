@@ -60,6 +60,11 @@ tn_magento() {
   tn_cli bin/magento "$@"
 }
 
+# Maintenance flag set without bin/magento, which may not boot mid-deploy (stale class map)
+tn_maintenance_on() {
+  tn_cli touch var/.maintenance.flag
+}
+
 tn_composer_install() {
   tn_cli composer install --no-dev --no-interaction --no-progress
 }
